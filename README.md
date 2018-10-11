@@ -2,7 +2,7 @@
 
 To run bookdown: this repo's Dockerfile uses [rocker/tidyverse](https://hub.docker.com/r/rocker/) and installs all texlive-full.
 
-Another bookdown docker creation is found in [https://hub.docker.com/r/0xcaff/bookdown/]. But not tested with the content in [./book].
+Another bookdown docker creation is found in https://hub.docker.com/r/0xcaff/bookdown/. But not tested with the content in [./book](./book).
 
 To create a risk-parity-implied-returns image run
 
