@@ -1,0 +1,8 @@
+bookdown::pdf_book:
+  toc_depth: 4
+  includes:
+    in_header: header.tex
+  latex_engine: pdflatex
+  citation_package: natbib
+  pandoc_args: ["--columns=72", "--wrap=auto"]
+  keep_tex: yes

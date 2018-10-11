@@ -1,0 +1,76 @@
+---
+title: "Optimización de Portafolios con Retornos Implícitos de Paridad de Riesgo"
+author: "Michelle Audirac"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: audiracmichelle/tesina
+description: "This is tesina."
+always_allow_html: yes
+fontsize: 10pt
+geometry: paperheight=225mm, paperwidth=150mm, left=1.2cm, right=1.2cm, top=2cm, bottom=2cm
+---
+
+#  Introducción
+
+El objetivo de este trabajo tiene tres frentes:
+
+1. *Ser una propuesta didáctica de manejo de portafolios*. Esto es, presentar de forma simple y con ejemplos las bases, en términos de lenguaje y manejo de datos, que son parte del día a día de los manejadores de portafolios. 
+
+2. *Ofrecer herramientas que permitan al lector hacer manejo de portafolios por su cuenta*. En ese sentido, se deja disponible en github una paquetería en **R** que desarrollamos a lo largo del trabajo. Esta paquetería facilita extraer en cualquier momento datos de precios y generar de forma reproducible los análisis que presentamos en este trabajo.
+
+3. *Proponer una estrategia de inversión basada en paridad de riesgo*. Asumiremos que somos manejadores de portafolios y que nos rige un mandato de inversión al que nos tenemos que apegar. Describiremos todas las partes de un mandato hipotético y explicaremos como traducir estas partes a una estrategia educada de inversión. Se exploran los conceptos detrás de paridad de riesgo presentados por Roncalli, se modifica la formulación para incorporar componentes principales y se prueban los resultados históricos de la estrategia.
+
+Harry Markovitz acuñó hace más de 60 años los principios de la Teoría Moderna de Portafolios a partir de la cual se construyen portafolios en base a combinaciones óptimas de retornos esperados y apetitos de riesgo. Éstas combinaciones son soluciones al problema de optimización de media-varianza el cual descansa en el supuesto que los manejadores de portafolios basan sus decisiones de inversión primordialmente en valores esperados y covarianzas de rendimientos.
+
+Las dificultades que ha presentado la estimación de los retornos esperados ha hecho que la implementación de la Teoría Moderna de Portafolios sea difícil de aplicar a los portafolios en la realidad. Por otro lado, la optimización media-varianza es muy sensible a las entradas del modelo de tal manera que las posiciones óptimas resultantes suelen ser soluciones esquina, es decir tienen altas concentraciones y son inestables de un período a otro. 
+
+La teoría de Markovitz regularmente se asocia con la idea de diversificación; sin embargo, **la optimización de media-varianza no se basa en ninguna medida de diversificación**. De hecho las soluciones esquina en general conllevan a poca diversificación. En nuestro contexto, la diversificación será medida de acuerdo al porcentaje de riesgo asignado a distintas fuentes de riesgo (risk budgeting).
+
+El marco de inversión de nuestro mandato hipotético estará basado en diversificación, en ese sentido tanto el portafolio de referencia del mandato como la estrategia de inversión dependerán del concepto de paridad de riesgo.
+
+Los **métodos de construcción de portafolios basados en paridad de riesgo han adquirido popularidad en la última década** pues no requieren estimaciones de retornos esperados [@kolm2014]. El principio detrás es obtener portafolios cuya asignación de riesgo  se encuentre perfectmante equilibrada. En particular, en este trabajo se presenta la noción de paridad de contribución al riesgo que ofrece Thierry Roncalli [@thierry2010].
+
+Nosotros exploramos cómo incorporar componentes principales a la formulación de contribución al riesgo y a partir de esto proponemos una estrategia de inversión que busca superar satisfactoriamente al portafolio de referencia estipulado en nuestro mandato hipotético. Esta estrategia combina la optimización de media-varianza y los pesos de paridad de riesgo. De aquí es de donde viene el título de este trabajo: **Optimización de Portafolios con Retornos Implícitos de Paridad de Riesgo**.
+
+Aquellos que no estén familiarizados con los términos que se utilizaron en la primer parte de esta introducción no deben desanimarse. Este trabajo está especialmente dirigido a alumnos de licenciatura que tengan conocimientos de álgebra y estadística (en particular que tengan entendimiento de componentes principales) pero que no conocen los conceptos y términos financieros que se utilizan en la literatura y práctica de manejo de portafolios. Basta que el lector esté familiarizado con el concepto de acciones y de casas de bolsa (exchanges); fuera de eso, se explicarán a detalle todos los términos que usemos.
+
+Adicionalmente el público ideal, está interesado en aprender como usar **R** para manipular portafolios pues presentaremos todas las partes de una paquetería que permitirá al lector replicar todos los cálculos. Esta paquetería se encuentra en __REF__ y lo único que se require para descargarla es usar el siguiente código desde **R**.
+
+__INCLUIR_CODE_CHUNK__
+
+Con esta paquetería se invita a los lectores a seguir el contenido de este trabajo para posteriormente construir sus propios portafolios y, ¡salir al mercado a invertir! 
+
+El primer objetivo de este trabajo se cubre principalmente en los capítulos \@ref(conociendo-datos) y \@ref(analiticos) en donde vemos desde cómo bajar precios de acciones hasta como identificar fuentes de riesgo de portafolios. En los ejemplos del capítulo \@ref(conociendo-datos) usaremos acciones cuyos precios se encuentran en distintas monedas; en el capítulo \@ref(analiticos) empezamos a familiarizarnos con los analíticos de ETF's sectoriales.
+
+El segundo objetivo se cubre a lo largo de todo el trabajo pues en cada capítulo se introducen distintas funciones de la paquetería que construimos como complemento a este documento, en los anexos __REF_ se incluye el código de todas las funciones. 
+
+Finalmente el tercer objetivo de este trabajo se desarrolla en el capítulo \@ref(rendimientos-implicitos) en donde desarrolamos las ideas para construir un índice de paridad de fuentes riesgo. Posteriormente utilizamos los retornos implícitos del índice en la optimización de media-varianza para obtener curvas de portafolios óptimos. Los ejemplos que presentaremos en ese capítulo utilizan ETF's multi-activos.
+
+<!-- Es importante mencionar que la estrategia de inversión que presentamos en __REF__ no recomendamos que se utilice directamente sobre acciones. Por esto se familiariza al lector con los ETF's y se le recomienda al lector que va empezar a invertir que primero se familiarice con hacer operaciones con estos instrumentos. Al final del trabajo se comparten ideas de los siguientes pasos a seguir para complemetar la estrategia que presentamos en este trabajo y empezar a construir portafolios más complejos. -->
+
+
+<!-- celebrar la belleza de las matematicas, sus aplicaciones, el material didactico y el codigo abierto -->
+
+<!-- controlar la asignación de riesgo de un portafolio -->
+
+<!-- TRABAJO AUTOCONTENIDO -->
+
+<!-- ** Manejo de portafolios para codeadores** -->
+
+<!-- La primer versión de mi tesis se concentraba en teoría de la medida. Aunque dedique oras, relamente no entendía como aplicar esos conceptos para invertir en la activos en el mundo real. -->
+<!-- conclusiones: en principio quería cubrir bonos mexicanos pero se iba a extender demasiado a un libro, esperemos que  -->
+
+
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE,  -->
+<!--                       warning = FALSE,  -->
+<!--                       error = FALSE,  -->
+<!--                       message = FALSE) -->
+
+<!-- remove(list=ls()) -->
+<!-- ``` -->
+
