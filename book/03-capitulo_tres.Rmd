@@ -25,13 +25,13 @@ Los portafolios de referencia sirven para guiar las decisiones de los manejadore
 
 En este capítulo asumiremos que somos manejadores de portafolios. Para esto, describiremos todas las partes de un mandato de inversión hipotético y explicaremos como traducir estas partes a una estrategia educada de inversión. El marco de inversión de nuestro mandato hipotético estará basado en diversificación, en ese sentido tanto el portafolio de referencia del mandato como la estrategia de inversión deberán ser diversificados.
 
-De acuerdo a la definición que se presentó en el capítulo anterior, la diversificación implica asignar porcentajes equilibrados a distintas fuentes de riesgo. Para lograr asignaciones de riesgo perfectamente equilibradas, en la sección \@ref(paridad-riesgo) se presentan diferentes metodologías con las que construimos tres **índices de paridad de riesgo**: paridad ingenua de riesgo, paridad de contribución al riesgo y paridad de contribución de fuentes de riesgo.
+De acuerdo a la definición que se presentó en el capítulo anterior, la diversificación implica hacer asignaciones de riesgo equilibradas. Para lograr esto, en la sección \@ref(paridad-riesgo) se presentan diferentes metodologías con las que construimos tres **índices de paridad de riesgo**: paridad ingenua de riesgo, paridad de contribución al riesgo y paridad de contribución de fuentes de riesgo.
 
 Contemplando al índice de paridad ingenua de riesgo como referencia, en la sección \@ref(estrategia) se propone una estrategia de inversión que utiliza al índice de paridad de fuentes de riesgo para extraer **rendimientos implícitos**. Siguiendo esta estrategia, construimos diferentes portafolios óptimos que forman una **curva eficiente**.
 
 Es importante mencionar que no recomendamos que se utilice directamente sobre acciones la estrategia de inversión que presentamos. Por esto se familiariza al lector con los ETF's y se le recomienda al lector que va empezar a invertir que primero se familiarice con hacer operaciones con estos instrumentos.
 
-Finalmente, en \@ref(evaluacion) consideraremos dos posibles maneras de fijar el nivel de riesgo y medir el desempeño en un mandato. En base a esto, eligimos dos portafolios óptimo de la curva eficiente y mostramos que nuestra estrategia de inversión es exitosa pues se supera satisfactoriamente al portafolio de referencia.
+Finalmente, en \@ref(evaluacion) consideraremos dos posibles maneras de fijar el nivel de riesgo y medir el desempeño en un mandato. En base a esto, eligimos dos portafolios óptimos sobre la curva eficiente y mostramos que nuestra estrategia de inversión es exitosa pues se supera satisfactoriamente al portafolio de referencia.
 
 ## Mandato de Inversión {#mandato}
 
@@ -78,7 +78,7 @@ Tenemos que el rendimiento acumulado de estos activos en este período es:
 
 Ahora necesitamos conocer el portafolio de referencia de nuestro mandato. En el caso de los mandatos para manejadores de portafolios de acciones, regularmente se utilizan como portafolios de referencia los índices de capitalización de mercado. Sin embargo, **en el caso de portafolio multi-activos**, no tiene sentido usar este tipo de índices y **no existe un consenso general de qué debe usarse como referencia**.
 
-En el siguiente capítulo presentaremos los **índices de paridad de riesgo**. Usar estos índices como portafolios de referencia hace sentido cada vez que el mandato tenga como objetivo delimitar al manejador en un marco de inversión basado en diversificación [@roncalli2013]. Este será el caso de nuestro mandato de inversión. 
+En la sección \@ref(paridad-riesgo) presentaremos los **índices de paridad de riesgo**. Usar estos índices como portafolios de referencia hace sentido cada vez que el mandato tenga como objetivo delimitar al manejador en un marco de inversión basado en diversificación [@roncalli2013]. Este será el caso de nuestro mandato de inversión. 
 
 ## Paridad de Riesgo {#paridad-riesgo}
 
@@ -89,7 +89,7 @@ Veamos un ejemplo de un portafolio constituido por:
 * 60% en el S&P 500 y
 * 40% en el Bloomberg Barclays US Aggregate Bond Index.
 
-Tanto el S&P 500 como el Bloomberg Barclays US Aggregate Bond Index son índices con pesos basados en capitalización de mercado. Veamos el valor de los índices a partir de los precios del SPY y el AGG. El AGG, al igual que el SPY, es un ETF popular.
+Tanto el S&P 500 como el Bloomberg Barclays US Aggregate Bond Index son índices con pesos basados en capitalización de mercado. Veamos en la figura \@ref(spy-agg) el retorno acumulado de los índices a partir de los precios del SPY y el AGG. El AGG, al igual que el SPY, es un ETF popular.
 
 ```{r, spy-agg, fig.cap="Retornos acumulados SPY vs AGG", fig.pos="H", fig.align="center", out.width="70%"}
 traditional <- get_prices_yahoo(c('spy', 'agg'), 
@@ -135,9 +135,9 @@ traditional_sdRet <- get_sdRet_from_dlyChg(
 traditional_sdRet / sum(traditional_sdRet)
 ```
 
-El riesgo SPY representa el `r sprintf("%0.2f", as.numeric(traditional_sdRet[1] / sum(traditional_sdRet)) * 100)`% de la suma del riesgo de los ETFs, el riesgo del AGG representa el `r sprintf("%0.2f", as.numeric(traditional_sdRet[2] / sum(traditional_sdRet)) * 100)`%.
+El riesgo del SPY representa el `r sprintf("%0.2f", as.numeric(traditional_sdRet[1] / sum(traditional_sdRet)) * 100)`% de la suma del riesgo de los ETFs, el riesgo del AGG representa el `r sprintf("%0.2f", as.numeric(traditional_sdRet[2] / sum(traditional_sdRet)) * 100)`%.
 
-Con esto, podemos decir que **la asignación de riesgo de la combinación 60/40 se encuentra poco balanceada**. Usando la idea de este cálculo simple, motivamos la idea detrás de los pesos de portafolios con paridad de riesgo. 
+Con esto, podemos decir que **la asignación de riesgo de la combinación 60/40 se encuentra poco balanceada**. Usando la idea de este cálculo simple, motivamos la idea detrás de los pesos de portafolios con paridad ingenua de riesgo. 
 
 ### Pesos con Paridad Ingenua de Riesgo {#pesos-naive}
 
@@ -191,14 +191,14 @@ $$
 
 A $\frac{\partial\hat\sigma_\text{p}}{\partial h_i}$ lo llamaremos la contribución marginal al riesgo del componente $i$ del portafolio. El vector de contribuciones marginales al riesgo está dado por $\frac{\hat\Sigma h}{\sqrt{h^T \hat\Sigma h}}$.
 
-Por otro lado, llamaremos contibución total al riesgo del componente $i$ del portafolio a $h_i\frac{\partial\hat\sigma_\text{p}}{\partial h_i}$. De esta manera se cumple que el riesgo total del portafolio es la suma de las contribuciones totales al riesgo pues
+Por otro lado, llamaremos **contribución total al riesgo del componente $i$ del portafolio** a $h_i\frac{\partial\hat\sigma_\text{p}}{\partial h_i}$. De esta manera se cumple que el riesgo total del portafolio es la suma de las contribuciones totales al riesgo pues
 
 $$
 \sum_i h_i\frac{(\hat\Sigma h)_i}{\sqrt{h^T \hat\Sigma h}}=\frac{h^T \hat\Sigma h}{\sqrt{h^T \hat\Sigma h}} = \sqrt{h^T \hat\Sigma h}
 $$
 
 ```{block2, type = 'resumen'}
-La idea es encontrar **un portafolio tal que las contribuciones totales al riesgo sean igual para todas las componentes del portafolio**[@thierry2010]. Además, restringiremos el problema para que $h$ solo tome valores positivos, esto es $0<h<1$. Lograr esto requiere resolver el problema de optimización dado por 
+La idea es encontrar **un portafolio tal que las contribuciones totales al riesgo sean igual para todas las componentes del portafolio** [@thierry2010]. Además, restringiremos el problema para que $h$ solo tome valores positivos, esto es $0<h<1$. Lograr esto requiere resolver el problema de optimización dado por 
 
 $$
 \begin{aligned}
@@ -214,7 +214,7 @@ $$
 >
 #### Optimización en **R**
 >
-Para resolver problemas de optimización utilizaremos la función `nloptr::slsqp` que es una función es un algoritmo de programación cuadrática secuencial para optimización basada en gradientes con restricciones no lineales de igualdad y desigualdad.
+Para resolver problemas de optimización utilizaremos la función `nloptr::slsqp` que es un algoritmo de programación cuadrática secuencial para optimización basada en gradientes con restricciones no lineales de igualdad y desigualdad.
 >
 La función `nloptr::slsqp` requiere que se le proporcione una función a optimizar y su gradiente. Construyamos la función a optimizar `fn_contribParity()` que recibirá `h` un arreglo de pesos, y `Sigma` una matriz de covarianzas de activos que componene un portafolio.
 
@@ -259,7 +259,7 @@ double fn_contribParity(NumericVector &x, NumericMatrix &Sigma) {
 ```
 
 >
-El cálculo del gradiente y el código de la función `gr_contribParity` en **Rcpp** se encuentran en el anexo NUM_ANEXO.
+El cálculo del gradiente y el código de la función `gr_contribParity()` en **Rcpp** se encuentran en el anexo NUM_ANEXO.
 
 ```{r, include = FALSE}
 Rcpp::cppFunction("
@@ -292,7 +292,7 @@ NumericVector gr_contribParity(NumericVector &x, NumericMatrix &Sigma) {
 ```
 
 >
-La función `nloptr::slsqp` además necesita un punto inicial de búsqueda que fijaremos en `x0 <- rep(1 / N, N)` donde `N` el número de activos que componen el portafolio. Para la cota inferior y cota superior de nuestro problema de optimización usamos `lower <- rep(0.0, N)` y `upper <- rep(1.0, N)`. Finalmente necesitamos una función `heq` que contenga las restricciones de igualdad y su jacobiano `heqjac`:
+La función `nloptr::slsqp` además necesita un punto inicial de búsqueda que fijaremos en `x0 <- rep(1 / N, N)` donde `N` es el número de activos que componen el portafolio. Para la cota inferior y cota superior de nuestro problema de optimización usamos `lower <- rep(0.0, N)` y `upper <- rep(1.0, N)`. Finalmente necesitamos una función `heq` que contenga las restricciones de igualdad y su jacobiano `heqjac`:
 
 ```{r}
   heq <- function(x) {
@@ -363,7 +363,8 @@ get_contribParity_weights <- function(
 Veamos a partir de los rendimientos de los ETFs multi-activo como las contribuciones totales al riesgo de los componentes de un portafolio son iguales cuando usamos los pesos de paridad a la contribución al riesgo. Es decir que $h_1(\hat\Sigma h)_1 = h_2(\hat\Sigma h)_2 = \ldots = h_n(\hat\Sigma h)_n$.
 
 ```{r}
-contribParity_weights <- get_contribParity_weights(dlyChg, halflife = 160)
+contribParity_weights <- get_contribParity_weights(dlyChg, 
+                                                   halflife = 160)
 covRet <- get_covRet_from_dlyChg(dlyChg, halflife = 160)
 
 contribParity_weights * covRet %*% contribParity_weights
@@ -397,7 +398,7 @@ $$
 \lambda_i (\mathbf{p}_i^\top h)^2 = \lambda_j (\mathbf{p}_j^\top h)^2 \quad \text{ para toda } \quad i,j = 1,...,K.
 $$
 
-A partir de esto tenemos que la formulación del problema de paridad a fuentes de riesgo esta dado por
+A partir de esto tenemos que la formulación del problema de paridad a fuentes de riesgo está dado por
 
 $$
 \begin{aligned}
@@ -586,11 +587,11 @@ plot_xts(principalParity_dlyWeights)
 
 La estrategia de diversificar el riesgo en $K$ fuentes de riesgo puede sufrir inestabilidad en el tiempo. Para solucionar la inestabilidad de los pesos del portafolio diarios de diversificación en fuentes de riesgo vamos a usar promedios móviles. 
 
-El parámetro `roll_parity` determinará la ventana con la que se calculan los promedios móviles de los pesos de paridad de riesgo y ajusta los pesos para que sumen uno. Esto es necesario porque después de aplicar los promedios móviles, los pesos no suman uno día con día. 
+El parámetro `roll_parity` de la función `get_principalParity_weights()` determinará la ventana con la que se calculan los promedios móviles de los pesos de paridad de riesgo y ajusta los pesos para que sumen uno. Esto es necesario porque después de aplicar los promedios móviles, los pesos no suman uno día con día. 
 
 Fijando `roll_parity = 20`, veamos cómo se ven pesos diarios de nuestro índice de paridad de contribución a fuentes de riesgo.
 
-```{r, pesos-contrib-fuentes-20, fig.cap="Pesos diarios de paridad de contribucion a fuentes de riesgo con promedios moviles y ventana de 20 días.", fig.pos="H", fig.align="center", out.width="70%"}
+```{r, pesos-contrib-fuentes-20, fig.cap="Pesos diarios de paridad de contribucion a fuentes de riesgo con promedios moviles y ventana de 20 días.", fig.pos="H", fig.align="center", out.width="50%"}
 principalParity_dlyWeights <- get_riskParity_dlyWeights(
   dlyChg,  
   fun_riskParity_weights = get_principalParity_weights, 
@@ -601,9 +602,9 @@ principalParity_dlyWeights <- get_riskParity_dlyWeights(
 plot_xts(principalParity_dlyWeights)
 ```
 
-Hacemos los mismo para los pesos diarios de paridad ingenua y de contribución al riesgo.
+Hacemos lo mismo para los pesos diarios de paridad ingenua y de contribución al riesgo. La figuras \@ref(pesos-naive-20) y \@ref(pesos-contrib-20) que generamos abajo muestran contienen las gráficas con los pesos diarios.
 
-```{r, pesos-contrib-naive-20, fig.cap="Pesos diarios de paridad ingenua de riesgo con promedios moviles y ventana de 20 dias", fig.pos="H", fig.align="center", out.width="70%"}
+```{r, pesos-naive-20, fig.cap="Pesos diarios de paridad ingenua de riesgo con promedios moviles y ventana de 20 dias", fig.pos="H", fig.align="center", out.width="50%"}
 naiveParity_dlyWeights <- get_riskParity_dlyWeights(
   dlyChg, 
   halflife = 160,  
@@ -613,7 +614,7 @@ naiveParity_dlyWeights <- get_riskParity_dlyWeights(
 plot_xts(naiveParity_dlyWeights)
 ```
 
-```{r}
+```{r, pesos-contrib-20, fig.cap="Pesos diarios de paridad ingenua de riesgo con promedios moviles y ventana de 20 dias", fig.pos="H", fig.align="center", out.width="70%"}
 contribParity_dlyWeights <- get_riskParity_dlyWeights(
   dlyChg, 
   halflife = 160, 
@@ -638,7 +639,7 @@ principalParity_rebWeight <-
   na.trim(xts::lag.xts(principalParity_dlyWeights))
 ```
 
-Ahora, obtengamos el valor de los portafolios con estos pesos de rebalanceo. Los portafolios resultantes serán nuestros índices de paridad de riesgo y los guardamos en un objeto llamado `riskParityIndex`.
+Ahora, obtengamos el valor de los portafolios con estos pesos de rebalanceo. Los portafolios resultantes serán nuestros índices de paridad de riesgo y los guardamos en un objeto llamado `riskParityIndex`. La figura \@ref(risk-parity-index) contiene el valor de los índices de paridad de riesgo en el periodo de análisis. 
 
 ```{r, risk-parity-index, fig.cap="Rendimiento de indices de paridad de riesgo", fig.pos="H", fig.align="center", out.width="70%"}
 naiveParity <- get_rebalance(dlyChg[index(naiveParity_rebWeight)], 
@@ -684,9 +685,9 @@ risk <- get_sdRet_from_dlyChg(rollChg) #* sqrt(nrow(dlyChg))
 
 Concluimos que los índices que construimos tienen las siguientes características:
 
-* El retorno promedio anual del índice de paridad ingenua al riesgo es `r sprintf("%0.2f", (reward['naiveParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['naiveParity'] * 100)`%.
-* El retorno promedio anual del índice de paridad de contribución al riesgo es `r sprintf("%0.2f", (reward['contribParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['contribParity'] * 100)`%.
-* El retorno promedio anual del índice de paridad de fuentes riesgo es `r sprintf("%0.2f", (reward['principalParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['principalParity'] * 100)`%.
+* El retorno promedio anual del índice de paridad ingenua al riesgo es `r sprintf("%0.2f", (reward['naiveParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['naiveParity'] * 100)`% en dólares.
+* El retorno promedio anual del índice de paridad de contribución al riesgo es `r sprintf("%0.2f", (reward['contribParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['contribParity'] * 100)`% en dólares.
+* El retorno promedio anual del índice de paridad de fuentes riesgo es `r sprintf("%0.2f", (reward['principalParity'] - 1) * 100)`%, su riesgo es de `r sprintf("%0.2f", risk['principalParity'] * 100)`% en dólares.
 
 ## Estrategia de inversión {#estrategia}
 
@@ -696,7 +697,7 @@ En contraste, en un **manejo activo** de portafolios se le pide al manejador "al
 
 Ahora que conocemos los índices de paridad de riesgo y retomando el mandato de inversión del que hablamos al principio del capítulo, *vamos a suponer que nuestro portafolio de referencia es el índice de paridad ingenua de riesgo*.
 
-Si nuestro mandato nos pidiera hacer un manejo pasivo, entonces nuestro trabajo consistiría en obtener los pesos diarios de paridad ingenua de riesgo como lo hicimos en la sección \@ref(pesos-naive) y mandar órdenes de compra y venta de acuerdo con estos pesos. Recordemos que al hacer rebalanceos, al momento de hacer compras y ventas es importante contemplar los costos de transacción.
+Si este mandato nos pidiera hacer un manejo pasivo sobre el portafolio de referencia, entonces nuestro trabajo consistiría en obtener los pesos diarios de paridad ingenua de riesgo como lo hicimos en la sección \@ref(pesos-naive) y mandar órdenes de compra y venta de acuerdo con estos pesos. Recordemos que al hacer rebalanceos, al momento de hacer compras y ventas es importante contemplar los costos de transacción.
 
 En el caso de que nuestro mandato nos pidiera hacer un manejo activo, entonces no solo hay que contemplar los costos de transacción; para superar al portafolio de referencia, necesitamos una estrategia de inversión. Más adelante describimos la forma en la que definiremos los pesos de nuestra estrategia activa de manejo de portafolios.
 
@@ -726,10 +727,10 @@ h^* = \frac{1}{\delta}\Sigma^{-1}\mu
 
 **El mayor incoveniente al implementar el modelo de media-varianza es encontrar la manera en la que se determinan los valores esperados de los retornos de los activos**. Un primer acercamiento al problema es estimar estos valores con la distribución empírica de los cambios diarios; es decir, usar $\hat\mu$. Esto no resulta conveniente por la naturaleza misma de los precios. El rendimiento logrado en el pasado representa expectativas del futuro que ya se reflejaron en un precio. Perseguir buenos rendimientos sin más contexto es contraproducente.
 
-La idea detrás de la optimización de media-varianza invertida es encontrar los rendimientos a partir de los cuales se obtienen las posiciones de $h^*$ un portafolio de equilibrio dado. Este portafolio de equilibrio cumple con ciertas características que resultan deseables dentro del mandato de inversión y los pesos de este portafolio se encuentran disponibles en todo momento. 
+La idea detrás de la optimización de media-varianza inversa es encontrar los rendimientos a partir de los cuales se obtienen las posiciones de $h^*$ un portafolio de equilibrio dado. Este portafolio de equilibrio cumple con ciertas características que resultan deseables dentro del mandato de inversión y los pesos de este portafolio se encuentran disponibles en todo momento. 
 
 ```{block2, type = 'resumen'}
-En la optimización invertida, los pesos $h^*$ son conocidos y los rendimientos $\mu^*$ son la variable que desconocemos. 
+En la **optimización inversa**, los pesos $h^*$ son conocidos y los rendimientos $\mu^*$ son la variable que desconocemos. 
 
 A partir de la ecuación \@ref(eq:opt-inv), fijando el valor de $\delta=1$ y usando la matriz de covarianzas empírica tenemos que 
 
@@ -791,7 +792,7 @@ contribParity_dlyImpliedRet <- get_dlyImpliedRet_from_dlyWeights(
 plot_xts(contribParity_dlyImpliedRet * 252)
 ```
 
-Ahora, vemos en \@ref(fig:implicitos-fuentes) los rendimientos implícitos diarios del índice de paridad de fuentes de riesgo.
+Ahora, vemos en \@ref(fig:implicitos-fuentes) los rendimientos implícitos diarios del índice de paridad de fuentes de riesgo. Al leer "rendimientos implícitos" pensemos en "valores proporcionales a la contribución marginal al riesgo" de los activos.
 
 ```{r, implicitos-fuentes, fig.cap="Rendimientos implicitos del indice de paridad de fuentes de riesgo", fig.pos="H", fig.align="center", out.width="70%"}
 principalParity_dlyImpliedRet <- get_dlyImpliedRet_from_dlyWeights(  
@@ -904,21 +905,24 @@ get_optim_dlyWeights_from_dlyImpliedRet <- function(
 
 ```{r, optimos-contrib, fig.cap="Pesos optimos diarios de un portafolio cuyos rendimientos implicitos fueron determinados por el indice de paridad de contribucion al riego.", fig.pos="H", fig.align="center", out.width="70%"}
 
-contribParity_optim_dlyWeights <- get_optim_dlyWeights_from_dlyImpliedRet(
-  contribParity_dlyImpliedRet,
-  dlyChg,
-  halflife = 160,
-  roll_optim = 20,
-  delta = 1)
+contribParity_optim_dlyWeights <- 
+  get_optim_dlyWeights_from_dlyImpliedRet(
+    contribParity_dlyImpliedRet, 
+    dlyChg, 
+    halflife = 160, 
+    roll_optim = 20, 
+    delta = 1)
 
 plot_xts(contribParity_optim_dlyWeights)
 ```
 
-La idea ahora es describir la estrategia activa que seguiremos para vencer a nuestro portafolio de referencia. *Nuestra estrategia consistirá en obtener los rendimientos implícitos del índice de paridad de fuentes de riesgo y alimentarlos a la optimización media-varianza*.
+La idea ahora es describir la estrategia activa que seguiremos para vencer al portafolio de referencia de nuestro mandato. *La estrategia propuesta consistirá en obtener los rendimientos implícitos del índice de paridad de fuentes de riesgo y alimentarlos a la optimización media-varianza*.
 
 La optimización media-varianza requiere que se fije una $\delta$ por lo que vamos a producir pesos óptimos para diferentes valores de $\delta$ y observar la relación riesgo rendimiento de los portafolios resultantes. Los valores $\delta$ que vamos a utilizar son $\{0.1, 0.3, 0.5, 0.7, 1, 1.5\}$.
 
-A continuación, para cada valor de $\delta$, obtenemos los pesos óptimos usando los rendimientos implícitos del índice de paridad de fuentes de riesgo. A partir de estos pesos construimos portafolios con rebalanceo diarios. A los portafolios resultantes los llamamos portafolios óptimos y sus valores los guardamos en el objeto `optim_portolios`. Por `optim_0.1` nos referimos al portafolio óptimo que obtuvimos con delta $0.1$, por `optim_0.3` nos referimos al portafolio óptimo que obtuvimos con delta $0.1$, y así sucesivamente. 
+A continuación, para cada valor de $\delta$, obtenemos los pesos óptimos usando los rendimientos implícitos del índice de paridad de fuentes de riesgo. A partir de estos pesos construimos portafolios con rebalanceo diarios. A los portafolios resultantes los llamamos portafolios óptimos y sus valores los guardamos en el objeto `optim_portolios`.
+
+Por `optim_0.1` nos referimos al portafolio óptimo que obtuvimos con delta $0.1$, por `optim_0.3` nos referimos al portafolio óptimo que obtuvimos con delta $0.3$, y así sucesivamente. 
 
 ```{r}
 deltas = c(0.1, 0.3, 0.5, 0.7, 1, 1.5)
@@ -942,12 +946,14 @@ for(delta in deltas) {
 optim_portfolios <- do.call(cbind, optim_portfolios)
 ```
 
-Ahora, evaluemos la relación riesgo-rendimiento de los portafolios óptimos en `optim_portaflios` contra la del portafolio referencia. En este caso, comparamos rendimientos y riesgos trimestrales. 
+Ahora, evaluemos en la figura \@ref(optimos-risk-reward) la relación riesgo-rendimiento de los portafolios óptimos en `optim_portaflios` contra la del portafolio referencia. En este caso, comparamos rendimientos y riesgos trimestrales. 
 
 ```{r, optimos-risk-reward, fig.cap="Curva eficiente de portafolios optimos", fig.pos="H", fig.align="center", out.width="70%"}
 mandate_dlyChg <- get_dlyChg_from_price(
-  na.trim(cbind(riskParityIndex$naiveParity, optim_portfolios)))
-mandate_quarterChg <- get_rollChg_from_dlyChg(mandate_dlyChg, roll = 60) ^ 60
+  na.trim(cbind(riskParityIndex$naiveParity, 
+                optim_portfolios)))
+mandate_quarterChg <- get_rollChg_from_dlyChg(mandate_dlyChg, 
+                                              roll = 60) ^ 60
 mandate_reward <- (get_meanRet_from_dlyChg(mandate_quarterChg) - 1)* 100
 mandate_risk <- get_sdRet_from_dlyChg(mandate_quarterChg) * 100
 
@@ -958,26 +964,26 @@ plot_riskReward_from_dlyChg(mandate_dlyChg,
 ```
 
 ```{block2, type = 'resumen'}
-En la figura __REF__ vemos que los portafolios óptimos forman una curva. A esta curva se le conoce como **curva eficiente**. Vale la pena mencionar que, los pesos de los portafolios que definen una curva eficiente dependen de los rendimientos implícitos que se utilicen dentro de la optimización de media-varianza.
+En la figura \@ref(optimos-risk-reward) vemos que los portafolios óptimos forman una curva. A esta curva se le conoce como **curva eficiente**. Vale la pena mencionar que, los pesos de los portafolios que definen una curva eficiente dependen de los rendimientos implícitos que se utilicen dentro de la optimización de media-varianza.
 ```
 
 Nos falta escoger la $\delta$ de nuestra estrategia de inversión. Tradicionalmente, el nivel de riesgo que busca un mandato de inversión queda determinado por el portafolio de referencia. En ese caso, dado el nivel de riesgo de nuestro portafolio de referencia, la $\delta$ que deberíamos elegir es $0.7$ pues **`optim_0.7` es el portafolio que está más cerca de la línea azul** en la figura \@ref(fig:optimos-risk-reward).
 
-Como reflexión, en este trabajo *se propone considerar otro criterio para determinar el nivel de riesgo que se debe elegir dado el portafolio de referencia en un mandato. Lo que proponemos es utilizar la línea de riesgo-rendimiento del portafolio de referencia* de tal manera que el portafolio del manejador aporte las mismas unidades de rendimiento por cada unidad de riesgo. Con ese criterio, la $\delta$ que escogemos es $0.5$ pues **`optim_0.5` es el portafolio óptimo que se encuentra más cerca de la línea de riesgo-rendimiento de nuestro portafolio de referencia**.
+Como reflexión, en este trabajo se propone considerar otro criterio para determinar el nivel de riesgo que se debe elegir dado el portafolio de referencia en un mandato. *Lo que proponemos es utilizar la línea de riesgo-rendimiento del portafolio de referencia de tal manera que el portafolio del manejador aporte las mismas unidades de rendimiento por cada unidad de riesgo*. Con ese criterio, la $\delta$ que escogemos es $0.5$ pues **`optim_0.5` es el portafolio óptimo que se encuentra más cerca de la línea de riesgo-rendimiento de nuestro portafolio de referencia**.
 
 ### Evaluación de portafolios {#evaluacion}
 
 ¡Ya contamos con una estrategia activa que cumple con un mandato de inversión! 
 
-En términos de *las métricas de desempeño que vamos a suponer que establece nuestro mandato de inversión*, simplemente comparemos la relación riesgo-rendimiento trimestral del portafolio de referencia con los portafolios `optim_0.7` y `optim_0.5`:
+En términos de *las métricas de desempeño que suponemos establece nuestro mandato de inversión*, simplemente comparemos el riesgo y rendimiento trimestral del portafolio de referencia con la de los portafolios `optim_0.7` y `optim_0.5`:
 
-* El portafolio de referencia tiene un riesgo trimestral de `r sprintf("%0.2f", mandate_risk['naiveParity'])`% y un rendimiento trimestral de `r sprintf("%0.2f", mandate_reward['naiveParity'])`%.
+* El portafolio de referencia tiene un riesgo trimestral de `r sprintf("%0.2f", mandate_risk['naiveParity'])`% y un rendimiento trimestral de `r sprintf("%0.2f", mandate_reward['naiveParity'])`%. Su número de unidades de rendimiento por unidad de riesgo es `sprintf("%0.2f", mandate_reward['naiveParity']/mandate_risk['naiveParity'])`.
 
 * El portafolio óptimo con $\delta = 0.7$ tiene un riesgo trimestral de `r sprintf("%0.2f", mandate_risk['optim_0.7'])`% y un rendimiento trimestral de `r sprintf("%0.2f", mandate_reward['optim_0.7'])`%.
 
 Para el caso en el que tenemos un mandato que busca fijar el nivel de riesgo de la inversión, el portafolio `optim_0.7` superó al portafolio de referencia pues obtuvo *mayor rendimiento con el mismo nivel de riesgo que la referencia*. 
 
-* El portafolio óptimos con $\delta = 0.5$ tiene un riesgo trimestral de `r sprintf("%0.2f", mandate_risk['optim_0.5'])`% y un rendimiento trimestral de `r sprintf("%0.2f", mandate_reward['optim_0.5'])`%.
+* El portafolio óptimos con $\delta = 0.5$ tiene un riesgo trimestral de `r sprintf("%0.2f", mandate_risk['optim_0.5'])`% y un rendimiento trimestral de `r sprintf("%0.2f", mandate_reward['optim_0.5'])`%. Su número de unidades de rendimiento por unidad de riesgo es `sprintf("%0.2f", mandate_reward['optim_0.5']/mandate_risk['optim_0.5'])`.
 
 En el caso en el que tenemos un mandato que busca fijar el nivel de riesgo-rendimiento, el portafolio `optim_0.5` superó al portafolio de referencia pues logró *mantenerse sobre la misma línea de riesgo-rendimiento que el portafolio de referencia tomando más riesgo*.
 
@@ -992,7 +998,7 @@ plot_xts(mandate_cumRet)
 
 Como vemos, el comportamiento de los portafolios `optim_0.5` y `optim_0.7` es bastante estable en el tiempo y tuvieron un rendimiento acumulado total en el período de `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.5'] - 1) * 100)`% y `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.7'] - 1) * 100)`% respectivamente. El del índice de paridad ingenua de riesgo es  `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'naiveParity'] - 1) * 100)`%.
 
-```{r}
+```{r, include=FALSE}
 mxn_dlyChg <- get_dlyChg_from_price(mxn)
 mandate_dlyChg <- na.omit(cbind(mandate_dlyChg, mxn_dlyChg))
 mandate_dlyChg$naiveParity.MXN <- mandate_dlyChg$naiveParity * 
@@ -1008,8 +1014,8 @@ mandate_cumRet <- get_cumRet_from_dlyChg(mandate_dlyChg)
 Para concluir el capítulo, recordemos que asumimos que somos manejadores en Estados Unidos, por ende los rendimientos que presentamos se encuentran en dólares. Para que podamos comparar estos rendimientos con tasas de interés y productos de inversión mexicanos debemos convertirlos a pesos. Transformando los rendimientos en dólares a pesos como vimos en el capítulo \@ref(conociendo-datos), tenemos que:
 
 * el rendimiento acumulado en pesos del índice de paridad ingenua de riesgo `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'naiveParity.MXN'] - 1) * 100)`%
-* `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.5.MXN'] - 1) * 100)`%
-* `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.7.MXN'] - 1) * 100)`%
+* el rendimiento acumulado en pesos del portafolio óptimo con $\delta=0.5$ es `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.5.MXN'] - 1) * 100)`%
+* el rendimiento acumulado en pesos del portafolio óptimo con $\delta=0.7$ es `r sprintf("%0.2f", (mandate_cumRet[nrow(mandate_cumRet), 'optim_0.7.MXN'] - 1) * 100)`%
 
 <!-- Para concluir el capítulo veamos la asignación de riesgo de los portafolios óptimos que elegimos para comprobar que no son soluciones espresentemos el rendimiento en pesos tanto del portafolio referencia como de los portafolios óptimos que construimos y midamos  -->
 <!-- medir diverdificación de portafolios de salida -->
