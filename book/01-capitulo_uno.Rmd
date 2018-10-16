@@ -210,14 +210,16 @@ plot_xts <- function(x){
 }
 ```
 
-Veamos las gráficas de los precios ajustados diarios en `herdez` y `gigante`!
+Veamos las gráficas de los precios ajustados diarios en los objetos `herdez` y `gigante`!
 
-```{r out.width="70%"}
-plot_xts(herdez)
+```{r out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(herdez) + 
+  labs(title = 'Precios ajustados de Herdez')
 ```
 
-```{r out.width="70%"}
-plot_xts(gigante)
+```{r out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(gigante) + 
+  labs(title = 'Precios ajustados de Gigante')
 ```
 
 Podemos ver que las acciones de Herdez son **líquidas** mientras que las acciones de Gigante son **ilíquidas**.
@@ -404,9 +406,10 @@ dlyChg[1, ] <- 1
 
 Los **rendimientos diarios** son los cambios relativos diarios menos $1$. Para ver una gráfica con los rendimientos diarios de nuestras acciones en 2017 restamos $1$ a `dlyChg`. 
 
-```{r}
+```{r out.width="70%", fig.align="center", fig.pos="H"}
 ret = dlyChg - 1
-plot_xts(ret)
+plot_xts(ret) + 
+  labs(title = "Rendimientos Diarios")
 ```
 
 ```{block2, type = 'resumen'}
@@ -724,11 +727,11 @@ Aunque asignamos un peso inicial (de apertura) a cada activo dentro del portafol
 
 Grafiquemos los pesos de cierre de cada componente del portafolio en el tiempo.
 
-```{r portfolio_weights, fig.cap='Pesos de cierre de los componentes de un portafolio', out.width="70%", fig.align="center", fig.pos="H"}
+```{r portfolio-weights, fig.cap='Pesos de cierre de los componentes de un portafolio', out.width="70%", fig.align="center", fig.pos="H"}
 plot_xts(portfolio_weights)
 ```
 
-Veamos en la figura \@ref(fig:portfolio_weights) las diferencias entre los pesos iniciales de las componentes del portafolio y sus pesos al 30 de junio de 2017:
+Veamos en la figura \@ref(fig:portfolio-weights) las diferencias entre los pesos iniciales de las componentes del portafolio y sus pesos al 30 de junio de 2017:
 
 * Herdez pasó de `r sprintf("%0.2f", H0['HERDEZ.MX.Adjusted'] * 100)`% a `r sprintf("%0.2f", as.numeric(portfolio_weights['2017-06-30', 'HERDEZ.MX.Adjusted']) * 100)`%
 * Gigante pasó de `r sprintf("%0.2f", H0['GIGANTE.MX.Adjusted'] * 100)`% a `r sprintf("%0.2f", as.numeric(portfolio_weights['2017-06-30', 'GIGANTE.MX.Adjusted']) * 100)`%
