@@ -38,7 +38,7 @@ Nosotros exploramos cómo incorporar componentes principales a la formulación d
 
 Aquellos que no estén familiarizados con los términos que se utilizaron en la primer parte de esta introducción no deben desanimarse. Este trabajo está especialmente dirigido a alumnos de licenciatura que tengan conocimientos de álgebra y estadística (en particular que tengan entendimiento de componentes principales) pero que no conocen los conceptos y términos financieros que se utilizan en la literatura y práctica de manejo de portafolios. Basta que el lector esté familiarizado con el concepto de acciones y de casas de bolsa (exchanges); fuera de eso, se explicarán a detalle todos los términos que usemos.
 
-Adicionalmente el público ideal, está interesado en aprender como usar **R** para manipular portafolios pues presentaremos todas las partes de una paquetería que permitirá al lector replicar todos los cálculos. Esta paquetería se encuentra en __REF__ y lo único que se require para descargarla es usar el siguiente código desde **R**.
+Adicionalmente el público ideal tiene conocimiento básico de **R** y está interesado en aprender como usar **R** para manipular portafolios pues presentaremos todas las partes de una paquetería que permitirá al lector replicar todos los cálculos. Esta paquetería se encuentra en __REF__ y lo único que se require para descargarla es usar el siguiente código desde **R**.
 
 __INCLUIR_CODE_CHUNK__
 
@@ -65,12 +65,12 @@ Finalmente el tercer objetivo de este trabajo se desarrolla en el capítulo \@re
 <!-- conclusiones: en principio quería cubrir bonos mexicanos pero se iba a extender demasiado a un libro, esperemos que  -->
 
 
-<!-- ```{r setup, include=FALSE} -->
-<!-- knitr::opts_chunk$set(echo = TRUE,  -->
-<!--                       warning = FALSE,  -->
-<!--                       error = FALSE,  -->
-<!--                       message = FALSE) -->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      error = FALSE,
+                      message = FALSE)
 
-<!-- remove(list=ls()) -->
-<!-- ``` -->
+remove(list=ls())
+```
 

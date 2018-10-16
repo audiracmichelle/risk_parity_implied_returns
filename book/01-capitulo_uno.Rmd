@@ -6,19 +6,19 @@ source('./foo.R')
 
 Nuestro destino final: la optimización de la diversificación de portafolios, para llegar ahí debemos primero hacer un viaje por el mundo de términos que se utilizan en la industria de manejo de portafolios. Por esto, en este capítulo no solo se va familiarizar al lector con los conceptos utilizados frecuentemente por los manejadores de portafolios. El objetivo principal será construir las funciones básicas de una paquetería de optimización de portafolios. Estas funciones nos permitirán manipular rápidamente los precios de activos. 
 
-En la sección \@ref(paqueterias-r) de este capítulo, empezamos preparando la caja de herramientas que necesitamos para armar nuestra paquetería de optimización de portafolios en **R**. En particular resulta práctico conocer óomo se contruyen los objetos **xts**, éstos objetos contienen series de tiempo.
+En la sección \@ref(paqueterias-r) de este capítulo, empezamos preparando la caja de herramientas que necesitamos para armar nuestra paquetería de optimización de portafolios en **R**. En particular resulta práctico conocer como se contruyen los objetos **xts**, éstos objetos contienen series de tiempo.
 
 En la sección \@ref(precios-acciones) construimos la función `get_prices_yahoo()` con la que vamos a extraer los datos que utilizaremos en el resto del trabajo. Esta función obtiene precios de acciones de Yahoo! Finance y produce objetos **xts** fácilmente. Familiarizarnos con los *tickers* y el término *OHLC* nos permitirá entender los parámetros de `get_prices_yahoo()`. Adicionalmente, en esta sección creamos la función `plot_xts()` que utilizaremos regularmente para graficar series de tiempo.
 
 Más adelante, en la sección \@ref(rendimientos) presentaremos varios conceptos y funciones relacionados con el cálculo de *rendimientos*. Hacemos énfasis en cómo obtener rendimientos en distintos tipos de cambio pues resulta indispensable utilizar rendimientos en la misma moneda al momento de construir portafolios.
 
-El cálculo del *rendimiento acumulado* nos permitirá entender los *precios de cierre ajustados* (usando la función `get_cumRet_from_dlyChg()`) y el *valor de un portafolio*, cómo se cubre en las secciones \@ref(precios-ajustados) y \@ref(valor-portafolio) En los cursos básicos de matemáticas financieras regularmente se muestran ejemplos donde se fijan los pesos iniciales de las componentes de los portafolios; sin embargo, los pesos de los portafolios cambian conforme se mueven los precios de sus componentes y es necesario volver a fijarlos a través de *rebalanceos* como se muestra en la sección \@ref(rebalanceo)
+El cálculo del *rendimiento acumulado* (usando la función `get_cumRet_from_dlyChg()`) nos permitirá entender los *precios de cierre ajustados* y el *valor de un portafolio*, cómo se cubre en las secciones \@ref(precios-ajustados) y \@ref(valor-portafolio). En los cursos básicos de matemáticas financieras regularmente se muestran ejemplos donde se fijan los pesos iniciales de las componentes de los portafolios; sin embargo, los pesos de los portafolios cambian conforme se mueven los precios de sus componentes y es necesario volver a fijarlos a través de *rebalanceos* como se muestra en la sección \@ref(rebalanceo)
 
 En particular, los índices de acciones y bonos son portafolios con distintas configuraciones de frecuencia y pesos de rebalanceo. En la sección \@ref(indices) vamos a construir un índice con rebalanceos trimestrales y pesos de *capitalización de mercado*. Para esto usamos las funciones que construimos a lo largo del capítulo dentro de las que destacan: `get_dlyChg_from_price()` y `get_rebalance()`.
 
 Finalmente, en la sección \@ref(etfs) se presenta un tipo de activo llamado *ETF*. Hablaremos de las cualidades que hacen que los ETF sean los instrumentos más operados en el mundo. Consecuentemente, en los siguientes capítulo ya no usaremos acciones y únicamente trabajaremos con este tipo de instrumentos. 
 
-Notemos que adicionalemente, a lo largo de este primer capítulo se presentan los conceptos *liquidez*, *precios ajustados*, *costos de operación*, *posiciones largas y cortas* y también se mencionan algunos jugadores importantes en la industria como son los *proveedores de índices*, *los proveedores de tickers*, las *casas de bolsa* y los *custodios*. 
+Notemos que adicionalemente, a lo largo de este primer capítulo se presentan los conceptos *liquidez*, *precios ajustados*, *costos de operación*, *posiciones largas y cortas*; también se mencionan algunos jugadores importantes en la industria como son los *proveedores de índices*, *los proveedores de tickers*, las *casas de bolsa* y los *custodios*. 
 
 ## Paqueterías de **R** {#paqueterias-r}
 
@@ -60,7 +60,8 @@ Empecemos por elegir una empresa y un periodo, digamos:
 Con esto, vamos a crear el objeto `ibm`.
 
 ```{r}
-# `getSymbols(IBM)`, `getSymbols(IBM, src = "yahoo")` o `getSymbols.yahoo(IBM)` son equivalentes
+# `getSymbols(IBM)`, `getSymbols(IBM, src = "yahoo")` o 
+# `getSymbols.yahoo(IBM)` son equivalentes
 
 ibm <- getSymbols.yahoo('IBM', auto.assign=FALSE, 
                         from = '2016-12-31', to = '2017-12-31')
@@ -209,17 +210,19 @@ plot_xts <- function(x){
 }
 ```
 
-Veamos las gráficas de los precios ajustados diarios en `herdez`y `gigante`!
+Veamos las gráficas de los precios ajustados diarios en los objetos `herdez` y `gigante`!
 
-```{r}
-plot_xts(herdez)
+```{r out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(herdez) + 
+  labs(title = 'Precios ajustados de Herdez')
 ```
 
-```{r}
-plot_xts(gigante)
+```{r out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(gigante) + 
+  labs(title = 'Precios ajustados de Gigante')
 ```
 
-Podemos ver que las acciones de Herdez son líquidas mientras que las acciones de Gigante no lo son.
+Podemos ver que las acciones de Herdez son **líquidas** mientras que las acciones de Gigante son **ilíquidas**.
 
 >
 ### Liquidez
@@ -260,7 +263,7 @@ Para trabajar con otras series extraídas con `getSymbols.yahoo()` y pegadas en 
 
 Como queremos que el objeto que regrese `get_prices_yahoo()` no contenga `NA`'s, vamos a imputar los `NA`s usando `xts::na.locf()`, un método de **xts** que reemplaza cada valor vacío con el siguiente valor en la serie que sea distinto de `NA`.
 
-Ponemos `"Adjusted"` como valor predeterminado de un parámetro de `get_prices_yahoo()` que llamaremos `column`, aunque lo podremos cambiar por `"Open"`, `"High"`, `"Low"`, `"Close"` y `"Volume"`.
+Ponemos "Adjusted" como valor predeterminado de un parámetro de `get_prices_yahoo()` que llamaremos `column`, aunque lo podremos cambiar por "Open", "High", "Low", "Close" y "Volume".
 
 ```{r}
 get_prices_yahoo <- function(
@@ -294,7 +297,10 @@ get_prices_yahoo <- function(
 Volvamos a generar `price` pero esta vez con la función que acabamos de crear y añadiendo el tipo de cambio como el que guardamos en `mxn`. Recordemos que las columnas `Close` y `Adjusted` son identicas para el tipo de cambio.
 
 ```{r}
-price <- get_prices_yahoo(c('IBM', 'herdez.mx', 'gigante.mx', 'MXN=X'),
+price <- get_prices_yahoo(c('IBM', 
+                            'herdez.mx', 
+                            'gigante.mx', 
+                            'MXN=X'),
                            from = '2016-12-31',
                            to = '2017-12-31')
 head(price)
@@ -302,7 +308,7 @@ head(price)
 
 Con la función `plot_xts()` y el objeto `price` que acabamos de crear, hagamos una gráfica para comparar los precios de nuestros instrumentos.
 
-```{r, precios, fig.cap='Precios de Acciones'}
+```{r precios, fig.cap='Precios de Acciones', out.width="70%", fig.align="center", fig.pos="H"}
 plot_xts(price)
 ```
 
@@ -400,9 +406,10 @@ dlyChg[1, ] <- 1
 
 Los **rendimientos diarios** son los cambios relativos diarios menos $1$. Para ver una gráfica con los rendimientos diarios de nuestras acciones en 2017 restamos $1$ a `dlyChg`. 
 
-```{r, dail-ret}
+```{r out.width="70%", fig.align="center", fig.pos="H"}
 ret = dlyChg - 1
-plot_xts(ret)
+plot_xts(ret) + 
+  labs(title = "Rendimientos Diarios")
 ```
 
 ```{block2, type = 'resumen'}
@@ -427,7 +434,9 @@ Ahora, calculemos el rendimiento de IBM en pesos usando cambios relativos:
 
 ```{r}
 dlyChg$IBM_MXN.Adjusted <- dlyChg$IBM.Adjusted * dlyChg$MXN.X.Adjusted
-apply(dlyChg, 2, prod)[c('IBM.Adjusted', 'IBM_MXN.Adjusted', 'MXN.X.Adjusted')] - 1
+apply(dlyChg, 2, prod)[c('IBM.Adjusted', 
+                         'IBM_MXN.Adjusted', 
+                         'MXN.X.Adjusted')] - 1
 ```
 
 Comparemos los rendimientos en pesos y dólares de IBM en 2017:
@@ -469,11 +478,11 @@ for (c in 1:ncol(cumRet)) {
 
 Ahora, grafiquemos los rendimientos acumulados en `cumRet`.
 
-```{r, cum-ret, fig.cap="Retornos acumulados"}
+```{r cumRet, fig.cap='Precios de Acciones', out.width="70%", fig.align="center", fig.pos="H"}
 plot_xts(cumRet)
 ```
 
-¡Esta gráfica es mucho más útil que la figura \@ref(fig:precios)! Los rendimientos acumulados, a diferencia de los precios, nos permite comparar facilmente cuánto cambió el valor de nuestros activos en el tiempo.
+¡La gráfica en la figura \@ref(fig:cumRet) es mucho más útil que la de la figura \@ref(fig:precios)! Los rendimientos acumulados, a diferencia de los precios, nos permite comparar facilmente cuánto cambió el valor de nuestros activos en el tiempo.
 
 El equivalente a multiplicar cambios diarios es sumar el logaritmo de los cambios diarios y luego exponenciar.
 
@@ -521,7 +530,7 @@ Aunque hasta ahora hemos trabajado con precios de cierre ajustados, aún no hemo
 
 Grafiquémos los rendimientos acumulados de los precios de cierre y ajustados de IBM.
 
-```{r, close-adjusted, fig.cap="Precios de cierre y ajustados"}
+```{r, close-adjusted, fig.cap="Precios de cierre y ajustados", out.width="70%", fig.align="center", fig.pos="H"}
 # obtenemos los cambios diarios de ibm
 ibm_dlyChg  <-  get_dlyChg_from_price(ibm)
 
@@ -703,7 +712,7 @@ portfolio_weights <-
 
 Ahora, veamos las contribuciones y el rendimiento acumulado que acabamos de calcular.
 
-```{r, contrib, fig.cap='Contribuciones al rendimiento de un portafolio'}
+```{r, contrib, fig.cap='Contribuciones al rendimiento de un portafolio', out.width="70%", fig.align="center", fig.pos="H"}
 plot_xts(cbind(portfolio_cumRet, portfolio_contrib))
 ```
 
@@ -718,12 +727,11 @@ Aunque asignamos un peso inicial (de apertura) a cada activo dentro del portafol
 
 Grafiquemos los pesos de cierre de cada componente del portafolio en el tiempo.
 
-```{r}
-plot_xts(portfolio_weights) + 
-  labs(title = 'Pesos de cierre de un portafolio')
+```{r portfolio-weights, fig.cap='Pesos de cierre de los componentes de un portafolio', out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(portfolio_weights)
 ```
 
-Veamos las diferencias entre los pesos iniciales de las componentes del portafolio y sus pesos al 30 de junio de 2017:
+Veamos en la figura \@ref(fig:portfolio-weights) las diferencias entre los pesos iniciales de las componentes del portafolio y sus pesos al 30 de junio de 2017:
 
 * Herdez pasó de `r sprintf("%0.2f", H0['HERDEZ.MX.Adjusted'] * 100)`% a `r sprintf("%0.2f", as.numeric(portfolio_weights['2017-06-30', 'HERDEZ.MX.Adjusted']) * 100)`%
 * Gigante pasó de `r sprintf("%0.2f", H0['GIGANTE.MX.Adjusted'] * 100)`% a `r sprintf("%0.2f", as.numeric(portfolio_weights['2017-06-30', 'GIGANTE.MX.Adjusted']) * 100)`%
@@ -733,9 +741,9 @@ Veamos las diferencias entre los pesos iniciales de las componentes del portafol
 >
 ### Posiciones Largas y Posiciones Cortas
 >
-En la mayor parte de este trabajo únicamente consideraremos pesos iniciales positivos, que por construcción nos llevan a pesos de cierre positivos. A las posiciones $H_i^0>0$ se les llama **posiciones largas**.
+En este trabajo únicamente consideraremos pesos iniciales positivos, que por construcción nos llevan a pesos de cierre positivos. A las posiciones $H_i^0>0$ se les llama **posiciones largas**.
 >
-Existen casas de bolsa que permiten colocar órdenes llamadas **ventas en corto**. Supongamos que a principio de 2017 vamos a registrar una venta en corto de Herdez a precio de mercado. Esto significa que si el rendimiento de Herdez al final de 2017 fue de `r sprintf("%0.2f", (pT / p0 - 1)[ ,'HERDEZ.MX.Adjusted'] * 100)`% y si decidimos cerrar la posición corta en ese momento, entonces nosotros obtendríamos un rendimiento de `r sprintf("%0.2f", -(pT / p0 - 1)[ ,'HERDEZ.MX.Adjusted'] * 100)`%.
+Existen casas de bolsa que permiten colocar órdenes llamadas **ventas en corto**. Supongamos que a principio de 2017 vamos a registrar una venta en corto de Herdez a precio de mercado. Esto significa que si el rendimiento de Herdez al final de 2017 fue de `r sprintf("%0.2f", (pT / p0 - 1)[ ,'HERDEZ.MX.Adjusted'] * 100)`% y si decidimos cerrar la posición corta en ese momento, entonces al final del periodo obtendríamos un rendimiento de `r sprintf("%0.2f", -(pT / p0 - 1)[ ,'HERDEZ.MX.Adjusted'] * 100)`%.
 >
 A las posiciones $H_i^0<0$ se les llama **posiciones cortas**. Tener una posición corta en el componente $i$ de un portafolio significa colocar una venta en corto en el activo $i$. Si ese activo da un rendimiento $\delta_i^\mathbb{T}$ en el periodo $\mathbb{T}$, entonces la contribución del activo $i$ al tiempo $T$ será $(-H_i^0 \delta_i^\mathbb{T})(1-H_i^0)$
 
@@ -771,7 +779,7 @@ Hb <- c(
 )
 ```
 
-Con este cambio, ¿cuál es el rendimiento rendimiento acumulado en 2017?
+Con este cambio, ¿cuál es el rendimiento acumulado en 2017?
 
 ----
 
@@ -811,7 +819,7 @@ El anexo __REF__ describe una lógica secuencial para obtener valores de portafo
 
 Considerando los pesos de rebalanceo del 30 de junio, vamos a obtener el nuevo rendimiento acumulado de nuestro portfalio y las contribuciones de los componentes.
 
-```{r}
+```{r contrib-rebalanceo, fig.cap='Contribuciones al rendimiento despues del rebalanceo', out.width="70%", fig.align="center", fig.pos="H"}
 dlyChg <- dlyChg[, c('HERDEZ.MX.Adjusted', 
                      'GIGANTE.MX.Adjusted', 
                      'MXN.X.Adjusted', 
@@ -822,19 +830,19 @@ rebWeight <- xts(rbind(H0, Hb),
 
 rebalance <- get_rebalance(dlyChg, rebWeight)
 
-plot_xts(cbind(rebalance$portValue, rebalance$portContrib))  + 
-  labs(title = 'Contribuciones al rendimiento despues del rebalanceo')
+plot_xts(cbind(rebalance$portValue, rebalance$portContrib))
 ```
+
+De acuerdo a la figura \@ref(fig:contrib-rebalanceo):
 
 * El rebalanceo que se hizo el 30 de junio provocó que disminuyera el rendimiento final del portafolio. Este rendimiento fue de `r sprintf("%0.2f", as.numeric(rebalance$portValue['2017-12-29'] - 1) * 100)`%. 
 
 * Resalta que después del rebalanceo, al fijar el peso de IBM en cero, a partir del 30 de junio su contribución se mantiene fija en `r sprintf("%0.2f",  as.numeric(rebalance$portContrib['2017-12-29', 'IBM_MXN.Adjusted'] - 1) * 100)`%.
 
-* Por otro lado, los pesos de cierre del portafolio antes y después del rebalanceo del 30 de junio también muestran cambios como vemos en la siguiente gráfica.
+* Por otro lado, los pesos de cierre del portafolio antes y después del rebalanceo del 30 de junio también muestran cambios como vemos en la siguiente figura \@ref(fig:pesos-rebalanceo).
 
-```{r}
-plot_xts(rebalance$portWeight) + 
-  labs(title = 'Pesos de cierre despues del rebalanceo')
+```{r pesos-rebalanceo, fig.cap='Pesos de cierre despues del rebalanceo', out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(rebalance$portWeight)
 ```
 
 Para finalizar esta sección, definiremos el **valor de un portafolio en $t$**. Este es simplemente el rendimiento acumulado en $t$ por un valor inicial $V_0$ que puede ser un precio, una cantidad de dinero o un nivel de puntos arbitrario.
@@ -951,12 +959,11 @@ rebalance <- get_rebalance(dlyChg, rebWeight)
 
 Los pesos de capitalización de mercado de las acciones en nuestro índice se ven así:
 
-```{r}
-plot_xts(rebalance$portWeight) + 
-  labs(title = 'Pesos de capitalizacion de mercado de un indice')
+```{r pesos-cap, fig.cap='Pesos de capitalizacion de mercado de un indice hipotetico de dos accioens', out.width="70%", fig.align="center", fig.pos="H"}
+plot_xts(rebalance$portWeight)
 ```
 
-De esta manera concluimos que Gigante perdió valor de mercado contra Herdez durante 2017.
+De la figura \@ref(fig:pesos-cap) concluimos que Gigante perdió valor de mercado contra Herdez durante 2017.
 
 ## ETFs {#etfs}
 
@@ -964,7 +971,7 @@ De esta manera concluimos que Gigante perdió valor de mercado contra Herdez dur
 Se le llama **Exchange Traded Fund** (ETF) a un fondo que replica el valor de algún índice o activo que no es operado en bolsa (como el oro). Una de sus cualidades es que los ETF's son listados en bolsa y pueden ser operados como cualquier acción.
 ```
 
-Recordemos que un índice es un conjunto de acciones. Si quisieramos replicar el valor de un índice necesitaríamos el capital necesario para comprar todos las activos en el índice con su peso correspondiente. Para eso, necesitaríamos mucho capital. De igual manera, si quisiéramos aumentar o disminuir nuestra posición en el índice sería muy complicado porque tendríamos que comprar o vender todos los componentes con consecuencias de costos de transacción y operativos. 
+Recordemos que un índice es un conjunto de acciones. Si quisiéramos replicar el valor de un índice necesitaríamos el capital necesario para comprar todos las activos en el índice con su peso correspondiente. Para eso, necesitaríamos mucho capital. De igual manera, si quisiéramos aumentar o disminuir nuestra posición en el índice sería muy complicado porque tendríamos que comprar o vender todos los componentes con consecuencias de costos de transacción y operativos. 
 
 Por otro lado, si quisiéramos invertir en el valor del oro tendríamos que conseguir lingotes de oro y no podríamos comprar fracciones de lingotes. Además al momento de vender, podría ser complicado encontrar alguien interesado en esos lingotes.
 
@@ -986,7 +993,6 @@ Existen métodologías proprietarias que se usan para clasificar acciones en dis
 
 * IYC - ETF que replica al Dow Jones US Consumer Services Index. Este índice contiene emisiones en US del sector de servicios al consumidor
 * IYE - Dow Jones US Energy Index - sector energético
-* IYF - Dow Jones US Financials Index - sector financiero
 * IYH - Dow Jones US Health Care Index - sector de salud
 * IYR - Dow Jones US Real State Index - sector de bienes raíces
 * IYW - Dow Jones US Technology Index - sector de tecnología
@@ -996,7 +1002,6 @@ Guardamos en `sectors` los precios de los ETFs de Índices Sectoriales.
 ```{r}
 sectors <- get_prices_yahoo(c('IYC', 
                              'IYE', 
-                             'IYF', 
                              'IYH',  
                              'IYR', 
                              'IYW'), 
@@ -1013,6 +1018,7 @@ sectors <- get_prices_yahoo(c('IYC',
 
 ```{r}
 bonds <- get_prices_yahoo(c('TLT', 
+                            'TLH', 
                             'IEF', 
                             'SHY'), 
                           from = '2012-12-31', 
@@ -1023,22 +1029,24 @@ bonds <- get_prices_yahoo(c('TLT',
 
 La comunidad financiera se refiere por  **multi-activos** a aquellas estrategias de inversión o portafolios compuestos por activos que tienen distintos tipos de fuentes de valor, digamos:
 
-1) bonos - Los bonos determinan su valor de acuerdo a movimientos de tasa, que reflejan las expectativas de la calidad del emisor del bono y del valor del dinero en el tiempo.
+1) bonos - Los bonos determinan su valor de acuerdo a movimientos de tasa, que reflejan las expectativas de la calidad del emisor del bono y del valor de una moneda en el tiempo.
 2) acciones - Las acciones determinan su valor de acuerdo a las expectativas de flujos futuros que generará una empresa.
 3) commodities - El valor de un commodity proviene de la demanda y oferta de ese bien material.
 4) divisas- Las fortaleza de una moneda proviene de su demanda y su demanda depende de las expectativas de confianza y crecimiento de la economía que utiliza esa moneda. 
 
 * ACWI - MSCI's All Country World Index - índice de capitalización de mercado de acciones listadas en todo el mundo
+* EEM - Emerging Markets Index - índice de capitalización de mercado de acciones listadas en países emergentes
 * USO -  Front Month Light Sweet Crude Oil Index - fondo compuesto por futuros de precios de petróleo
 * GLD - Precio del oro - fondo invertido directamente en oro físico
 * UUP - Deutsche Bank Long USD Currency Portfolio Index - índice que representa la fortaleza del dólar americano relativo a una canasta de seis monedas: el euro, el yen, la libra, el dólar canadiense, la corona sueca y el franco suizo.
 
 
 ```{r}
-multi <- get_prices_yahoo(c('spy', 
-                            'acwx', 
+multi <- get_prices_yahoo(c('acwi', 
+                            'eem',
                             'uso', 
                             'tlt', 
+                            'ief', 
                             'gld', 
                             'uup'), 
                           from = '2008-12-31', 
@@ -1047,4 +1055,4 @@ multi <- get_prices_yahoo(c('spy',
 
 Extrajimos los precios de los ETFs listados arriba para constuir los objetos `spy`, `sectors`, `bonds` y `multi`. Los precios en estos objetos `xts` los utilizamos en los siguientes capítulos.
 
-En muchos artículos de manejo de portafolios se utilizan índices para probar resultados.  Nosotros usaremos ETF's en nuestros ejemplos. Le recordamos al lector que es equivalente desde el punto de vista teórico utilizar índices o ETFs. Sin embargo, el precio de los ETFs está en una moneda mientras que el valor de los índices se encuentra en un valor arbitrario; y como se explicó antes, es posible invertir ETFs mientras que en índices no es posible.
+En muchos artículos de manejo de portafolios se utilizan índices para probar resultados.  Nosotros usaremos ETF's en nuestros ejemplos. Le recordamos al lector que es equivalente desde el punto de vista teórico utilizar índices o ETFs. Sin embargo, el precio de los ETFs está en una moneda mientras que el valor de los índices se encuentra en un valor arbitrario; y como se explicó antes, es posible invertir en ETFs mientras que en índices no es posible.

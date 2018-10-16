@@ -5,11 +5,11 @@ La aplicación de métodos de paridad de riesgo en manejo de portafolios, que ad
 
 En el entendido de que el mandato de un manejador establece que el objetivo es ofrecer una opción de inversión diversificada, no nos debe preocupar la crítica que se hace a los métodos de paridad de riesgo
 
-En este trabajo, además de construir índices de paridad de riesgo, extendemos la manera en que se usan estos métodos. Presentamos una estrategia de inversión en donde se introducen los retornos de estos índices en la optimización de media-varianza invertida para obtener rendimientos implícitos.
+En este trabajo, además de construir índices de paridad de riesgo, extendemos la manera en que se usan estos métodos. Proponemos usar portafolios principales para diversificar y presentamos una estrategia de inversión en donde se introducen los retornos del índice de paridad de fuentes de riesgo en la optimización de media-varianza inversa para obtener rendimientos implícitos.
 
 <!-- En el entendido de que el mandato de un manejador establece que el objetivo es ofrecer una opción de inversión diversificada, no nos debe preocupar la crítica que se hace a los métodos de paridad de riesgo, pues en la evaluación de nuestra estrategia se mostró que se supera al portafolio de referencia. -->
 
-Al evaluar nuestra estrategia, ¡mostramos que se supera exitosamente al portafolio de referencia! Finalemente, para despedirnos, vamos a proponerle al lector una idea de cómo complementar la estrategia que presentamos con estadísitica bayesiana.
+Al usar éstos rendimientos implícitos en la optimización de media-varianza tradicional y evaluar nuestra estrategia, ¡mostramos que se supera exitosamente al portafolio de referencia que definimos! Finalmente, para despedirnos, vamos a proponerle al lector una idea de cómo complementar la estrategia que presentamos con estadísitica bayesiana.
 
 A principio de los noventas, el equipo quant de Goldman Sachs publicó una manera de incorporar las creencias del manejador a los retornos esperados [@rachev2008]. **El modelo conocido como Black-Litterman consiste en una actualización, en el sentido bayesiano, de los rendimientos implícitos que se obtienen a partir de un portafolio de equilibrio**. 
 
@@ -17,9 +17,9 @@ Si el manejador no tiene una creencia particular sobre el retorno o riesgo de un
 
 Una expectativa absoluta se expresa como "el retorno que va a obtener un activo". Una expectativa relativa se expresa en términos de "cuánto retorno en exceso va a obtener un activo contra otro". Adicionalmente, la certeza de estas creencias debe adicionarse a la información de incertidumbre que contiene la matriz de covarianzas.
 
-Utilizando el Teorema de Bayes, se combinan los retornos implícitos y las expectativas relativas o absolutas del manejador. Esto resulta muy valioso para los manejadores pues los retornos esperados no sólo contienen información del pasadoque se extrae del portafolio de equilibrio. 
+Utilizando el Teorema de Bayes, se combinan los retornos implícitos y las expectativas relativas o absolutas del manejador. Esto resulta muy valioso para los manejadores pues los retornos esperados resultantes no sólo contienen información del pasado que se extrae del portafolio de equilibrio. 
 
-El inconveniente de Black-Litterman es que para determinar el valor de las expectativas y su certidumbre requiere experiencia y mantenerse constatemente informado. En cambio los métodos en los que nos enfocamos en este trabajo solo requiren precios y pueden ser usado por alguien sin experienca.
+El inconveniente de Black-Litterman es que un manejador que busca determinar el valor de sus expectativas y su certidumbre requiere contar con suficiente experiencia y de información constantemente actualizada. En cambio, los métodos en los que nos enfocamos en este trabajo sólo requiren precios y pueden ser usados (con precauciones) por alguien sin experiencia.
 
-En la introducción mencionamos que este trabajo está especialmente dirigido a estudiantes que quieren empezar a construir portafolios. Además, le sugerimos al lector que descargara la paquetería __REF__ de github y replicara el código que presentamos. Invitamos a los que se animaron a probar las funciones que compartimos a jugar con diferentes instrumentos. La meta final es que aquellos que no contaban con conocimiento previo de manejo de portafolios y que nos acompañaron en este recorrido cuenten con el lenguaje para acercarse a cualquier artículo de portafolios y que se aventuren a invertir en alguna plataforma en línea.
+En la introducción mencionamos que este trabajo está especialmente dirigido a estudiantes que quieren empezar a construir portafolios. Además, se le sugirió al lector que descarga la paquetería __REF__ de github y replicara el código que presentamos. Invitamos a los que se animaron a probar las funciones que compartimos a jugar con diferentes instrumentos. La meta final es que aquellos que no contaban con conocimiento previo de manejo de portafolios y que nos acompañaron en este recorrido cuenten con el lenguaje para acercarse a cualquier artículo de portafolios y que se aventuren a invertir en alguna plataforma en línea.
 
