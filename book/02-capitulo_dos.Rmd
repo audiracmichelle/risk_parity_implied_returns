@@ -26,21 +26,21 @@ bonds <- get_prices_yahoo(c('TLT',
 
 Ya sabemos cómo obtener rendimientos diarios y cómo se acumulan en distintos periodos. Lo que buscamos en este capítulo es contar con  analíticos que resuman el comportamiento típico de los rendimientos de un activo.
 
-Empezaremos este capítulo hablando sobre rendimiento promedio de activos. En la sección \@ref(half-life) presentamos el **decaimiento geométrico con halflife** para construir **rendimientos ponderados aritméticos y geométricos**. Estos conceptos nos llevan a los rendimientos promedio móviles que vemos en la sección \@ref(rendimientos-moviles). Relativo al riesgo de activos, la sección \@ref(riesgo) cubre la **desviación standard ponderada aritmética y geométrica** de activos.
+Empezaremos este capítulo hablando sobre rendimiento promedio de activos. En la sección \@ref(half-life) presentamos el **decaimiento geométrico con halflife** para construir **rendimientos ponderados aritméticos y geométricos**. Estos conceptos nos llevan a los rendimientos promedio móviles que vemos en la sección \@ref(rendimientos-moviles). Relativo al riesgo de activos, la sección \@ref(riesgo) cubre la **desviación estándar ponderada aritmética y geométrica** de activos.
 
-En la práctica financiera, aunque se utilizan los promedios geométricos de rendimientos, para la desviación standard se usa la desviación aritmética. Asimismo, los promedios y desviaciones de los cambios diarios proporcionan valores muy pequeños que no se acomodan al practicante de finanzas pues no son comparables con otros valores en la industria; por ejemplo, una tasa de interés anual de un crédito hipotecario de 8%. 
+En la práctica financiera, aunque se utilizan los promedios geométricos de rendimientos, para la desviación estándar se usa la desviación aritmética. Asimismo, los promedios y desviaciones de los cambios diarios proporcionan valores muy pequeños que no se acomodan al practicante de finanzas pues no son comparables con otros valores en la industria; por ejemplo, una tasa de interés anual de un crédito hipotecario de 8%. 
 
-Por esto, en la sección \@ref(anualizacion-estimacion) se familiariza al lector con dos métodos para obtener promedios y desviaciones de rendimientos anuales. Por un lado se presenta el método de **anualización** y por otro se muestra el método de \@ref(anualizacion-moviles) **rendimientos móviles anuales**. Los analíticos de rendimientos anuales son el standard en la industria.
+Por esto, en la sección \@ref(anualizacion-estimacion) se familiariza al lector con dos métodos para obtener promedios y desviaciones de rendimientos anuales. Por un lado se presenta el método de **anualización** y por otro se muestra el método de \@ref(anualizacion-moviles) **rendimientos móviles anuales**. Los analíticos de rendimientos anuales son el estándar en la industria.
 
 La sección \@ref(rendimiento-riesgo) cubre el cálculo de rendimiento y riesgo de un portafolio a partir de los rendimientos de sus componentes. A la hora de construir portafolios, los manejadores buscan encontrar las mejores alternativas existentes para alcanzar portafolios con buenos rendimientos y niveles aceptables de riesgo. 
 
-Alrededor de esta idea, **Harry Markovitz** formuló el problema de optimización de media-varianza. Esta formulación está contenida en la sección \@ref(covarianzas), donde introducimos la Teoría Moderna de Portafolios. La teoría de Markovitz regularmente se asocia con la idea de diversificación. Sin embargo, **la optimización de media-varianza no se basa en ninguna medida de diversificación**. En el contexto de este trabajo, la diversificación será medida de acuerdo al porcentaje de riesgo asignado a distintas fuentes de riesgo. 
+Alrededor de esta idea, **Harry Markowitz** formuló el problema de optimización de media-varianza. Esta formulación está contenida en la sección \@ref(covarianzas), donde introducimos la Teoría Moderna de Portafolios. La teoría de Markowitz regularmente se asocia con la idea de diversificación. Sin embargo, **la optimización de media-varianza no se basa en ninguna medida de diversificación**. En el contexto de este trabajo, la diversificación será medida de acuerdo al porcentaje de riesgo asignado a distintas fuentes de riesgo. 
 
 Los principios para identificar **portafolios principales** son presentados en la sección \@ref(portafolios-principales). La idea detrás de los portafolios principales es contar con fuentes de riesgo no correlacionadas. Esto los utilizaremos en el siguiente capítulo, donde se cubren los métodos de optimización de diversificación de portafolios.
 
 ## Rendimiento Promedio {#rendimiento-promedio}
 
-Una estimación de la **media de los cambios relativos** diarios de un activo del tiempo $1$ a $T$ es el **promedio aritmético de los cambios relativos** en ese período $\widehat\mu_\mathbf{a} = \frac{1}{T}\sum_t\delta^t$. El rendimiento diario promedio de un activo es el cambio relativo diario promedio menos uno $\widehat\mu_\mathbf{a} - 1$. Cómo se explicó antes, en este trabajo se usan indistintamente los términos cambio relativo y rendimiento.
+Una estimación de la **media de los cambios relativos** diarios de un activo del tiempo $1$ a $T$ es el **promedio aritmético de los cambios relativos** en ese perido, esto es $\widehat\mu_\mathbf{a} = \frac{1}{T}\sum_t\delta^t$. El rendimiento diario promedio de un activo es el cambio relativo diario promedio menos uno $\widehat\mu_\mathbf{a} - 1$. Cómo se explicó antes, en este trabajo se usan indistintamente los términos cambio relativo y rendimiento.
 
 Dada la manera en que los rendimientos se componen en el tiempo, tiene sentido usar el **promedio geométrico de los cambios relativos**. En la literatura financiera, este es el estimador de la media que regularmente se utiliza. Para obtener el promedio geométrico de los rendimientos diarios del tiempo $1$ a $T$ se exponencia el promedio aritmético de los log-rendimientos diarios, es decir $\widehat\mu_\mathbf{g} = \exp \left( \frac{1}{T}\sum_t\ln\delta^t \right) = \prod_t(\delta^t)^{\frac{1}{T}}$
 
@@ -84,7 +84,7 @@ $$
 >
 Dado un half-life $m$, contruyamos una variable aleatoria $Y$ que tiene distribución geométrica truncada y cuya mediana es $m$: 
 >
-* Si $Y$ tiene una distribución geométrica truncada, entonces tiene soporte finito $\{1, 2, 3, \ldots, T\}$ y su función de probabilidad es $\Pr[Y = k] = \Pr[X=k|X \leq T] = \frac{1}{C}\Pr[X=k]$ donde $C=\sum^T_{k=1}\Pr[X=k]$. Esto es
+* Si $Y$ tiene una distribución geométrica truncada, entonces tiene soporte finito $\{1, 2, 3, \ldots, T\}$ y su función de probabilidad es $\Pr[Y = k] = \Pr[X=k|X \leq T] = \frac{1}{C}\Pr[X=k]$ donde $C=\sum^T_{k=1}\Pr[X=k]$.
 
 
 $$
@@ -112,7 +112,7 @@ $$
 >
 No existe una solución analítica para $p$, pero podemos obtener soluciones numéricas; existirá una solución siempre y cuando $m\in (0,T/2)$, con $p \to 0$ si $m\to T/2$ y $p\to 1$ si $m\to 0$. 
 > 
-Supongamos que tenemos $T = 1000$ y $m = 45$, **¿bajo qué $p$ la distribución de $Y$ acumula $0.5$ en $m$?** La solución e $p=0.01530232$ como se muestra en la figura \@ref(fig:pesos-geometricos)
+Supongamos que tenemos $T = 1000$ y $m = 45$, **¿bajo qué $p$ la distribución de $Y$ acumula $0.5$ en $m$?** La solución es $p=0.01530232$ como se muestra en la figura \@ref(fig:pesos-geometricos)
 
 ```{r, pesos-geometricos, fig.cap='Obteniendo $p$ del half-life', out.width="70%", fig.align="center", fig.pos="H"}
 T = 1000
@@ -168,18 +168,18 @@ get_w_with_geomTruncDecay <- function(
 El rendimiento promedio con half-life de $m$ días en el caso aritmético es el promedio ponderado dado por
 
 $$
-\widehat\mu_\mathbf{wa}= \sum_t w^t\delta^t
+\widehat\mu_\mathbf{wa}= \sum_t w^t\delta^t \;. 
 $$
 
 ```{block2, type = 'resumen'}
 En el caso geométrico tenemos que el promedio ponderado está dado por
 
 $$
-\widehat\mu_\mathbf{wg}=\prod_t (\delta^t)^{w^t}
+\widehat\mu_\mathbf{wg}=\prod_t (\delta^t)^{w^t} \;. 
 $$
 ```
 
-Incluyamos en nuestra paquetería una función llamada `get_meanRet_from_dlyChg()` que obtiene promedios geométricos y aritméticos con half-life de series de rendimientos en un `xts`. En el anexo __REF__ se muestra el código de la función y se describen a detalle sus parámetros.
+Incluyamos en nuestra paquetería una función llamada `get_meanRet_from_dlyChg()` que obtiene promedios geométricos y aritméticos con half-life de series de rendimientos en un `xts`. En el anexo \@ref(fun-get-meanRet-from-dlyChg) se muestra el código de la función y se describen a detalle sus parámetros.
 
 ### Rendimientos Móviles {#rendimientos-moviles}
 
@@ -235,7 +235,7 @@ Veamos para el SPY cómo se ven
 * los rendimientos móviles con una ventana de 30 días y 
 * los rendimientos móviles con una ventana de 30 días y half-life de 3 días.
 
-Para esto usaremos la función `get_rollChg_from_dlyChg()`, contenida en el anexo __REF__.
+Para esto usaremos la función `get_rollChg_from_dlyChg()`, contenida en el anexo \@ref(fun-get-rollChg-from-dlyChg).
 
 ```{r, spy-roll, fig.cap='Rendimientos móviles', out.width="85%", fig.pos="H", fig.align="center"}
 spy_dlyChg <- get_dlyChg_from_price(spy)
@@ -266,38 +266,38 @@ plot_xts(spys_cumRet)
 
 ## Riesgo {#riesgo}
 
-Históricamente se han usado distintas formas de medir el riesgo de instrumentos financieros [@ferguson1975, pág 3]. En su mayoría, todas las medidas de riesgo buscan describir el ruido de los rendimientos por lo que tipicamente en la industria se utiliza la **desviación standard de los rendimientos**. 
+Históricamente se han usado distintas formas de medir el riesgo de instrumentos financieros [@ferguson1975, pág 3]. En su mayoría, todas las medidas de riesgo buscan describir el ruido de los rendimientos por lo que tipicamente en la industria se utiliza la **desviación estándar de los rendimientos**. 
 
 En este trabajo nosotros también usaremos esta medida para cuantificar el riesgo de los activos. Cuando hablemos de la **volatilidad** de los activos nos referiremos a la varianza de sus rendimientos. 
 
 ```{block2, type = 'resumen'}
-Al igual que con los rendimientos promedio, buscamos una desviación standard que asigne mayor peso a las últimas observaciones. Dado un half-life de $m$, usemos los pesos en $w$ que contruimos anteriormente para obtener la **desviación ponderada aritmética** 
+Al igual que con los rendimientos promedio, buscamos una desviación estándar que asigne mayor peso a las últimas observaciones. Dado un half-life de $m$, usemos los pesos en $w$ que contruimos anteriormente para obtener la **desviación ponderada aritmética** 
 
 $$
 \widehat\sigma_\mathbf{wa} = \sqrt{\frac{1}{1 - \sum_t (w^t)^2} \sum_t w^t \left( \delta^t - \widehat\mu_\mathbf{a} \right)^2}
 $$
   
-El factor $(1 - \sum_t (w^t)^2)^{-1}$ se utiliza para obtener un estimador insesgado. En el caso cuando todos los pesos son iguales con $w^t = 1 / T$, entonces $w^t(1 - \sum_t (w^t)^2)^{-1} = (T - 1)^{-1}$, y la fórmula se reduce a la estimación insesgada usual de la desviación standard aritmética.
+El factor $(1 - \sum_t (w^t)^2)^{-1}$ se utiliza para obtener un estimador insesgado. En el caso cuando todos los pesos son iguales con $w^t = 1 / T$, entonces $w^t(1 - \sum_t (w^t)^2)^{-1} = (T - 1)^{-1}$, y la fórmula se reduce a la estimación insesgada usual de la desviación estándar aritmética.
 ```
 
-Cuando los pesos en $w$ sean todos iguales, a la desviación standard aritmética la denotamos por $\widehat\sigma_\mathbf{a}$. La desviación standard aritmética de los log-rendimientos diarios es
+Cuando los pesos en $w$ sean todos iguales, a la desviación estándar aritmética la denotamos por $\widehat\sigma_\mathbf{a}$. La desviación estándar aritmética de los log-rendimientos diarios es
 
 $$
 \sqrt{\frac{1}{T-1} \sum_t \left( \ln(\delta^t) -  \ln \prod_t (\delta^t)^{\frac{1}{T}} \right)^2 } = \\
-\sqrt{\frac{1}{T-1} \sum_t \left( \ln \frac{\delta^t}{\widehat\mu_\mathbf{a}} \right)^2}
+\sqrt{\frac{1}{T-1} \sum_t \left( \ln \frac{\delta^t}{\widehat\mu_\mathbf{a}} \right)^2} \;. 
 $$
 
-Entonces la **desviación standard geométrica** ponderada de los rendimientos diarios es
+Entonces la **desviación estándar geométrica** ponderada de los rendimientos diarios es
 
 $$
-\widehat\sigma_\mathbf{wg} = \exp \sqrt{\frac{1}{1 - \sum_t (w^t)^2}  \sum_t w^t \left( \ln \frac{\delta^t}{\widehat\mu_\mathbf{g}} \right)^2}
+\widehat\sigma_\mathbf{wg} = \exp \sqrt{\frac{1}{1 - \sum_t (w^t)^2}  \sum_t w^t \left( \ln \frac{\delta^t}{\widehat\mu_\mathbf{g}} \right)^2} \;. 
 $$
 
-Cuando todos los pesos son iguales a la desviación standard geométrica la denotamos por $\widehat\sigma_\mathbf{g}$.
+Cuando todos los pesos son iguales a la desviación estándar geométrica la denotamos por $\widehat\sigma_\mathbf{g}$.
 
-La interpretación que se le debe dar a la desviación standard geométrica es diferente a la interpretación de la desviación standard. Esto es porque **la desviación standard geométrica no se suma o resta a la media geométrica**, si no, se multiplica o divide.
+La interpretación que se le debe dar a la desviación estándar geométrica es diferente a la interpretación de la desviación estándar. Esto es porque **la desviación estándar geométrica no se suma o resta a la media geométrica**, si no, se multiplica o divide.
 
-De esta manera, en una distribución log-normal, el rango entre -la media geométrica multiplicada y dividida por la desviación standard geométrica- contiene alrededor de 2/3 de la distribución.
+De esta manera, en una distribución log-normal, el rango entre -la media geométrica multiplicada y dividida por la desviación estándar geométrica- contiene alrededor de 2/3 de la distribución.
 
 Comparemos la distribuciones de `spy_dlyChg`, `spy_rollChg` y  `spy_rollChg_halflife`.
 
@@ -335,18 +335,18 @@ spy_deviation_g
 
 Hemos presentado momentos aritméticos y geométricos de los rendimientos. Sin embargo, no hemos explicado cuándo debe usarse uno u otro.
 
-El promedio aritmético de un conjunto de números es relevante cada vez que tiene sentido sumar los números para producir un total. Este promedio resuelve la pregunta, "si todos los números fueran iguales, que valor deberían tener para alcanzar ese mismo total?"
+El promedio aritmético de un conjunto de números es relevante cada vez que tiene sentido sumar los números para producir un total. Este promedio resuelve la pregunta, ¿si todos los números fueran iguales, que valor deberían tener para alcanzar ese mismo total?"
 
 El promedio geométrico de un conjunto de números es relevante cada vez que tiene sentido multiplicar para producir un producto. Este promedio resuelve la pregunta, "si todos los números fueran iguales, qué valor deberían tener para alcanzar ese mismo producto". Así, **el promedio geométrico es preferible cuando tenemos números que representan factores de cambio o escalamiento** como es el caso de los rendimientos. 
 
 
-Puede parecer incongruente, pero **en la práctica financiera, aunque se utiliza el promedio geométrico, se utiliza la desviación standard aritmética de rendimientos**. En este trabajo vamos a seguir el estándar de la industria, por lo que de aquí en adelante ya no haremos referencia a los promedios aritméticos y la desviación standard geométrica. En cuanto a notación, de aquí en adelante cuando aparezca $\hat\mu$ se referirá a $\widehat\mu_\mathbf{g}$, y $\hat\sigma$ a $\widehat\sigma_\mathbf{a}$.
+Puede parecer incongruente, pero **en la práctica financiera, aunque se utiliza el promedio geométrico, se utiliza la desviación estándar aritmética de rendimientos**. En este trabajo vamos a seguir el estándar de la industria, por lo que de aquí en adelante ya no haremos referencia a los promedios aritméticos y la desviación estándar geométrica. En cuanto a notación, de aquí en adelante cuando aparezca $\hat\mu$ se referirá a $\widehat\mu_\mathbf{g}$, y $\hat\sigma$ a $\widehat\sigma_\mathbf{a}$.
 
 ## Estimación de rendimiento anual {#anualizacion}
 
 ### Anualización {#anualizacion-estimacion}
 
-Como vemos en `spy_mu_g`, los valores promedio de los cambios diarios son valores muy pequeños y no se acomodan al practicante de finanzas, pues no son comparables con otros valores en la industria; por ejemplo, una tasa de interés anual de un crédito hipotecario de 8%. Por esto, el *standard* financiero es presentar los analíticos descriptivos de los cambios diarios de forma **anualizada**.  
+Como vemos en `spy_mu_g`, los valores promedio de los cambios diarios son valores muy pequeños y no se acomodan al practicante de finanzas, pues no son comparables con otros valores en la industria; por ejemplo, una tasa de interés anual de un crédito hipotecario de 8%. Por esto, el *estándar* financiero es presentar los analíticos descriptivos de los cambios diarios de forma **anualizada**.  
 
 ```{block2, type = 'resumen'}
 Considerando un año de 252 días, el **rendimiento promedio anualizado** es simplemente $({\widehat\mu_\mathbf{g}})^{252}$. Esto equivale a suponer que todos los años el rendimiento es idéntico cada día y que este rendimiento es igual al rendimiento promedio de todo el periodo observado.
@@ -359,7 +359,7 @@ $$
 entonces el promedio diario anualizado equivale al promedio de años hipotéticos tales que el rendimiento del año hipotético 1 es $(\delta^1)^{252}$, el rendimiento del año hipotético 2 es $(\delta^2)^{252}$ y así sucesivamente.
 
 ```{block2, type = 'resumen'}
-Al obtener la **desviación standard anualizada** no debemos usar el mismo criterio, es decir, no debemos sacar la desviación standard de $\{(\delta^t)^{252}\}_{t = 1 \ldots T}$. Para anualizar la desviación standard, la literatura financiera sugiere contabilizar 252 veces cada diferencia al cuadrado. Esto es
+Al obtener la **desviación estándar anualizada** no debemos usar el mismo criterio, es decir, no debemos sacar la desviación estándar de $\{(\delta^t)^{252}\}_{t = 1 \ldots T}$. Para anualizar la desviación estándar, la literatura financiera sugiere contabilizar 252 veces cada diferencia al cuadrado. Esto es
 
 $$
 (\sqrt{252})\widehat\sigma_\mathbf{a} = 
@@ -367,9 +367,9 @@ $$
 $$
 ```
 
-Las funciones `get_meanRet_from_dlyChg()` y `get_sdRet_from_dlyChg()` tienen un parámetro `annualization_factor` cuyo valor predeterminado es 1. Con este parámetro fijado en $252$ vamos a calcular el promedio y desviación standard anualizados del SPY. 
+Las funciones `get_meanRet_from_dlyChg()` y `get_sdRet_from_dlyChg()` tienen un parámetro `annualization_factor` cuyo valor predeterminado es 1. Con este parámetro fijado en $252$ vamos a calcular el promedio y desviación estándar anualizados del SPY. 
 
-Siguiendo la convención de la industria que mencionamos arriba, para el promedio vemos la medida geométrica y para la desviación standard vemos la medida aritmética.
+Siguiendo la convención de la industria que mencionamos arriba, para el promedio vemos la medida geométrica y para la desviación estándar vemos la medida aritmética.
 
 ```{r}
 spy_mu_annualization = 
@@ -383,7 +383,7 @@ spy_sd_annualization =
 ```
 
 * `spy_mu_annualization` - el rendimiento promedio geométrico anualizado del SPY es `r sprintf("%0.2f", (spy_mu_annualization - 1) * 100)`% y 
-* `spy_sd_annualization` - la desviación standard aritmético anualizada del SPY es `r sprintf("%0.2f", spy_sd_annualization * 100)`% 
+* `spy_sd_annualization` - la desviación estándar aritmético anualizada del SPY es `r sprintf("%0.2f", spy_sd_annualization * 100)`% 
 
 Estos valores ya se encuentran en una escala que podemos comparar con otros valores en la industria (como un crédito hipotecario con una tasa de interés anual de 8%). 
 
@@ -398,7 +398,7 @@ $$
 \prod_{t=252}^T \left( ({\hat\mu}^{t-252,t})^{252} \right)^\frac{1}{T-252+1}
 $$
 
-* calcular la **desviación standard de los rendimientos móviles anuales**
+* calcular la **desviación estándar de los rendimientos móviles anuales**
 
 $$
 \sqrt{
@@ -414,7 +414,7 @@ Notemos que **con este método se usan años hipotéticos con rendimiento dado p
 
 ```
 
-Usando esto, veamos la distribución de los rendimientos móviles anuales del SPY con un halflife de 60 días y obtengamos estimaciones de media y desviación standard de rendimientos anuales. 
+Usando esto, veamos la distribución de los rendimientos móviles anuales del SPY con un halflife de 60 días y obtengamos estimaciones de media y desviación estándar de rendimientos anuales. 
 
 ```{r, hist-spy2, fig.cap='Histograma de rendimientos móviles anuales del SPY', out.width="70%", fig.align="center", fig.pos="H"}
 spy_annualChg <- get_rollChg_from_dlyChg(spy_dlyChg, 
@@ -429,13 +429,13 @@ spy_sd_annual = get_sdRet_from_dlyChg(spy_annualChg)
 ```
 
 * `spy_mu_annual` - el rendimiento promedio geométrico anual del SPY es `r sprintf("%0.2f", (spy_mu_annual - 1) * 100)`% y 
-* `spy_sd_annual` - la desviación standard aritmético anual del SPY es `r sprintf("%0.2f", spy_sd_annual * 100)`% 
+* `spy_sd_annual` - la desviación estándar aritmético anual del SPY es `r sprintf("%0.2f", spy_sd_annual * 100)`% 
 
 De forma significativa, `spy_mu_annualization` y `spy_sd_annualization` no son iguales a `spy_mu_annual` y `spy_sd_annual`. Recordemos que **los valores anualizados no son más que aproximaciones y que es más robusto el cálculo a partir de rendimientos móviles anuales**.
 
 Así como obtenemos rendimientos anuales usando promedios móviles de 252 días y elevando a 252, se pueden obtener estimaciones de rendimientos trimestrales usando promedios móviles de 60 días y elevando a 60.
 
-Usando los conceptos presentados en esta sección, construimos una función que nos permite visualizar la relación riesgo-rendimiento. Esta función la usaremos más adelante y se encuentra en el anexo __REF__ bajo el nombre `plot_riskReward_from_dlyChg()`.
+Usando los conceptos presentados en esta sección, construimos una función que nos permite visualizar la relación riesgo-rendimiento. Esta función la usaremos más adelante y se encuentra en el anexo \@ref(fun-plot-riskReward-from-dlyChg) bajo el nombre `plot_riskReward_from_dlyChg()`.
 
 ## Rendimiento Promedio y Riesgo de portafolios {#rendimiento-riesgo}
 
@@ -477,20 +477,20 @@ cat(c('El rendimiento del portafolio de sectores es: ',
 El cálculo de $\hat\sigma_{ij}$ la **covarianza de rendimientos del activo $i$ y el activo $j$** será uno de los más importantes en todo lo que resta de este trabajo y será primordial incluir half-life de la siguiente manera 
 
 $$
-\hat\sigma_{ij} = \sqrt{\frac{1}{1-\sum_t(w^t)^2} \sum_t w^t ( \delta^t_i - \hat\mu_i )( \delta^t_j - \hat\mu_j )}
+\hat\sigma_{ij} = \sqrt{\frac{1}{1-\sum_t(w^t)^2} \sum_t w^t ( \delta^t_i - \hat\mu_i )( \delta^t_j - \hat\mu_j )} \;. 
 $$
 
 ```{block2, type = 'resumen'}
 Denotaremos por $\hat\Sigma$ a la **matriz de covarianzas de los rendimientos** $\delta_1, \delta_2, \ldots, \delta_n$. Dados $h$ los pesos iniciales de las componentes de portafolio, el **riesgo del portafolio** $\hat\sigma^\text{p}$ está dado por 
 
 $$
-\hat\sigma_\text{p} = \sqrt{h^T \hat\Sigma h}
+\hat\sigma_\text{p} = \sqrt{h^T \hat\Sigma h} \;. 
 $$
 ```
 
 De forma consecuente, la volatilidad o varianza de un portafolio es ${\hat\sigma_\text{p}}^2=h^T \hat\Sigma h$ 
 
-Con la función `get_cov_from_dlyChg()` del anexo __REF__ calculemos el riesgo del portafolio de sectores US. 
+Con la función `get_covRet_from_dlyChg()` del anexo \@ref(fun-get-covRet-from-dlyChg) calculemos el riesgo del portafolio de sectores US. 
 
 ```{r}
 sectors_covRet <- get_covRet_from_dlyChg(sectors_annualChg)
@@ -501,7 +501,7 @@ cat(c('El riesgo del portafolio de sectores es: ',
       sprintf("%0.2f", (port_sd) * 100)), '%')
 ```
 
-Ahora, usemos la función `plot_riskReward_from_dlyChg()` para contruir una gráfica que relacione los valores `port_mu` y `port_sd` que acabamos de obtener con el riesgo-rendimiento de los ETF's de sectores. El punto (`port_sd`, `port_mu`) se muestra en rojo.
+Ahora, usemos la función `plot_riskReward_from_dlyChg()` para construir una gráfica que relacione los valores `port_mu` y `port_sd` que acabamos de obtener con el riesgo-rendimiento de los ETF's de sectores. El punto (`port_sd`, `port_mu`) se muestra en rojo.
 
 ```{r riesgo-rendimiento, fig.cap="Relación riesgo-rendimiento de ETF's de sectores", out.width="70%", fig.align="center", fig.pos="H"}
 plot_riskReward_from_dlyChg(sectors_dlyChg, 
@@ -520,7 +520,7 @@ Una inversión que todos querríamos sería aquella con rendimiento infinito y r
 >
 Asumamos que tenemos $n$ activos cuyo rendimiento son variable aleatoria $\delta_1, \delta_2, \ldots, \delta_n$.
 >
-El valor esperado del rendimiento del activo $i$ está dado por $\mu_i={\rm E}(\delta_i)$ y su desviación standard por $\sigma_i=\sqrt{\rm Var(\delta_i)}$. El comportamiento conjunto de las variables se explican con:
+El valor esperado del rendimiento del activo $i$ está dado por $\mu_i={\rm E}(\delta_i)$ y su desviación estándar por $\sigma_i=\sqrt{\rm Var(\delta_i)}$. El comportamiento conjunto de las variables se explican con:
 >
 * el vector de rendimientos esperados $\mu = (\mu_1, \mu_2, \dots, \mu_n)$, y
 * la matrix de covarianzas $\Sigma$.
@@ -547,7 +547,7 @@ Por esto, la teoría de Markowitz regularmente se asocia con la idea de diversif
 
 Supongamos que la matriz de covarianzas $\hat\Sigma$ de un conjunto de activos es una matriz diagonal, es decir, los activos son no-correlacionados. En ese caso, la volatilidad de un portafolio compuesto por esos activos es la suma de las varianzas individuales de sus componentes. En la medida en que los activos de un portafolio tienen correlaciones positivas o negativas, el riesgo del portafolio aumenta o disminuye.
 
-Para poder **controlar la asignación de riesgo de un portafolio**, nos resulta deseable identificar fuentes de riesgo que expliquen las correlaciones de nuestros activos. La forma más natural de lograr esto es a partir de componentes principales como mostramos a continuación.
+Para poder **controlar la asignación de riesgo de un portafolio**, nos resulta deseable identificar fuentes de riesgo que eliminen las correlaciones de nuestros activos. La forma más natural de lograr esto es a partir de componentes principales como mostramos a continuación.
 
 ```{block2, type = 'resumen'}
 Sean $\mathbf{\Delta}$ los retornos de $n$ activos y $\hat\Sigma$ la matriz de varianzas y covarianzas de $\mathbf{\Delta}$, la matriz de covarianzas se descompone en componentes principales $\hat\Sigma = \mathbf{P}\mathbf{\Lambda} \mathbf{P}^T$ con $\mathbf{P}$ la matriz ortogonal de **eigenvectores** y $\mathbf{\Lambda}$ la matriz diagonal de **eigenvalores** con elementos $\lambda_1, \geq \lambda_2 \geq \cdots \geq \lambda_n$. 
@@ -651,7 +651,7 @@ evec['IYE.Adjusted', ]
 Denotemos por $\mathbf{p}_{\text{IYE},j}$ al $j$-ésimo loading del IYE. La varianza del IYE puede ser descompuesta en la suma de las varianzas de los portafolios principales $\lambda_j$s con la siguiente regla (pues los portafolios principales son ortogonales)
 
 $$
-{\hat{\sigma}_\text{IYE}}^2 = (\mathbf{p}_{\text{IYE},1})^2\lambda_1 + (\mathbf{p}_{\text{IYE},2})^2\lambda_2+ \ldots + (\mathbf{p}_{\text{IYE},n})^2\lambda_n
+{\hat{\sigma}_\text{IYE}}^2 = (\mathbf{p}_{\text{IYE},1})^2\lambda_1 + (\mathbf{p}_{\text{IYE},2})^2\lambda_2+ \ldots + (\mathbf{p}_{\text{IYE},n})^2\lambda_n \;. 
 $$
 
 Entonces el riesgo del IYE lo podemos calcular así.

@@ -1,5 +1,5 @@
 
-# Despedida
+# Conclusiones
 
 La aplicación de métodos de paridad de riesgo en manejo de portafolios, que adquirió popularidad a partir de 2008, en general se limita a la construcción de índices de paridad de riesgo. Esta práctica ha sido criticada porque se enfoca en el manejo de la concentración de riesgo, en lugar de enfocarse en el desempeño de los portafolios. 
 
@@ -9,7 +9,7 @@ En este trabajo, además de construir índices de paridad de riesgo, extendemos 
 
 <!-- En el entendido de que el mandato de un manejador establece que el objetivo es ofrecer una opción de inversión diversificada, no nos debe preocupar la crítica que se hace a los métodos de paridad de riesgo, pues en la evaluación de nuestra estrategia se mostró que se supera al portafolio de referencia. -->
 
-Al usar éstos rendimientos implícitos en la optimización de media-varianza tradicional y evaluar nuestra estrategia, ¡mostramos que se supera exitosamente al portafolio de referencia que definimos! Finalmente, para despedirnos, vamos a proponerle al lector una idea de cómo complementar la estrategia que presentamos con estadísitica bayesiana.
+Al usar estos rendimientos implícitos en la optimización de media-varianza tradicional y evaluar nuestra estrategia, ¡mostramos que se supera exitosamente al portafolio de referencia que definimos! Finalmente, para despedirnos, vamos a proponerle al lector una idea de cómo complementar la estrategia que presentamos con estadísitica bayesiana.
 
 A principio de los noventas, el equipo quant de Goldman Sachs publicó una manera de incorporar las creencias del manejador a los retornos esperados [@rachev2008]. **El modelo conocido como Black-Litterman consiste en una actualización, en el sentido bayesiano, de los rendimientos implícitos que se obtienen a partir de un portafolio de equilibrio**. 
 
@@ -21,5 +21,5 @@ Utilizando el Teorema de Bayes, se combinan los retornos implícitos y las expec
 
 El inconveniente de Black-Litterman es que un manejador que busca determinar el valor de sus expectativas y su certidumbre requiere contar con suficiente experiencia y de información constantemente actualizada. En cambio, los métodos en los que nos enfocamos en este trabajo sólo requiren precios y pueden ser usados (con precauciones) por alguien sin experiencia.
 
-En la introducción mencionamos que este trabajo está especialmente dirigido a estudiantes que quieren empezar a construir portafolios. Además, se le sugirió al lector que descarga la paquetería __REF__ de github y replicara el código que presentamos. Invitamos a los que se animaron a probar las funciones que compartimos a jugar con diferentes instrumentos. La meta final es que aquellos que no contaban con conocimiento previo de manejo de portafolios y que nos acompañaron en este recorrido cuenten con el lenguaje para acercarse a cualquier artículo de portafolios y que se aventuren a invertir en alguna plataforma en línea.
+En la introducción mencionamos que este trabajo está especialmente dirigido a estudiantes que quieren empezar a construir portafolios. Además, se le sugirió al lector que descarga la paquetería en github [https://github.com/audiracmichelle/optimist](https://github.com/audiracmichelle/optimist) y replicara el código que presentamos. Invitamos a los que se animaron a probar las funciones que compartimos a jugar con diferentes instrumentos. La meta final es que aquellos que no contaban con conocimiento previo de manejo de portafolios y que nos acompañaron en este recorrido cuenten con el lenguaje para acercarse a cualquier artículo de portafolios y que se aventuren a invertir en alguna plataforma en línea.
 
