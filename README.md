@@ -7,6 +7,7 @@ Another bookdown docker creation is found in https://hub.docker.com/r/0xcaff/boo
 To create a risk-parity-implied-returns image run
 
 ```
+cd $(pwd)
 docker build -t risk-parity-implied-returns .
 docker run --rm -e PASSWORD=book -p 8787:8787 -v $(pwd)/book:/home/rstudio/book risk-parity-implied-returns
 ```

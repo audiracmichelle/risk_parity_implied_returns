@@ -1,7 +1,7 @@
 ---
-title: "Optimización de Portafolios con Retornos Implícitos de Paridad de Riesgo"
-author: "Michelle Audirac"
-date: "`r Sys.Date()`"
+title: ""
+author: ""
+date: ""
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -14,13 +14,17 @@ fontsize: 10pt
 geometry: paperheight=225mm, paperwidth=150mm, left=1.2cm, right=1.2cm, top=2cm, bottom=2cm
 ---
 
+<!-- title: "Optimización de Portafolios con Retornos Implícitos de Paridad de Riesgo" -->
+<!-- author: "Michelle Audirac" -->
+<!-- date: "`r Sys.Date()`" -->
+
 #  Introducción
 
 El objetivo de este trabajo tiene tres frentes:
 
-1. *Ser una propuesta didáctica de manejo de portafolios*. Esto es, presentar de forma simple y con ejemplos las bases, en términos de lenguaje y manejo de datos, los conceptos que son parte del día a día de los manejadores de portafolios. 
+1. *Ser una propuesta didáctica de manejo de portafolios*. Esto es, presentamos de forma simple y con ejemplos las bases, en términos de lenguaje y manejo de datos, de los conceptos que son parte del día a día de los manejadores de portafolios. 
 
-2. *Ofrecer herramientas que permitan al lector hacer manejo de portafolios por su cuenta*. En ese sentido, se deja disponible en github una paquetería en **R** que desarrollamos a lo largo del trabajo. Esta paquetería facilita extraer en cualquier momento datos de precios y generar de forma reproducible los análisis que presentamos en este trabajo.
+2. *Ofrecer herramientas que permitan al lector hacer manejo de portafolios por su cuenta*. En ese sentido, dejamos disponible en github una paquetería en **R** que desarrollamos a lo largo del trabajo. Esta paquetería facilita extraer en cualquier momento datos de precios y generar de forma reproducible los análisis que se presentan en este trabajo.
 
 3. *Proponer una estrategia de inversión basada en paridad de riesgo*. Asumiremos que somos manejadores de portafolios y que nos rige un mandato de inversión al que nos tenemos que apegar. Describiremos todas las partes de un mandato hipotético y explicaremos como traducir estas partes a una estrategia educada de inversión. Se exploran los conceptos detrás de paridad de riesgo presentados por Thierry Roncalli [@roncalli2013], se modifica la formulación para incorporar componentes principales y se prueban los resultados históricos de la estrategia.
 
@@ -38,17 +42,18 @@ Nosotros exploramos cómo incorporar componentes principales a la formulación d
 
 Aquellos que no estén familiarizados con los términos que se utilizaron en la primer parte de esta introducción no deben desanimarse. Este trabajo está especialmente dirigido a alumnos de licenciatura que tengan conocimientos de álgebra y estadística (en particular que tengan entendimiento de componentes principales) pero que no conocen los conceptos y términos financieros que se utilizan en la literatura y práctica de manejo de portafolios. Basta que el lector esté familiarizado con el concepto de acciones y de casas de bolsa (exchanges); fuera de eso, se explicarán a detalle todos los términos que usemos.
 
-Adicionalmente el público ideal tiene conocimiento básico de **R** y está interesado en aprender como usar **R** para manipular portafolios pues presentaremos todas las partes de una paquetería que permitirá al lector replicar todos los cálculos. Esta paquetería se encuentra en __REF__ y lo único que se require para descargarla es usar el siguiente código desde **R**.
+Adicionalmente el público ideal tiene conocimiento básico de **R** y está interesado en aprender como usar **R** para manipular portafolios pues presentaremos todas las partes de una paquetería que permitirá al lector replicar todos los cálculos. Esta paquetería se encuentra en [https://github.com/audiracmichelle/optimist](https://github.com/audiracmichelle/optimist) y lo único que se require para descargarla es usar el siguiente código desde **R**.
 
-__INCLUIR_CODE_CHUNK__
-
+```{}
+devtools::install_github("audiracmichelle/optimist")
+```
 Con esta paquetería se invita a los lectores a seguir el contenido de este trabajo para posteriormente construir sus propios portafolios y, ¡salir al mercado a invertir! 
 
 El primer objetivo de este trabajo se cubre principalmente en los capítulos \@ref(conociendo-datos) y \@ref(analiticos) en donde vemos desde cómo bajar precios de acciones hasta como identificar fuentes de riesgo de portafolios. En los ejemplos del capítulo \@ref(conociendo-datos) usaremos acciones cuyos precios se encuentran en distintas monedas; en el capítulo \@ref(analiticos) empezamos a familiarizarnos con los analíticos de ETF's sectoriales.
 
-El segundo objetivo se cubre a lo largo de todo el trabajo pues en cada capítulo se introducen distintas funciones de la paquetería que construimos como complemento a este documento, en los anexos __REF_ se incluye el código de todas las funciones. 
+El segundo objetivo se cubre a lo largo de todo el trabajo pues en cada capítulo se introducen distintas funciones de la paquetería que construimos. Como complemento a este documento, en los anexos \@ref(anexos) se incluye el código de todas las funciones. 
 
-Finalmente el tercer objetivo de este trabajo se desarrolla en el capítulo \@ref(rendimientos-implicitos) donde desarrolamos las ideas para construir un índice de paridad de fuentes riesgo. Posteriormente utilizamos los retornos implícitos de este índice en la optimización de media-varianza para obtener curvas de portafolios óptimos y elegimos una estrategia óptima de inversión. Los ejemplos que presentaremos en ese capítulo utilizan ETF's multi-activos.
+Finalmente el tercer objetivo de este trabajo se desarrolla en el capítulo \@ref(rendimientos-implicitos) donde desarrollamos las ideas para construir un índice de paridad de fuentes riesgo. Posteriormente utilizamos los retornos implícitos de este índice en la optimización de media-varianza para obtener curvas de portafolios óptimos y elegimos una estrategia óptima de inversión. Los ejemplos que presentaremos en ese capítulo utilizan ETF's multi-activos.
 
 <!-- Es importante mencionar que la estrategia de inversión que presentamos en __REF__ no recomendamos que se utilice directamente sobre acciones. Por esto se familiariza al lector con los ETF's y se le recomienda al lector que va empezar a invertir que primero se familiarice con hacer operaciones con estos instrumentos. Al final del trabajo se comparten ideas de los siguientes pasos a seguir para complemetar la estrategia que presentamos en este trabajo y empezar a construir portafolios más complejos. -->
 

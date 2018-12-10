@@ -22,17 +22,17 @@ Notemos que adicionalemente, a lo largo de este primer capítulo se presentan lo
 
 ## Paqueterías de **R** {#paqueterias-r}
 
-A continuación describimos todas las paqueterías de **R** que necesitamos para cargar las funciones que usaremos a lo largo de todo este trabajo.
+A continuación describimos todas las paqueterías de **R** [@rlang] que necesitamos para cargar las funciones que usaremos a lo largo de todo este trabajo.
 
-* **xts** (https://github.com/joshuaulrich/xts): es una paquetería en **R** para manejo de objetos que contienen series de tiempo. El nombre **xts** se refiere a *extensible time series* porque esta paquetería *extiende* las propiedades de **ts** y **zoo**, paqueterías de **R** más simples para manejar series de tiempo). En este trabajo vamos a utilizar la versión 0.10-1.
+* **xts** [@xts]: es una paquetería en **R** para manejo de objetos que contienen series de tiempo. El nombre **xts** se refiere a *extensible time series* porque esta paquetería *extiende* las propiedades de **ts** y **zoo**, paqueterías de **R** más simples para manejar series de tiempo).
 
-A lo largo de este trabajo nos iremos familiarizando con las funciones de **xts** o **zoo**. Cuando se use por primera vez un método de una paquetería se intentará hacer explícito (e.g., `zoo::index()`, `lag.xts()`).
+A lo largo de este trabajo nos iremos familiarizando con las funciones de **xts** o **zoo** [@zoo]. Cuando se use por primera vez un método de una paquetería se intentará hacer explícito (e.g., `zoo::index()`, `lag.xts()`).
 
-* **quantmod** versión 0.4-12 (https://github.com/joshuaulrich/quantmod): es una paquetería que proporciona una plantilla  que nos va a servir para manejar y visualizar de forma sencilla series de datos financieros.
+* **quantmod** [@quantmod]: es una paquetería que proporciona una plantilla  que nos va a servir para manejar y visualizar de forma sencilla series de datos financieros.
 
-* Para los problemas de optimización usaremos **nloptr** (1.0.4), esta librería envuelve una serie de rutinas de código abierto de distintos autores.
+* Para los problemas de optimización usaremos **nloptr** [@nloptr], esta librería envuelve una serie de rutinas de código abierto de optimización cuadrática.
 
-* **tidyverse**, **mltools** y **Rcpp**: estas paqueterías nos facilitan la manipulación de los objetos en **R** y nos ayudan a mejorar la eficiencia de  algoritmos.
+* **tidyverse** [@tidyverse], **mltools** [@mltools] y **Rcpp** [@rcpp]: estas paqueterías nos facilitan la manipulación de los objetos en **R** y nos ayudan a mejorar la eficiencia de  algoritmos.
 
 El código abajo es para instalar y cargar las paqueterías. 
 
@@ -79,14 +79,14 @@ De aquí en adelante nos referiremos a un objeto de este tipo como un `xts`.
 ### Tickers
 
 ```{block2, type = 'resumen'}
-A las acciones que están listadas en bolsas de valores se les asignan identificadores llamados **tickers**. Por ejemplo, IBM es un ticker para acciones de IBM listadas en el NYSE (New York Stock Exchange). AAPL y GOOG son tickers de emisiones de Apple y Google listadas en el Nasdaq (National Association of Securities Dealers).
+A las acciones que están listadas en bolsas de valores se les asignan identificadores llamados **tickers**. Por ejemplo, IBM es un ticker para acciones de IBM listadas en el NYSE (*New York Stock Exchange*). AAPL y GOOG son tickers de emisiones de Apple y Google listadas en el Nasdaq (*National Association of Securities Dealers*).
 ```
 
 >
 Es importante saber que además de los tickers de las casas de bolsa existen otros identificadores que han sido creados por diferentes entidades. Por ejemplo: 
 >
-* El National Numbering Agency (NNA) creo el ISIN (International Securities Identification Number).
-* El CUSIP Service Bureau, operado por Standard & Poor's for the American Bankers Association creo el CUSIP (Committee on Uniform Securities Identification Procedures).
+* El *National Numbering Agency* (NNA) creo el ISIN (*International Securities Identification Number*).
+* El *CUSIP Service Bureau*, operado por *Standard & Poor's for the American Bankers Association* creo el CUSIP (*Committee on Uniform Securities Identification Procedures*).
 * También empresas como Yahoo! Finance y Bloomberg crean sus propios identificadores (aunque muchas veces son iguales a los tickers de las casas de bolsa). 
 >
 Veamos algunos ejemplos en la siguiente tabla:
@@ -195,7 +195,7 @@ gigante <- getSymbols('gigante.mx', auto.assign=FALSE,
 gigante <- Ad(gigante)
 ```
 
-Vamos a crear una función que llamaremos `plot_xts` que recibe un objeto `xts` y que utiliza `ggplotly` para graficar series de tiempo. Esta será la primer función de nuestra paquetería de optimización de portafolios.
+Vamos a crear una función que llamaremos `plot_xts` que recibe un objeto `xts` y que utiliza la paquetería `ggplotly` para graficar series de tiempo. Esta será la primer función de nuestra paquetería de optimización de portafolios.
 
 ```{r}
 plot_xts <- function(x){
@@ -246,7 +246,7 @@ El 27 de Febrero decidimos bajar nuestra postura a 41 pesos y finalmente alguien
 ```
 
 >
-Como vimos, `getSymbols.yahoo()` nos proporciona la serie diaria de volumen para una acción. En este trabajo no nos detendremos en cómo obtener la rotación de títulos, tampoco veremos cuánta líquidez es deseable en un intrumento. Para nuestro propósito nos basta entender que si **el precio de cierre de una acción se mantiene estática por varios días, entonces es una acción poco líquida**.
+Como vimos, `getSymbols.yahoo()` nos proporciona la serie diaria de volumen para una acción. En este trabajo no nos detendremos en cómo obtener la rotación de títulos, tampoco veremos cuánta líquidez es deseable en un instrumento. Para nuestro propósito nos basta entender que si **el precio de cierre de una acción se mantiene estática por varios días, entonces es una acción poco líquida**.
 >
 Liquidez es un concepto que debe entenderse y tomarse en cuenta al seleccionar el universo de activos que se usarán al momento de definir un problema de optimización de portafolios.
 
@@ -259,11 +259,11 @@ head(price)
 
 Observemos que `ibm` no cuenta con observaciones para el día `2017-01-02`; `herdez` y `gigante` si cuentan con observaciones para ese día. Al crear `price` la entrada `['2017-01-02','IBM.Adjusted']` se rellena con `NA`. De esta manera, el método `cbind.xts` nos facilita pegar objetos `xts` que tienen índices distintos.
 
-Para trabajar con otras series extraídas con `getSymbols.yahoo()` y pegadas en un mismo objeto `xts` vamos a crear la función `get_prices_yahoo()`. 
+Para trabajar con series extraídas con `getSymbols.yahoo()` y pegarlas en un mismo objeto `xts` vamos a crear la función `get_prices_yahoo()`. 
 
 Como queremos que el objeto que regrese `get_prices_yahoo()` no contenga `NA`'s, vamos a imputar los `NA`s usando `xts::na.locf()`, un método de **xts** que reemplaza cada valor vacío con el siguiente valor en la serie que sea distinto de `NA`.
 
-Ponemos "Adjusted" como valor predeterminado de un parámetro de `get_prices_yahoo()` que llamaremos `column`, aunque lo podremos cambiar por "Open", "High", "Low", "Close" y "Volume".
+Ponemos "Adjusted" como valor predeterminado de un parámetro `column` de `get_prices_yahoo()`. El valor del parámetro se puede cambiar por "Open", "High", "Low", "Close" y "Volume".
 
 ```{r}
 get_prices_yahoo <- function(
@@ -341,8 +341,7 @@ Como el precio en IBM que extrajimos con `getSymbols` está en dólares y los pr
 * un peso en Herdez dejó `r sprintf("%0.2f", (pT / p0)[ ,'HERDEZ.MX.Adjusted'])` pesos, y
 * un dólar en IBM dejó `r sprintf("%0.2f", (pT / p0)[ , 'IBM.Adjusted'])` dólares. 
 
-Por otro lado, un peso dejó `r sprintf("%0.2f", (pT / p0)[ , 'MXN.X.Adjusted'])` dólares. 
-**Los cambios de precio en distintos tipos de cambio no son comparables**. Más adelante hablaremos a detalle sobre esto.
+Ya que un peso dejó `r sprintf("%0.2f", (pT / p0)[ , 'MXN.X.Adjusted'])` dólares, **los cambios de precio en distintos tipos de cambio no son comparables**. Más adelante hablaremos a detalle sobre esto.
 
 ```{block2, type = 'resumen'}
 El **rendimiento en el periodo $\mathbb{T}$** simplemente es el cambio porcentual que tuvo el precio de una acción en ese periodo. Esto es exactamente igual al cambio relativo de $0$ a $T$ menos uno.
@@ -443,11 +442,11 @@ Comparemos los rendimientos en pesos y dólares de IBM en 2017:
 
 * El rendimiento de los dólares en pesos en 2017 fue de `r sprintf("%0.2f", (prod(dlyChg[, 'MXN.X.Adjusted']) - 1) * 100)`%
 * Hemos obtenido un rendimiento en pesos de IBM en 2017 de `r sprintf("%0.2f", (prod(dlyChg[, 'IBM_MXN.Adjusted']) - 1) * 100)`% 
-* En contraste teníamos que el rendimiento en dólares de IBM fue `r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100)`%.
+* En contraste tenemos que el rendimiento en dólares de IBM fue `r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100)`%.
 
-**¡Ojo! Un error común** es pensar que si en el periodo $\mathbb{T}$ IBM tuvo un rendimiento en dólares de $r^\text{ibm}_t$ (`r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100)`%) y el dólar tuvo un rendimiento en pesos de $r^\text{mxn/usd}_t$ (`r sprintf("%0.2f", (prod(dlyChg[, 'MXN.X.Adjusted']) - 1) * 100)`%), entonces el rendimiento en pesos de IBM es la suma de los dos $r^\text{ibm.mxn}_t = r^\text{ibm}_t + r^\text{mxn/usd}_t$ (`r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100 + (prod(dlyChg[, 'MXN.X.Adjusted']) - 1) * 100)`%). Como ya vimos, hacer esto no es correcto.
+**¡Ojo! Un error común** es pensar que si en el periodo $\mathbb{T}$ vemos que IBM tuvo un rendimiento en dólares de $r_\text{ibm}^\mathbb{T}$ (`r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100)`%) y el dólar tuvo un rendimiento en pesos de $r_\text{mxn/usd}^\mathbb{T}$ (`r sprintf("%0.2f", (prod(dlyChg[, 'MXN.X.Adjusted']) - 1) * 100)`%), entonces el rendimiento en pesos de IBM es la suma de los dos $r_\text{ibm.mxn}^\mathbb{T} = r_\text{ibm}^\mathbb{T} + r_\text{mxn/usd}^\mathbb{T}$ (`r sprintf("%0.2f", (prod(dlyChg[, 'IBM.Adjusted']) - 1) * 100 + (prod(dlyChg[, 'MXN.X.Adjusted']) - 1) * 100)`%). Como ya vimos, hacer esto no es correcto.
 
-Agregaremos a nuestra paquetería la función `get_dlyChg_from_price()`. El código de la función se encuentra en el anexo __REF__. De aquí en adelante usaremos esta función para obtener series de cambios diarios a partir de precios.
+Agregaremos a nuestra paquetería la función `get_dlyChg_from_price()`. El código de la función se encuentra en el anexo \@ref(fun-get-dlyChg-from-price). De aquí en adelante usaremos esta función para obtener series de cambios diarios a partir de precios.
 
 ```{r, include = FALSE}
 get_dlyChg_from_price <- function(
@@ -508,7 +507,7 @@ Aunque hemos sido muy estrictos en la diferencia entre cambios relativos y rendi
 
 Por eso, **a partir de aquí usaremos indistintamente todos los siquientes términos**: cambio relativo en el periodo $\mathbb{T}$, cambio relativo de $0$ a $T$, rendimiento en el periodo $\mathbb{T}$, rendimiento de $0$ a $T$ y rendimiento acumulado en $T$.
 
-Para obtener rendimientos acumulados a partir de cambios diarios, agregaremos a nuestra paquetería la función `get_cumRet_from_dlyChg()`. Esta función se encuentra en el anexo __REF__.
+Para obtener rendimientos acumulados a partir de cambios diarios, agregaremos a nuestra paquetería la función `get_cumRet_from_dlyChg()`. Esta función se encuentra en el anexo \@ref(fun-get-cumRet-from-dlyChg).
 
 ```{r, include = FALSE}
 get_cumRet_from_dlyChg <- function(
@@ -569,9 +568,9 @@ Veamos los precios de cierre y los pagos de dividendo de IBM entre el 7 y el 9 d
 cbind(ibm[, 'IBM.Close'], ibm_dividends)['2017-02-07/2017-02-09', ]
 ```
 >
-Si solo vemos el precio debajo de `IBM.Close`, podríamos pensar que un inversionista que tenía una acción de IBM perdió `r sprintf("%0.2f", as.numeric(abs(ibm$IBM.Close['2017-02-08']) - as.numeric(ibm$IBM.Close['2017-02-07'])))`  (`r sprintf("%0.2f", as.numeric(ibm$IBM.Close['2017-02-08']))` - `r sprintf("%0.2f", as.numeric(ibm$IBM.Close['2017-02-07']))`) dólares del 7 al 8 de febrero de 2017 . Sin embargo, esto no es cierto porque el inversionista recibió `r as.numeric(ibm_dividends['2017-02-08'])` dólares como pago en dividendos.
+Si solo vemos el precio debajo de `IBM.Close`, podríamos pensar que un inversionista que tenía una acción de IBM tuvo una perdida de `r sprintf("%0.2f", as.numeric(abs(ibm$IBM.Close['2017-02-08']) - as.numeric(ibm$IBM.Close['2017-02-07'])))`  (`r sprintf("%0.2f", as.numeric(ibm$IBM.Close['2017-02-08']))` - `r sprintf("%0.2f", as.numeric(ibm$IBM.Close['2017-02-07']))`) dólares del 7 al 8 de febrero de 2017 . Sin embargo, esto no es cierto porque el inversionista recibió `r as.numeric(ibm_dividends['2017-02-08'])` dólares como pago en dividendos.
 >
-Existen instituciones encargadas del resguardo central de la información de las transacciones de los instrumentos financieros. A este tipo de instituciones se les conoce como **custodios o depósitos de valores** (custodian agents). Los custodios también son los encargados de entregarle a los tenedores de instrumentos financieros los pagos de dividendos de sus instrumentos. En México, el Indeval es el depósito central de valores.
+Existen instituciones encargadas del resguardo central de la información de las transacciones de los instrumentos financieros. A este tipo de instituciones se les conoce como **custodios o depósitos de valores** (custodian agents). Los custodios también son los encargados de entregarle a los tenedores de instrumentos financieros los pagos de dividendos de sus instrumentos. En México, el Indeval (Instituto para el Depósito de Valores) es el depósito central de valores.
 
 Después de cada pago de dividendos, los precios de cierre se ven afectados por los pagos de dividendos. Para evitar que el pago de dividendos se malinterprete como una pérdida de rendimiento, una **serie de precios ajustados es una serie de precios 'hipotéticos'** cuyo valor representa una inversión:
 
@@ -626,7 +625,7 @@ Ya conocemos la diferencia de precios de cierre y precios de cierre ajustados. D
 
 ## Valor de un portafolio {#valor-portafolio}
 
-Para la construcción de portafolios en este trabajo **vamos a suponer que podemos comprar fracciones de títulos de acciones**. Para ejemplificar, supongamos que tenemos 100 pesos y que hay una acción que cuesta 20 pesos. Si queremos inverir 25% de nuestro capital en esa acción, entonces compraríamos 1.25 títulos.
+Para la construcción de portafolios en este trabajo **vamos a suponer que podemos comprar fracciones de títulos de acciones**. Para ejemplificar, supongamos que tenemos 100 pesos y que hay una acción que cuesta 20 pesos. Si queremos invertir 25% de nuestro capital en esa acción, entonces compraríamos 1.25 títulos.
 
 Normalmente, no son fáciles de conseguir en el mercado fracciones de títulos de instrumentos listados en casas de bolsa. En contraste, es fácil invertir en fracciones de tipos de cambio.
 
@@ -654,7 +653,7 @@ Quisiéramos conocer el rendimiento acumulado en 2017 de este portafolio.
 
 **Construcción de rendimiento acumulado de un portafolio**
 
-Supongamos que tenemos un portafolio con $n$ activos y el **peso inicial de apertura de las componentes del portafolio** esta dado por $H^0 = (H_1^0, H_2^0, \dots, H_n^0)$ con $\sum H_i^0 = 1$. Con esto, tenemos que 
+Supongamos que tenemos un portafolio con $n$ activos y el **peso inicial de apertura de las componentes del portafolio** está dado por $H^0 = (H_1^0, H_2^0, \dots, H_n^0)$ con $\sum H_i^0 = 1$. Con esto, tenemos que 
 
 * El **rendimiento acumulado del portafolio al tiempo $t$** es
 
@@ -664,7 +663,7 @@ $$
 
 donde $\delta_j^{0,t}$ es el rendimiento acumulado del activo $j$ al tiempo $t$.
 
-* La **contribución del activo $i$ al rendimiento acumulado del portafolio al tiempo $t$** esta dada por
+* La **contribución del activo $i$ al rendimiento acumulado del portafolio al tiempo $t$** está dada por
 
 $$
 H_i^0\delta_i^{0,t} + (1-H_i^0)
@@ -787,7 +786,7 @@ Con este cambio, ¿cuál es el rendimiento acumulado en 2017?
 
 Si el día $b$ se realiza un rebalanceo, asumimos que ese día se vende a precio de cierre la posición con pesos $h^b =  (h_1^b, h_2^b, \dots, h_n^b)$ y se compra a ese mismo precio la posición con **pesos de rebalanceo** $H^b =  (H_1^b, H_2^b, \dots, H_n^b)$ tales que $\sum H_i^b = 1$. De esta manera el día $b+1$ los pesos de apertura de los componentes del portafolio quedan en $H^b$.
 
-Dado este rebalanceo y bajo estos supuestos, tenemos que para $t \leq b$ el rendimiento acumulado, las contribuciones y pesos se calculan igual que antes. En el caso de $t > b$ tenemos que:
+Dado este rebalanceo y bajo estos supuestos tenemos que, para $t \leq b$ el rendimiento acumulado, las contribuciones y pesos se calculan igual que antes. En el caso de $t > b$ se cumple que:
 
 * El rendimiento acumulado esta dado por
 
@@ -801,7 +800,7 @@ $$
 \left(H_i^0\delta_i^{0,b} + (1-H_i^0)\right)\left(H_i^b\delta_i^{b,t} + (1 - H_i^b)\right)
 $$
 
-* El peso de cierre $h_i^t$ del activo $i$ del portafolio esta dado por
+* El peso de cierre $h_i^t$ del activo $i$ del portafolio está dado por
 
 $$
 h_i^t = \frac{\left(\sum_j H_j^0 \delta_j^{0,b}\right)\left(H_i^b \delta_i^{b,t}\right)}{\left(\sum_j H_j^0 \delta_j^{0,b}\right)\left(\sum_j H_j^b \delta_j^{b,t}\right)} = \frac{H_i^b \delta_i^{b,t}}{\sum_j H_j^b \delta_j^{b,t}}
@@ -815,11 +814,11 @@ $$
 
 ----
 
-El anexo __REF__ describe una lógica secuencial para obtener valores de portafolios con múltiples fechas de rebalanceo. Este procedimiento se incluye en la función `get_rebalance()` que usaremos a continuación. 
+El anexo \@ref(fun-get-rebalance) incluye en la función `get_rebalance()` que usaremos a continuación, este procedimiento se describe una lógica secuencial para obtener valores de portafolios con múltiples fechas de rebalanceo. 
 
 Considerando los pesos de rebalanceo del 30 de junio, vamos a obtener el nuevo rendimiento acumulado de nuestro portfalio y las contribuciones de los componentes.
 
-```{r contrib-rebalanceo, fig.cap='Contribuciones al rendimiento despues del rebalanceo', out.width="70%", fig.align="center", fig.pos="H"}
+```{r contrib-rebalanceo, fig.cap='Contribuciones al rendimiento después del rebalanceo', out.width="70%", fig.align="center", fig.pos="H"}
 dlyChg <- dlyChg[, c('HERDEZ.MX.Adjusted', 
                      'GIGANTE.MX.Adjusted', 
                      'MXN.X.Adjusted', 
@@ -875,7 +874,7 @@ Algunos índices de acciones famosos son:
 También existen índices de bonos y de commodities:
 
 * Barclays Capital U.S. Aggregate Bond Index - índice compuesto por bonos del tesoro americanos
-* S&P GSCI Crude Oil Index - índice cuyo valor se basa en la producción de petroleo
+* S&P GSCI Crude Oil Index - índice cuyo valor se basa en la producción de petróleo
 
 Por lo regular las **metodologías para construir índices** de acciones y bonos consisten en:
 
@@ -898,7 +897,7 @@ La **capitalización de mercado al tiempo $t$** (market capitalization o market 
 > 
 En la figura \@ref(fig:market-cap) tenemos un mapa que muestra la capitalización de mercado en miles de millones de dólares para cada país en el mundo en 2015.
 
-```{r, market-cap, out.width = "70%", echo=FALSE, fig.align="center", fig.cap="Mapa del mundo por capitalización de mercado"}
+```{r, market-cap, out.width = "70%", echo=FALSE, fig.align="center", fig.cap="Mapa del mundo por capitalización de mercado", fig.pos="H"}
 library(knitr)
 include_graphics('./figure/mkt_cap.png')
 ```
@@ -908,9 +907,9 @@ Estados Unidos, con un market cap de 19.8 billones de dólares, es el más grand
 >
 Para obtener la capitalización de mercado de una emisión necesitamos su precio y número de títulos. Ya sabemos como extraer precios. Una manera de consultar el número de títulos de un instrumento financiero es usar las estadísticas de Yahoo! Finance. 
 >
-La imagen figura \@ref(fig:ibm-stats) muestra una captura de pantalla de las estadísticas de IBM en https://finance.yahoo.com/quote/ibm/key-statistics. **El número total de títulos de IBM está en amarillo**.
+La figura \@ref(fig:ibm-stats) muestra una captura de pantalla de las estadísticas de IBM en https://finance.yahoo.com/quote/ibm/key-statistics. **El número total de títulos de IBM está en amarillo**.
 
-```{r, ibm-stats, out.width = "70%", echo=FALSE, fig.align="center", fig.cap="Estadísticas de IBM"}
+```{r, ibm-stats, out.width = "45%", echo=FALSE, fig.align="center", fig.cap="Estadísticas de IBM", fig.pos="H"}
 library(knitr)
 include_graphics('./figure/stats_IBM.png')
 ```
@@ -959,7 +958,7 @@ rebalance <- get_rebalance(dlyChg, rebWeight)
 
 Los pesos de capitalización de mercado de las acciones en nuestro índice se ven así:
 
-```{r pesos-cap, fig.cap='Pesos de capitalizacion de mercado de un indice hipotetico de dos accioens', out.width="70%", fig.align="center", fig.pos="H"}
+```{r pesos-cap, fig.cap='Pesos de capitalización de mercado de un índice hipotético de dos acciones', out.width="70%", fig.align="center", fig.pos="H"}
 plot_xts(rebalance$portWeight)
 ```
 
@@ -968,14 +967,14 @@ De la figura \@ref(fig:pesos-cap) concluimos que Gigante perdió valor de mercad
 ## ETFs {#etfs}
 
 ```{block2, type = 'resumen'}
-Se le llama **Exchange Traded Fund** (ETF) a un fondo que replica el valor de algún índice o activo que no es operado en bolsa (como el oro). Una de sus cualidades es que los ETF's son listados en bolsa y pueden ser operados como cualquier acción.
+Se le llama **Exchange Traded Fund** (ETF) a un fondo que replica el valor de algún índice o activo (puede no ser operado en bolsa, como el oro). Una de sus cualidades es que los ETF's son listados en bolsa y pueden ser operados como cualquier acción.
 ```
 
 Recordemos que un índice es un conjunto de acciones. Si quisiéramos replicar el valor de un índice necesitaríamos el capital necesario para comprar todos las activos en el índice con su peso correspondiente. Para eso, necesitaríamos mucho capital. De igual manera, si quisiéramos aumentar o disminuir nuestra posición en el índice sería muy complicado porque tendríamos que comprar o vender todos los componentes con consecuencias de costos de transacción y operativos. 
 
 Por otro lado, si quisiéramos invertir en el valor del oro tendríamos que conseguir lingotes de oro y no podríamos comprar fracciones de lingotes. Además al momento de vender, podría ser complicado encontrar alguien interesado en esos lingotes.
 
-Los ETFs se han vuelto muy populares porque son muy fáciles de operar y permiten tener exposición a distintas fuentes de valor. **A partir del 2013, éstos son los instrumentos más operados globalmente; de hecho, el instrumento más operado en el mundo es el SPY**. Este ETF lo ofrece State Street Global Advisors y replica el valor del S&P 500. Guardemos en `spy` los precios de este ETF.
+Los ETFs se han vuelto muy populares porque son muy fáciles de operar y permiten tener exposición a distintas fuentes de valor. **A partir del 2013, éstos son los instrumentos más operados globalmente; de hecho, el instrumento más operado en el mundo es el SPY**. Este ETF lo ofrece *State Street Global Advisors* y replica el valor del S&P 500. Guardemos en `spy` los precios de este ETF.
 
 ```{r}
 spy <- get_prices_yahoo(c('spy'), 
@@ -989,7 +988,7 @@ En los siguientes capítulos vamos a utilizar varios ETFs para nuestros ejemplos
 
 **ETFs de Índices Sectoriales** 
 
-Existen métodologías proprietarias que se usan para clasificar acciones en distintos grupos. En particular es común que se busque clasificar las empresas de acuerdo al sector industrial al que pertenecen. Este problema no es necesariamente sencillo pues existen empresas cuyos productos y servicios se encuentran muy diversificados. Un **índice sectorial** esta compuesto por acciones que pertenecen a un sector industrial específico.
+Existen metodologías proprietarias que se usan para clasificar acciones en distintos grupos. En particular es común que se busque clasificar las empresas de acuerdo al sector industrial al que pertenecen. Este problema no es necesariamente sencillo pues existen empresas cuyos productos y servicios se encuentran muy diversificados. Un **índice sectorial** está compuesto por acciones que pertenecen a un sector industrial específico.
 
 * IYC - ETF que replica al Dow Jones US Consumer Services Index. Este índice contiene emisiones en US del sector de servicios al consumidor
 * IYE - Dow Jones US Energy Index - sector energético

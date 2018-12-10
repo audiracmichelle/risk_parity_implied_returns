@@ -1,7 +1,13 @@
 
-# Anexos
+# Anexos {#anexos}
 
-## plot_xts()
+En los anexos se incluyen todas las funciones que forman parte de la paquetería `optimist`. Esta se encuentra disponible en [https://github.com/audiracmichelle/optimist](https://github.com/audiracmichelle/optimist). Para cargarla simplemente se usa
+
+```{}
+devtools::install_github("audiracmichelle/optimist")
+```
+
+## plot_xts() {#fun-plot-xts}
 
 Esta función grafica series de tiempo a partir de un `xts`.
 
@@ -45,19 +51,23 @@ plot_xts <- function(x, ...){
 <!-- } -->
 <!-- ``` -->
 
-## get_prices_yahoo()
+## get_prices_yahoo() {#fun-get-prices-yahoo}
 
 Esta función construye un `xts` que contiene precios extraidos de Yahoo! Finance. 
 
 ```{r}
 #' @title get_prices_yahoo
-#' @description Builds an xts containing prices downloaded from Yahoo! Finance.
+#' @description Builds an xts containing prices downloaded from 
+#' Yahoo! Finance.
 #' @param yahoo_id character array containining yahoo ids.
-#' @param from start date. Retrieve data no earlier than this date. (2007-01-01).
+#' @param from start date. Retrieve data no earlier than this date. 
+#' (2007-01-01).
 #' @param to end date. (Sys.Date())
-#' @param column indicating which column should be returned: "Open", "High", "Low", "Close", "Volume", ("Adjusted")
+#' @param column indicating which column should be returned: "Open", 
+#' "High", "Low", "Close", "Volume", ("Adjusted")
 #' @param ... additional parameters
-#' @param periodicity periodicity of data to query and return. Must be one of "daily", "weekly", "monthly", ("daily")
+#' @param periodicity periodicity of data to query and return. Must 
+#' be one of "daily", "weekly", "monthly", ("daily")
 
 get_prices_yahoo <- function(
   yahoo_id,
@@ -85,10 +95,9 @@ get_prices_yahoo <- function(
   series <- na.locf(series, na.rm = FALSE, fromLast = TRUE)
   series
 }
-
 ```
 
-## get_dlyChg_from_price()
+## get_dlyChg_from_price() {#fun-get-dlyChg-from-price}
 
 Esta función obtiene un `xts` que contiene cambios diarios a partir de series de precios. 
 
@@ -108,7 +117,7 @@ get_dlyChg_from_price <- function(
 }
 ```
 
-## get_cumRet_from_dlyChg()
+## get_cumRet_from_dlyChg() {#fun-get-cumRet-from-dlyChg}
 
 Esta función obtiene un `xts` que contiene retornos acumulados a partir de series de cambios diarios. 
 
@@ -130,10 +139,17 @@ get_cumRet_from_dlyChg <- function(
 }
 ```
 
+## get_rebalance() {#fun-get-rebalance}
 
-escribe una lógica secuencial para obtener valores de portafolios con múlti-
-ples fechas de rebalanceo
+La función `get_rebalance()` recibe un `xts` que contiene las fechas y pesos de rebalanceo de un portafolio. También recibe series de cambios diarios en el objeto `dlyChg`. A partir de esto calcula el valor de un portafolio. Esta función depende de la salida de dos funciones: `get_rebalance_t2()` y `get_rebalance_`. El rebalanceo utiliza una lógica secuencial.
+
 ```{r}
+#' @title get_rebalance_t2
+#' @description Gets portfolio weights and value at time t2
+#' @param dlyChg_t2 daily changes at t2
+#' @param portWeightOpen_t2 portfolio weight at the open on t2 
+#' @param portValue_t1 portfolio value at t1
+
 get_rebalance_t2 <- function(
   dlyChg_t2,
   portWeightOpen_t2,
@@ -148,6 +164,11 @@ get_rebalance_t2 <- function(
   list(portWeight = portWeightClose_t2,
        portValue = portValue_t2)
 }
+
+#' @title get_rebalance_
+#' @description Computes daily portofolio weights and value 
+#' @param dlyChg xts that contains daily changes
+#' @param rebWeight xts that contains rebalance weights
 
 get_rebalance_ <- function(
   dlyChg,
@@ -188,7 +209,12 @@ get_rebalance_ <- function(
        portValue = portValue)
 }
 
-# ÚLTIMA MODIFICACIÓN DE REBALANCE EN LAS CONTRIBUCIONES
+#' @title get_rebalance
+#' @description Computes daily portofolio weights, value and 
+#' contributions 
+#' @param dlyChg xts that contains daily changes
+#' @param rebWeight xts that contains rebalance weights
+
 get_rebalance <- function(
   dlyChg,
   rebWeight
@@ -201,18 +227,27 @@ get_rebalance <- function(
     dlyChg_c$fix <- 1
     rebWeight_c <- rebWeight[, c]
     rebWeight_c$fix <- 1 - rebWeight_c[, 1]
-    portContrib[[c]] <- get_rebalance_(dlyChg_c, rebWeight_c)$portValue
+    portContrib[[c]] <- 
+      get_rebalance_(dlyChg_c, rebWeight_c)$portValue #validate
   }
   portContrib <- do.call(cbind, portContrib)
   names(portContrib) <- names(dlyChg)
   rebalance[['portContrib']] <- portContrib
   rebalance
 }
-
 ```
+
+## get_w_with_geomTruncDecay() {#fun_get_w_with_geomTruncDecay}
+
+La función `get_w_with_geomTruncDecay()` calcula pesos con decaimiento geométrico.
 
 ```{r}
 #' @title get_w_with_geomTruncDecay
+#' @description Builds weights with geometric truncated decay 
+#' @param T where the geometric distribution is truncated
+#' @param halflife number of days that accumulate 0.5 density
+#' @param interval as in uniroot
+
 get_w_with_geomTruncDecay <- function(
   T,
   halflife,
@@ -227,11 +262,19 @@ get_w_with_geomTruncDecay <- function(
 }
 ```
 
-```{r}
-# Con el parámetro `method` decidimos si la función debe regresar el promedio geométrico o aritmético. -->
-# El valor `halflife=NULL` indicará que la función debe regresar el rendimiento promedio sin half-life. Cuando se incluya un half-life este tiene que ser un entero $m$ entre $0$ y $T$, es decir $0<m<T$. -->
+## get_meanRet_from_dlyChg() {#fun-get-meanRet-from-dlyChg}
 
+La función `get_meanRet_from_dlyChg()` calcula el retorno promedio. El parámetro `method` determina si la función debe regresar el promedio geométrico o aritmético. El valor `halflife=NULL` indicará si la función debe regresar el rendimiento promedio sin half-life. Cuando se incluya un half-life este tiene que ser un entero $m$ entre $0$ y $T$, es decir $0<m<T$.
+
+```{r}
 #' @title get_meanRet_from_dlyChg
+#' @description Builds weights with geometric truncated decay
+#' @param dlyChg xts that contains daily changes
+#' @param method either 'arithmetic' or 'geometric'
+#' @param halflife number of days that accumulate 0.5 density
+#' @param interval as in uniroot
+#' @param annualization_factor in days (252 days in a year)
+
 get_meanRet_from_dlyChg <- function(
   dlyChg,
   method = "geometric",
@@ -239,26 +282,45 @@ get_meanRet_from_dlyChg <- function(
   interval = c(0.000001, 0.999999),
   annualization_factor = 1
 ) {
-  dlyChg <- dlyChg[-1, ] #pensar como manejar lo del renglon con unos
+  dlyChg <- dlyChg[-1, ]
   dlyChg <- na.trim(dlyChg)
   T <- nrow(dlyChg)
 
   if(is.null(halflife)) {
     w <- 1 / T
   } else {
-    w <- get_w_with_geomTruncDecay(T = T, halflife = halflife, interval = interval)
+    w <- get_w_with_geomTruncDecay(T = T, 
+                                   halflife = halflife, 
+                                   interval = interval)
   }
 
-  if(method == "arithmetic") meanRet <- annualization_factor * apply(w * dlyChg, 2, sum, na.rm = TRUE)
-  if(method == "geometric") meanRet <- exp(annualization_factor * apply(w * log(dlyChg), 2, sum, na.rm = TRUE))
+  if(method == "arithmetic") meanRet <- 
+    annualization_factor * apply(w * dlyChg, 2, 
+                                 sum, 
+                                 na.rm = TRUE)
+  if(method == "geometric") meanRet <- 
+    exp(annualization_factor * apply(w * log(dlyChg), 2, 
+                                     sum, 
+                                     na.rm = TRUE))
 
   meanRet
 }
 ```
 
-```{r}
+## get_rollChg_from_dlyChg() {#fun-get-rollChg-from-dlyChg}
 
+La función `get_rollChg_from_dlyChg()` obtiene rendimientos móviles.  El parámetro `roll` determina el número de días de la ventana móvil. El valor `trim` indica si el `xts` resultante elimina los valores de la primer ventana o no.
+
+```{r}
 #' @title get_rollChg_from_dlyChg
+#' @description computes rolling returns
+#' @param dlyChg xts that contains daily changes
+#' @param roll number of days in a rolling window
+#' @param method either 'arithmetic' or 'geometric'
+#' @param halflife number of days that accumulate 0.5 density
+#' @param trim should the first rolling window be eliminated?
+#' @param interval as in uniroot
+
 get_rollChg_from_dlyChg <- function(
   dlyChg,
   method = "geometric",
@@ -267,34 +329,42 @@ get_rollChg_from_dlyChg <- function(
   trim = FALSE,
   interval = c(0.000001, 0.999999)
 ) {
-  dlyChg <- dlyChg[-1, ] #pensar como manejar lo del renglon con unos
+  dlyChg <- dlyChg[-1, ]
 
   if(is.null(halflife)) {
     w <- rep(1/roll, roll)
   } else {
-    w <- get_w_with_geomTruncDecay(T = roll, halflife = halflife, interval = interval)
+    w <- get_w_with_geomTruncDecay(T = roll, 
+                                   halflife = halflife, 
+                                   interval = interval)
   }
 
-  if(method == "arithmetic") rollChg <- rollapply(zoo(dlyChg),
-                                                  width = roll,
-                                                  align = 'right',
-                                                  FUN = weighted.mean,
-                                                  w = w,
-                                                  na.rm = TRUE,
-                                                  fill = NA)
+  if(method == "arithmetic") rollChg <- 
+      rollapply(zoo(dlyChg), 
+                width = roll, 
+                align = 'right', 
+                FUN = weighted.mean, 
+                w = w, 
+                na.rm = TRUE, 
+                fill = NA)
 
-  if(method == "geometric") rollChg <- exp(rollapply(zoo(log(dlyChg)),
-                                                     width = roll,
-                                                     align = 'right',
-                                                     FUN = weighted.mean,
-                                                     w = w,
-                                                     na.rm = TRUE,
-                                                     fill = NA))
+  if(method == "geometric") rollChg <- 
+      exp(rollapply(zoo(log(dlyChg)), 
+                    width = roll, 
+                    align = 'right', 
+                    FUN = weighted.mean, 
+                    w = w, 
+                    na.rm = TRUE, 
+                    fill = NA))
 
   rollChg <- reclass(rollChg, dlyChg)
   na.trim(rollChg)
 }
 ```
+
+## get_sdRet_from_dlyChg() {#fun-get-sdRet-from-dlyChg}
+
+La función `weighted.sd()` se usa para calcular desviaciones standard ponderadas. Esta función se utiliza dentro de `get_sdRet_from_dlyChg()` para obtener desviaciones standard aritméticas o geométricas a partir de cambios diarios.
 
 ```{r}
 #' @title weighted.sd
@@ -324,6 +394,13 @@ weighted.sd <- function (
 }
 
 #' @title get_sdRet_from_dlyChg
+#' @description computes standard deviation of returns
+#' @param dlyChg xts that contains daily changes
+#' @param method either 'arithmetic' or 'geometric'
+#' @param halflife number of days that accumulate 0.5 density
+#' @param interval as in uniroot
+#' @param annualization_factor in days (252 days in a year)
+
 get_sdRet_from_dlyChg <- function(
   dlyChg,
   method = "arithmetic",
@@ -331,35 +408,45 @@ get_sdRet_from_dlyChg <- function(
   interval = c(0.000001, 0.999999),
   annualization_factor = 1
 ) {
-  dlyChg <- dlyChg[-1, ] #pensar como manejar lo del renglon con unos
+  dlyChg <- dlyChg[-1, ]
   dlyChg <- na.trim(dlyChg)
   T <- nrow(dlyChg)
 
   if(is.null(halflife)) {
     w <- rep(1 / T, T)
   } else {
-    w <- get_w_with_geomTruncDecay(T = T, halflife = halflife, interval = interval)
+    w <- get_w_with_geomTruncDecay(T = T, 
+                                   halflife = halflife, 
+                                   interval = interval)
   }
 
-  if(method == "arithmetic") sdRet <- apply(sqrt(annualization_factor) * dlyChg,
-                                            2,
-                                            weighted.sd,
-                                            w = w,
-                                            na.rm = TRUE)
-  if(method == "geometric") sdRet <- exp(apply(sqrt(annualization_factor) * log(dlyChg),
-                                               2,
-                                               weighted.sd,
-                                               w = w,
-                                               na.rm = TRUE))
+  if(method == "arithmetic") sdRet <- 
+    apply(sqrt(annualization_factor) * dlyChg, 
+          2, 
+          weighted.sd, 
+          w = w, 
+          na.rm = TRUE)
+  if(method == "geometric") sdRet <- 
+    exp(apply(sqrt(annualization_factor) * log(dlyChg), 
+              2, 
+              weighted.sd, 
+              w = w, 
+              na.rm = TRUE))
 
   sdRet
 }
-
 ```
 
+## plot_riskReward_from_dlyChg() {#fun-plot-riskReward-from-dlyChg}
 
+Esta función produce una gráfica que muestra la relación riesgo-rendimiento de activos. Los valores se calculan a partir de rendimientos móviles.
 
 ```{r}
+#' @title plot_riskReward_from_dlyChg
+#' @description plots risk-reward
+#' @param dlyChg xts that contains daily changes
+#' @param roll number of days in a rolling window
+#' @param roll_halflife within a rolling window
 
 plot_riskReward_from_dlyChg <- function(
   dlyChg,
@@ -386,16 +473,21 @@ plot_riskReward_from_dlyChg <- function(
     slope = (reward - 1)/risk
   )
 
-  ggplot(data = plot_data, aes(x = Riesgo, y = Rendimiento, color = Instrumento)) +
+  ggplot(data = plot_data, 
+         aes(x = Riesgo, y = Rendimiento, color = Instrumento)) +
     geom_point(size = 4, alpha = 0.4) +
-    geom_abline(data = slopes, aes(intercept = intercept ,slope = slope), colour = "red", linetype = 2) +
+    geom_abline(data = slopes, 
+                aes(intercept = intercept, slope = slope), 
+                colour = "red", linetype = 2) +
     scale_y_continuous(
       labels = function(x) paste0(x, "%"),
-      limits = c(min(0, min(plot_data$Rendimiento)), max(plot_data$Rendimiento))
+      limits = c(min(0, min(plot_data$Rendimiento)), 
+                 max(plot_data$Rendimiento))
     ) +
     scale_x_continuous(
       labels = function(x) paste0(x, "%"),
-      limits = c(min(0, min(plot_data$Riesgo)), max(plot_data$Riesgo))
+      limits = c(min(0, min(plot_data$Riesgo)), 
+                 max(plot_data$Riesgo))
     ) +
     theme_bw() +
     theme(legend.title = element_blank())
@@ -403,15 +495,23 @@ plot_riskReward_from_dlyChg <- function(
 
 ```
 
+## get_covRet_from_dlyChg() {#fun-get-covRet-from-dlyChg}
 
+Una función que calcula matrices de covarianzas a partir de cambios diarios de activos. La matriz de covarianzas considera pesos con decaimiento geométrico.
 
 ```{r}
+#' @title get_covRet_from_dlyChg
+#' @description builds weighted covariance matrix
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
+#' @param ... parameters passed to get_w_with_geomTruncDecay()
+
 get_covRet_from_dlyChg <- function(
   dlyChg,
   halflife = NULL,
   ...
 ) {
-  dlyChg <- dlyChg[-1, ] #pensar como manejar lo del renglon con unos
+  dlyChg <- dlyChg[-1, ]
   dlyChg <- na.omit(dlyChg)
   T <- nrow(dlyChg)
   if(!is.null(halflife)) {
@@ -425,8 +525,16 @@ get_covRet_from_dlyChg <- function(
 }
 ```
 
+## get_naiveParity_weights() {#fun-get-naiveParity-weights}
+
+Esta función calcula pesos de paridad ingenua de riesgo a la última fecha del `xts` de entrada.
 
 ```{r}
+#' @title get_naiveParity_weights
+#' @description gets risk parity naive weights
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
+
 get_naiveParity_weights <- function(
   dlyChg,
   halflife) {
@@ -439,7 +547,9 @@ get_naiveParity_weights <- function(
 }
 ```
 
+## get_contribParity_weights() {#fun-get-contribParity-weights}
 
+La función `get_contribParity_weights()` calcula pesos de paridad de contribución al riesgo a la última fecha del `xts` de entrada. Para esto require una función a optimizar `fn_contribParity()` y su gradiente `gr_contribParity()`.
 
 ```{r}
 Rcpp::cppFunction("
@@ -461,11 +571,7 @@ double fn_contribParity(NumericVector &x, NumericMatrix &Sigma) {
   }
   return 1e6 * f;
 }")
-```
 
-Cálculo de gradiente de la función de paridad de contribución al riesgo
-
-```{r}
 Rcpp::cppFunction("
 NumericVector gr_contribParity(NumericVector &x, NumericMatrix &Sigma) {
   int N = x.size();
@@ -494,9 +600,11 @@ NumericVector gr_contribParity(NumericVector &x, NumericMatrix &Sigma) {
   return 1e6 * g;
 }")
 
-```
+#' @title get_contribParity_weights
+#' @description gets risk contribution parity weights
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
 
-```{r}
 get_contribParity_weights <- function(
   dlyChg, 
   halflife
@@ -533,8 +641,11 @@ get_contribParity_weights <- function(
   names(contribParity_weights) <- names(dlyChg)
   contribParity_weights
 }
-
 ```
+
+## get_principalParity_weights() {#fun-get-principalParity-weights}
+
+La función `get_principalParity_weights()` calcula pesos de paridad de contribución al riesgo a la última fecha del `xts` de entrada. Para esto require una función a optimizar `fn_principalParity()` y su gradiente `grad_principalParity()`.
 
 ```{r}
 fn_principalParity <- function(x, P, lam, K) {
@@ -554,11 +665,17 @@ grad_principalParity <- function(x, P, lam, K) {
   g <- numeric(nrow(P))
   for (i in 1:(K - 1)) {
     for (j in (i + 1):K) {
-      g <- g + (lam[i] * y[i]^2 - lam[j] * y[j]^2) * (lam[i] * y[i] * P[,i] - lam[j] * y[j] * P[,j])
+      g <- g + (lam[i] * y[i]^2 - lam[j] * y[j]^2) * 
+        (lam[i] * y[i] * P[,i] - lam[j] * y[j] * P[,j])
     }
   }
   1e6 * 8.0 * g
 }
+
+#' @title get_principalParity_weights
+#' @description gets risk contribution parity weights
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
 
 get_principalParity_weights <- function(
   dlyChg,
@@ -594,13 +711,24 @@ get_principalParity_weights <- function(
   names(principalParity_weights) <- names(dlyChg)
   principalParity_weights
 }
-
 ```
 
+## get_riskParity_dlyWeights() {#fun-get-riskParity-dlyWeights}
 
-
+Función que obtiene series de pesos diarios de paridad de riesgo. Para esto, se proporciona el nombre de una función de pesos de paridad de riesgo: `get_naiveParity_weights()`, `get_contribParity_weights()` o `get_principalParity_weights()`.
 
 ```{r}
+#' @title get_riskParity_dlyWeights
+#' @description Builds an `xts` that contains daily risk parity 
+#' weights
+#' @param dlyChg xts that contains daily changes
+#' @param fun_riskParity_weights function to compute risk parity 
+#' weights
+#' @param halflife number of days that accumulate 0.5 density
+#' @param min_window number of days in the first window
+#' @param roll_parity days for the output's the rolling window
+#' @param ... fun_riskParity_weights() parameters
+
 get_riskParity_dlyWeights <- function(
   dlyChg, 
   fun_riskParity_weights = get_naiveParity_weights,
@@ -622,12 +750,14 @@ get_riskParity_dlyWeights <- function(
   }
   
   colnames(riskParity_dlyWeights) <- colnames(dlyChg)
-  riskParity_dlyWeights <- xts(riskParity_dlyWeights, 
-                               order.by = index(dlyChg)[min_window:nrow(dlyChg)])
+  riskParity_dlyWeights <- 
+    xts(riskParity_dlyWeights, 
+        order.by = index(dlyChg)[min_window:nrow(dlyChg)])
   
   if(!is.null(roll_parity)) {
-    riskParity_dlyWeights <- get_rollChg_from_dlyChg(riskParity_dlyWeights, 
-                                                     roll = roll_parity)
+    riskParity_dlyWeights <- 
+      get_rollChg_from_dlyChg(riskParity_dlyWeights, 
+                              roll = roll_parity)
     
     scale <- xts(apply(riskParity_dlyWeights, 1, sum), 
                  order.by = index(riskParity_dlyWeights))
@@ -638,72 +768,21 @@ get_riskParity_dlyWeights <- function(
   
   riskParity_dlyWeights
 }
-
 ```
 
+## get_dlyImpliedRet_from_dlyWeights() {#fun-get-dlyImpliedRet-from-dlyWeights}
+
+La función `get_dlyImpliedRet_from_dlyWeights()` obtiene rendimientos implícitos a partir de los pesos diarios de un portafolio de equilibrio.
 
 ```{r}
-fn_principalParity <- function(x, P, lam, K) {
-  y <- t(P) %*% x
-  risk_contribs <- lam * y^2
-  tot <- 0
-  for (i in 1:(K - 1)) {
-    for (j in (i + 1):K) {
-      tot <- tot + (risk_contribs[i] - risk_contribs[j])^2
-    }
-  }
-  1e6 * 2.0 * tot
-}
+#' @title get_dlyImpliedRet_from_dlyWeights
+#' @description gets implied returns from portfolio weights
+#' @param dlyWeights xts that contains portfolio daily weights
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
+#' @param min_window number of days in the first window
+#' @param roll_parity days for the output's the rolling window
 
-grad_principalParity <- function(x, P, lam, K) {
-  y <- t(P) %*% x
-  g <- numeric(nrow(P))
-  for (i in 1:(K - 1)) {
-    for (j in (i + 1):K) {
-      g <- g + (lam[i] * y[i]^2 - lam[j] * y[j]^2) * (lam[i] * y[i] * P[,i] - lam[j] * y[j] * P[,j])
-    }
-  }
-  1e6 * 8.0 * g
-}
-
-get_principalParity_weights <- function(
-  dlyChg,
-  halflife, 
-  num_factors = 3
-) {
-  
-  N <- ncol(dlyChg)
-  T <- nrow(dlyChg) 
-  w <- get_w_with_geomTruncDecay(T=T, halflife = halflife)
-  Sigma <- cov.wt(dlyChg, w)$cov 
-  eig <- eigen(Sigma, symmetric=TRUE) #eigen vectors - loadings
-  P <- eig$vectors
-  lam <- eig$values
-  
-  x0 <- rep(1 / N, N)
-  lower <- rep(0.0, N)
-  upper <- rep(1.0, N)
-  
-  principaParity <- nloptr::slsqp(
-    x0 = x0, 
-    fn = fn_principalParity, 
-    gr = grad_principalParity, 
-    lower = lower, 
-    upper = upper, 
-    heq = heq, 
-    heqjac = heqjac, 
-    P = P, 
-    lam = lam, 
-    K = num_factors)
-  
-  principalParity_weights <- principaParity$par
-  names(principalParity_weights) <- names(dlyChg)
-  principalParity_weights
-}
-
-```
-
-```{r}
 get_dlyImpliedRet_from_dlyWeights <- function(
   dlyWeights, 
   dlyChg, 
@@ -737,41 +816,22 @@ get_dlyImpliedRet_from_dlyWeights <- function(
 
 ```
 
-```{r}
-get_dlyImpliedRet_from_dlyWeights <- function(
-  dlyWeights, 
-  dlyChg, 
-  halflife, 
-  min_window = ceiling(halflife * 2.3), 
-  roll_parity = NULL
-) {
-  col_check <- (sum(!names(dlyWeights) == names(dlyChg)) == 0)
-  row_check <- (sum(! index(dlyWeights) %in% 
-                  index(dlyChg)[min_window:nrow(dlyChg)]) == 0)
-  stopifnot(col_check & row_check)
-  
-  dlyImpliedRet <- data.frame()
-  
-  for(date in as.character(index(dlyWeights))){
-    dates <- index(dlyChg[paste0("/", date)])
-    
-    w <- get_w_with_geomTruncDecay(T = length(dates),
-                                   halflife = halflife)
-    Sigma <- cov.wt(dlyChg[dates], w)$cov
+## get_optim_dlyWeights_from_dlyImpliedRet() {#fun-get-optim-dlyWeights-from-dlyImpliedRet}
 
-    h <- as.numeric(dlyWeights[date])
-
-    dlyImpliedRet <- rbind(dlyImpliedRet,
-                           t(h)  %*% Sigma)
-  }
-  
-  xts(dlyImpliedRet, 
-      order.by = index(dlyWeights))
-}
-
-```
+La función `get_optim_dlyWeights_from_dlyImpliedRet()` obtiene pesos óptimos diarios a partir de rendimientos implícitos diarios.
 
 ```{r}
+#' @title get_optim_dlyWeights_from_dlyImpliedRet
+#' @description gets daily weights for optimal portolio from daily 
+#' implied returns
+#' @param dlyImpliedRet xts that contains portfolio daily implied 
+#' returns
+#' @param dlyChg xts that contains daily changes
+#' @param halflife number of days that accumulate 0.5 density
+#' @param min_window number of days in the first window
+#' @param roll_optim days for the output's the rolling window
+#' @param delta risk aversion parameter
+
 get_optim_dlyWeights_from_dlyImpliedRet <- function(
   dlyImpliedRet, 
   dlyChg, 
@@ -850,6 +910,5 @@ get_optim_dlyWeights_from_dlyImpliedRet <- function(
   
   optim_dlyWeights
 }
-
 ```
 
