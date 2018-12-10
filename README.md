@@ -14,9 +14,9 @@ docker run --rm -e PASSWORD=book -p 8787:8787 -v $(pwd)/book:/home/rstudio/book 
 
 Then go to `localhost:8787` in the browser. 
 
-Within rstudio use rstudio/book when asked for user/password and open /home/rstudio/book/book.Rproj 
+Within Rstudio use rstudio/book when asked for user/password and open /home/rstudio/book/book.Rproj 
 
-The output will be found in book/_book/book.pdf
+The output will be found in book/_book/book.pdf after building the book. The book can be built by clicking the `build book` button in RStudio's `build` tab.
 
  
 
