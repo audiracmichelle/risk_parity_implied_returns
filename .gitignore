@@ -6,3 +6,5 @@ _bookdown_files/
 .Rproj.user
 **/tramite/**
 .dropbox
+.DS_Store
+**Icon**
