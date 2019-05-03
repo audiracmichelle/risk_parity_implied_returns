@@ -1,0 +1,21 @@
+# Objetivos de la tesina
+
+1. **Ser una propuesta didáctica de manejo de portafolios**
+
+* Se presentan de forma simple:
+
+    - los conceptos que son parte del día a día de los manejadores de portafolios
+    - ejemplos de como manipular datos de precios 
+
+2. **Ofrecer herramientas que permitan al lector hacer manejo de portafolios por su cuenta**
+
+* Se desarrolla en **R** una paquetería que:
+
+    - facilita extraer en cualquier momento datos de precios
+    - permite reproducir los análisis que se presentan
+
+3. **Proponer una estrategia de inversión basada en paridad de riesgo**
+
+* Se asume que se cuenta con un mandato de inversión
+* Se presenta una estrategia educada de inversión basada en paridad de riesgo
+* Se prueban los resultados históricos de la estrategia
