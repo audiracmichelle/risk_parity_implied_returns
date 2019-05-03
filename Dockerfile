@@ -17,3 +17,5 @@ RUN install2.r --error --deps TRUE nloptr
 RUN install2.r --error --deps TRUE mltools
 
 RUN install2.r --error --deps TRUE tinytex
+
+RUN install2.r --error --deps TRUE devtools

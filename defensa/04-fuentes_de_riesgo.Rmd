@@ -1,0 +1,136 @@
+
+<!-- ```{r, message=FALSE, warning=FALSE} -->
+<!-- library(optimist) -->
+<!-- sectors_price <- get_prices_yahoo(c('IYC',  -->
+<!--                                     'IYE',  -->
+<!--                                     'IYH',  -->
+<!--                                     'IYR',  -->
+<!--                                     'IYW'),  -->
+<!--                                   from = '2012-12-31',  -->
+<!--                                   to = '2018-11-30') -->
+<!-- ``` -->
+
+# Fuentes de Riesgo
+
+* $n$ activos cuyos rendimientos son $\delta_1, \delta_2, \ldots, \delta_n$
+* $\hat\mu = (\hat\mu_1, \hat\mu_2, \ldots, \hat\mu_n)$ vector de rendimientos promedio de los componentes del portafolio
+* $h$ son los pesos (iniciales) del portafolio
+* $\hat\Sigma$ a la matriz de covarianzas de los rendimientos
+
+**rendimiento promedio del portafolio**
+
+$$
+\hat\mu^\text{p} = \hat\mu^Th
+$$
+
+**riesgo de un portafolio**
+$$
+\hat\sigma_\text{p} = \sqrt{h^T \hat\Sigma h} \;. 
+$$
+
+---
+
+Para poder **controlar la asignación de riesgo de un portafolio**, nos resulta deseable identificar fuentes de riesgo que no se encuentren correlacionados.
+
+* $\mathbf{\Delta}$ los retornos de $n$ activos
+* $\hat\Sigma$ la matriz de varianzas y covarianzas de $\mathbf{\Delta}$
+
+La matriz de covarianzas se descompone en
+
+$$
+\hat\Sigma = \mathbf{P}\mathbf{\Lambda} \mathbf{P}^T
+$$ 
+
+con $\mathbf{P}$ la matriz ortogonal de **eigenvectores** y $\mathbf{\Lambda}$ la matriz diagonal de **eigenvalores** con elementos $\lambda_1, \geq \lambda_2 \geq \cdots \geq \lambda_n$. 
+
+Denotamos por $\mathbf{p}_j$ al $j$-ésimo eigenvector, o **$j$-ésimo portafolio principal**, o **$j$-ésima fuente de riesgo**. Recordemos que las $\mathbf{p}_j$'s son ortogonales y tienen norma 1. Como $\mathbf{P}$ es ortonormal, entonces $\mathbf{P}^T=\mathbf{P}^{-1}$.
+
+Los **retornos de los portafolios principales** están dados por $\mathbf{\Delta}\mathbf{P}= \mathbf{P}^T \mathbf{\Delta} = \mathbf{P}^{-1} \mathbf{\Delta}$
+
+---
+
+
+* **Cargamos los datos de ETF de bonos del tesoro americanos**
+    + IEF - Barclays U.S. 7-10 Year Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 7 y 10 años.
+    + TLT - Barclays 20+ Yr Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 20 y 30 años.
+    + TLH - Barclays 10-20 Yr Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 10 y 20 años.
+    + SHY - Barclays U.S. 7-10 Year Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 1 y 3 años.
+    
+* IYC, IYE, IYH, IYR, y IYW son ETF's de índices de acciones (activos de renta variable)
+* TLT, TLH, IEF y SHY son ETF's de índices de bonos (activos de renta fija).
+
+```{r, echo=FALSE}
+bonds_price <- get_prices_yahoo(c('TLT', 
+                            'TLH', 
+                            'IEF', 
+                            'SHY'), 
+                          from = '2012-12-31', 
+                          to = '2018-11-30')
+
+price <- cbind(sectors_price, bonds_price)
+dlyChg <- get_dlyChg_from_price(price)
+annualChg <- get_rollChg_from_dlyChg(dlyChg, roll = 252) ^ 252
+
+comps <- prcomp(annualChg)
+evec <- comps$rotation #los renglones son loadings
+eval <- comps$sdev^2
+```
+
+* el 90\% de la volatilidad es explicada por los primeros tres componentes principales
+
+```{r, echo=FALSE}
+plot_xts(comps$x[, 1:4]) #scores centrados
+```
+
+```{r}
+summary(comps)
+```
+
+* covarianzas de los ETF's con los portafolios principales (escalados)
+
+```{r, princomp, out.width="90%", fig.align="center", fig.cap="Loadings de las primeras dos componentes principales", echo = FALSE}
+plot(evec[, 1:2], 
+     cex = 1, 
+     pch = 21, 
+     bg = alpha("blue", 0.5), 
+     xlim = c(-0.7, 0.2), 
+     ylim = c(-0.7, 0.7), 
+     col = "white", 
+     xlab = "portafolio principal 1", 
+     ylab = "portafolio principal 2")
+abline(h = 0, col = "red", lty = 2)
+abline(v = 0, col = "red", lty = 2)
+text(evec[, 1:2], 
+     gsub('.Adjusted', '', names(annualChg)), 
+     cex = 0.6, adj = c(0,0))
+```
+
+>
+Un portafolio se encuentra bien diversificado si no se encuentra altamente expuesto a shocks individuales**. En el contexto de este trabajo, la diversificación será medida de acuerdo al porcentaje de riesgo asignado a distintas fuentes de riesgo (**risk budgeting**)
+  
+La varianza del IYE puede ser descompuesta en la suma de las varianzas de los portafolios principales $\lambda_j$s con la siguiente regla (pues los portafolios principales son ortogonales)
+
+* $(\mathbf{P})_{i,\bullet}$, los loadings del IYE. 
+* $\mathbf{p}_{\text{IYE},j}$, $j$-ésimo loading del IYE 
+
+$$
+{\hat{\sigma}_\text{IYE}}^2 = (\mathbf{p}_{\text{IYE},1})^2\lambda_1 + (\mathbf{p}_{\text{IYE},2})^2\lambda_2+ \ldots + (\mathbf{p}_{\text{IYE},n})^2\lambda_n \;. 
+$$
+
+Y como 
+
+$$
+h^T(\mathbf{P}\Lambda\mathbf{P}^T)h = (h^T\mathbf{P})\Lambda\mathbf({P}^Th)
+$$
+
+Si se invierte el 40\% de un portafolio en IYE y el resto en efectivo tenemos que:
+
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 1])^2 * eval[1]))` $=\sqrt{(0.4 \mathbf{p}_{\text{IYE},1})^2 \lambda_1}$, es el riesgo del IYE en el portafolio que proviene de la fuente de “mercado”
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 2])^2 * eval[2]))` $=\sqrt{(0.4 \mathbf{p}_{\text{IYE},2})^2 \lambda_2}$, es el riesgo del IYE en el portafolio que proviene de la fuente “petróleo”
+
+Si invertimos el 60\% restante del portafolio en el TLT en vez de efectivo, entonces:
+
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 1] + 0.6 * evec['TLT.Adjusted', 1])^2 * eval[1]))` $=\sqrt{(0.4 \mathbf{p}_{\text{IYE},1} + 0.6 \mathbf{p}_{\text{TLT},1})^2 \lambda_1}$, es el riesgo del portafolio que proviene de la fuente “mercado”
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 2] + 0.6 * evec['TLT.Adjusted', 2])^2 * eval[2]))` $=\sqrt{((0.4 \mathbf{p}_{\text{IYE},2} + 0.6 \mathbf{p}_{\text{TLT},2})^2 \lambda_2}$ es el riesgo del portafolio que proviene de la fuente “petróleo”
+
+¡Hemos construido un portafolio cuyas asignaciones en riesgo de mercado y petróleo se encuentra perfectamente equilibradas! De esta manera, **hemos diversificado el riesgo del portafolio proveniente de estas dos fuentes de riesgo**

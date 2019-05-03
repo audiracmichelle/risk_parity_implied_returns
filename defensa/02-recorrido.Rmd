@@ -1,0 +1,16 @@
+# Un recorrido de conceptos básicos
+
+* ETFs
+* Índices
+    - Proveedores de índices
+    - Capitalización de mercado
+* Valor de un portafolio
+    - Rebalanceo
+* Precios Ajustados
+* Rendimiento acumulado
+    - Cambio relativo en un período
+    - Cambios relativos diarios
+* Precios de Acciones
+    - Tickers
+    - OHLC (Open, High, Low, Close)
+    - Liquidez
