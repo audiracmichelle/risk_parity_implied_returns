@@ -672,8 +672,8 @@ Si se invierte el 25\% de un portafolio en IYE y el resto en efectivo tenemos qu
 
 Si invertimos el 75\% restante del portafolio en el TLT en vez de efectivo, entonces:
 
-* `r sprintf("%0.4f", sqrt((0.37 * evec['IYE.Adjusted', 1] + 0.63 * evec['TLT.Adjusted', 1])^2 * eval[1]))` $=\sqrt{(0.4 \mathbf{p}_{\text{IYE},1} + 0.6 \mathbf{p}_{\text{TLT},1})^2 \lambda_1}$, es el riesgo del portafolio que proviene de la fuente “mercado”
-* `r sprintf("%0.4f", sqrt((0.37 * evec['IYE.Adjusted', 2] + 0.63 * evec['TLT.Adjusted', 2])^2 * eval[2]))` $=\sqrt{((0.4 \mathbf{p}_{\text{IYE},2} + 0.6 \mathbf{p}_{\text{TLT},2})^2 \lambda_2}$ es el riesgo del portafolio que proviene de la fuente “petróleo”
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 1] + 0.6 * evec['TLT.Adjusted', 1])^2 * eval[1]))` $=\sqrt{(0.4 \mathbf{p}_{\text{IYE},1} + 0.6 \mathbf{p}_{\text{TLT},1})^2 \lambda_1}$, es el riesgo del portafolio que proviene de la fuente “mercado”
+* `r sprintf("%0.4f", sqrt((0.4 * evec['IYE.Adjusted', 2] + 0.6 * evec['TLT.Adjusted', 2])^2 * eval[2]))` $=\sqrt{((0.4 \mathbf{p}_{\text{IYE},2} + 0.6 \mathbf{p}_{\text{TLT},2})^2 \lambda_2}$ es el riesgo del portafolio que proviene de la fuente “petróleo”
 
 Como vemos, ¡hemos construido un portafolio cuyas asignaciones en riesgo de mercado y petróleo se encuentra perfectamente equilibradas! De esta manera, **hemos diversificado el riesgo del portafolio proveniente de estas dos fuentes de riesgo**. 
 

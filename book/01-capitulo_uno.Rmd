@@ -195,7 +195,7 @@ gigante <- getSymbols('gigante.mx', auto.assign=FALSE,
 gigante <- Ad(gigante)
 ```
 
-Vamos a crear una función que llamaremos `plot_xts` que recibe un objeto `xts` y que utiliza la paquetería `ggplotly` para graficar series de tiempo. Esta será la primer función de nuestra paquetería de optimización de portafolios.
+Vamos a crear una función que llamaremos `plot_xts` que recibe un objeto `xts` y que utiliza la paquetería `ggplot2` para graficar series de tiempo. Esta será la primer función de nuestra paquetería de optimización de portafolios.
 
 ```{r}
 plot_xts <- function(x){
