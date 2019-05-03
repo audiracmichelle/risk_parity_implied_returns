@@ -390,7 +390,7 @@ $$
 \lambda_i y_i^2 = \lambda_j y_j^2 \quad \text{ para toda } \quad i,j = 1,...,K.
 $$
 
-Notemos que si invertimos $h$ en un portafolio, entonces invertimos $\mathbf{p}_i^\top h$ en el $i$-ésimo portafolio principal, es decir, $y_i = \mathbf{p}_i^\top x$. Entonces, 
+Notemos que si invertimos $h$ en un portafolio, entonces invertimos $\mathbf{p}_i^\top h$ en el $i$-ésimo portafolio principal, es decir, $y_i = \mathbf{p}_i^\top h$. Entonces, 
 
 <!-- Otra manera de verlo intuitivamente, es pensar a $y_i$ como una medida de correlación o asociación lineal entre $x$ y el portafolio principal $p_i$. La ecuación resultante es -->
 
