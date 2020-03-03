@@ -1,4 +1,9 @@
-pkgs <- c('xts', 'quantmod', 'nloptr', 'tidyverse', 'mltools', 'Rcpp')
+pkgs <- c('xts',
+          'quantmod',
+          'nloptr',
+          'tidyverse',
+          'mltools',
+          'Rcpp')
 
 # para instalar paquetes usar:
 #install.packages(pkgs,
@@ -7,8 +12,6 @@ pkgs <- c('xts', 'quantmod', 'nloptr', 'tidyverse', 'mltools', 'Rcpp')
 
 # para cargar paquetes usar:
 lapply(pkgs, require, character.only = TRUE)
-
-require(plotly)
 
 #' @title plot_xts
 #' @description Plots time series from xts
@@ -25,25 +28,27 @@ plot_xts <- function(x, ...){
     labs(x = "", y = "", color = "", ...)
 }
 
-#' @title plotly_xts
-#' @description Plots time series from xts
-#' @param x xts
-
-plotly_xts <- function(x, ...){
-  x %<>%
-    as.data.frame() %>%
-    tibble::rownames_to_column("date") %>%
-    mutate(date = as.Date(date)) %>%
-    gather(key, value, -date)
-
-  p <- x %>%
-    plot_ly(x = ~date,
-            y = ~value,
-            color = ~key, ...) %>%
-    add_lines()
-
-  p
-}
+#' require(plotly)
+#'
+#' #' @title plotly_xts
+#' #' @description Plots time series from xts
+#' #' @param x xts
+#'
+#' plotly_xts <- function(x, ...){
+#'   x %<>%
+#'     as.data.frame() %>%
+#'     tibble::rownames_to_column("date") %>%
+#'     mutate(date = as.Date(date)) %>%
+#'     gather(key, value, -date)
+#'
+#'   p <- x %>%
+#'     plot_ly(x = ~date,
+#'             y = ~value,
+#'             color = ~key, ...) %>%
+#'     add_lines()
+#'
+#'   p
+#' }
 
 #' @title get_prices_yahoo
 #' @description Builds an xts containing time series downloaded from Yahoo! Finance.
