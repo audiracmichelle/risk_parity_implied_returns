@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="This is tesina.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is tesina." />
+  <meta name="github-repo" content="audiracmichelle/tesina" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  <meta name="twitter:description" content="This is tesina." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="conociendo-datos.html"><a href="conociendo-datos.html"><i class="fa fa-check"></i><b>2</b> Conociendo datos y términos financieros</a><ul>
+<li class="chapter" data-level="2.1" data-path="conociendo-datos.html"><a href="conociendo-datos.html#paqueterias-r"><i class="fa fa-check"></i><b>2.1</b> Paqueterías de <strong>R</strong></a></li>
+<li class="chapter" data-level="2.2" data-path="conociendo-datos.html"><a href="conociendo-datos.html#precios-acciones"><i class="fa fa-check"></i><b>2.2</b> Precios de Acciones</a></li>
+<li class="chapter" data-level="2.3" data-path="conociendo-datos.html"><a href="conociendo-datos.html#rendimientos"><i class="fa fa-check"></i><b>2.3</b> Cambio relativo y rendimiento de acciones</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="conociendo-datos.html"><a href="conociendo-datos.html#cambio-relativo-y-rendimiento-en-el-periodo-mathbbt"><i class="fa fa-check"></i><b>2.3.1</b> Cambio relativo y rendimiento en el periodo <span class="math inline">\(\mathbb{T}\)</span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="conociendo-datos.html"><a href="conociendo-datos.html#cambios-relativos-diarios"><i class="fa fa-check"></i><b>2.3.2</b> Cambios relativos diarios</a></li>
+<li class="chapter" data-level="2.3.3" data-path="conociendo-datos.html"><a href="conociendo-datos.html#rendimiento-acumulado"><i class="fa fa-check"></i><b>2.3.3</b> Rendimiento acumulado</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="conociendo-datos.html"><a href="conociendo-datos.html#precios-ajustados"><i class="fa fa-check"></i><b>2.4</b> Precios Ajustados</a></li>
+<li class="chapter" data-level="2.5" data-path="conociendo-datos.html"><a href="conociendo-datos.html#valor-portafolio"><i class="fa fa-check"></i><b>2.5</b> Valor de un portafolio</a></li>
+<li class="chapter" data-level="2.6" data-path="conociendo-datos.html"><a href="conociendo-datos.html#rebalanceo"><i class="fa fa-check"></i><b>2.6</b> Rebalanceo y costos de transacción</a></li>
+<li class="chapter" data-level="2.7" data-path="conociendo-datos.html"><a href="conociendo-datos.html#indices"><i class="fa fa-check"></i><b>2.7</b> Índices</a></li>
+<li class="chapter" data-level="2.8" data-path="conociendo-datos.html"><a href="conociendo-datos.html#etfs"><i class="fa fa-check"></i><b>2.8</b> ETFs</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conociendo-datos" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Conociendo datos y términos financieros</h1>
+<p>Nuestro destino final: la optimización de la diversificación de portafolios, para llegar ahí debemos primero hacer un viaje por el mundo de términos que se utilizan en la industria de manejo de portafolios. Por esto, en este capítulo no solo se va familiarizar al lector con los conceptos utilizados frecuentemente por los manejadores de portafolios. El objetivo principal será construir las funciones básicas de una paquetería de optimización de portafolios. Estas funciones nos permitirán manipular rápidamente los precios de activos.</p>
+<p>En la sección <a href="conociendo-datos.html#paqueterias-r">2.1</a> de este capítulo, empezamos preparando la caja de herramientas que necesitamos para armar nuestra paquetería de optimización de portafolios en <strong>R</strong>. En particular resulta práctico conocer como se contruyen los objetos <strong>xts</strong>, éstos objetos contienen series de tiempo.</p>
+<p>En la sección <a href="conociendo-datos.html#precios-acciones">2.2</a> construimos la función <code>get_prices_yahoo()</code> con la que vamos a extraer los datos que utilizaremos en el resto del trabajo. Esta función obtiene precios de acciones de Yahoo! Finance y produce objetos <strong>xts</strong> fácilmente. Familiarizarnos con los <em>tickers</em> y el término <em>OHLC</em> nos permitirá entender los parámetros de <code>get_prices_yahoo()</code>. Adicionalmente, en esta sección creamos la función <code>plot_xts()</code> que utilizaremos regularmente para graficar series de tiempo.</p>
+<p>Más adelante, en la sección <a href="conociendo-datos.html#rendimientos">2.3</a> presentaremos varios conceptos y funciones relacionados con el cálculo de <em>rendimientos</em>. Hacemos énfasis en cómo obtener rendimientos en distintos tipos de cambio pues resulta indispensable utilizar rendimientos en la misma moneda al momento de construir portafolios.</p>
+<p>El cálculo del <em>rendimiento acumulado</em> (usando la función <code>get_cumRet_from_dlyChg()</code>) nos permitirá entender los <em>precios de cierre ajustados</em> y el <em>valor de un portafolio</em>, cómo se cubre en las secciones <a href="conociendo-datos.html#precios-ajustados">2.4</a> y <a href="conociendo-datos.html#valor-portafolio">2.5</a>. En los cursos básicos de matemáticas financieras regularmente se muestran ejemplos donde se fijan los pesos iniciales de las componentes de los portafolios; sin embargo, los pesos de los portafolios cambian conforme se mueven los precios de sus componentes y es necesario volver a fijarlos a través de <em>rebalanceos</em> como se muestra en la sección <a href="conociendo-datos.html#rebalanceo">2.6</a></p>
+<p>En particular, los índices de acciones y bonos son portafolios con distintas configuraciones de frecuencia y pesos de rebalanceo. En la sección <a href="conociendo-datos.html#indices">2.7</a> vamos a construir un índice con rebalanceos trimestrales y pesos de <em>capitalización de mercado</em>. Para esto usamos las funciones que construimos a lo largo del capítulo dentro de las que destacan: <code>get_dlyChg_from_price()</code> y <code>get_rebalance()</code>.</p>
+<p>Finalmente, en la sección <a href="conociendo-datos.html#etfs">2.8</a> se presenta un tipo de activo llamado <em>ETF</em>. Hablaremos de las cualidades que hacen que los ETF sean los instrumentos más operados en el mundo. Consecuentemente, en los siguientes capítulo ya no usaremos acciones y únicamente trabajaremos con este tipo de instrumentos.</p>
+<p>Notemos que adicionalemente, a lo largo de este primer capítulo se presentan los conceptos <em>liquidez</em>, <em>precios ajustados</em>, <em>costos de operación</em>, <em>posiciones largas y cortas</em>; también se mencionan algunos jugadores importantes en la industria como son los <em>proveedores de índices</em>, <em>los proveedores de tickers</em>, las <em>casas de bolsa</em> y los <em>custodios</em>.</p>
+<div id="paqueterias-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> Paqueterías de <strong>R</strong></h2>
+<p>A continuación describimos todas las paqueterías de <strong>R</strong> <span class="citation">(R Core Team <a href="#ref-rlang">2018</a>)</span> que necesitamos para cargar las funciones que usaremos a lo largo de todo este trabajo.</p>
+<ul>
+<li><strong>xts</strong> <span class="citation">(Ryan and Ulrich <a href="#ref-xts">2018</a><a href="#ref-xts">b</a>)</span>: es una paquetería en <strong>R</strong> para manejo de objetos que contienen series de tiempo. El nombre <strong>xts</strong> se refiere a <em>extensible time series</em> porque esta paquetería <em>extiende</em> las propiedades de <strong>ts</strong> y <strong>zoo</strong>, paqueterías de <strong>R</strong> más simples para manejar series de tiempo).</li>
+</ul>
+<p>A lo largo de este trabajo nos iremos familiarizando con las funciones de <strong>xts</strong> o <strong>zoo</strong> <span class="citation">(Zeileis and Grothendieck <a href="#ref-zoo">2018</a>)</span>. Cuando se use por primera vez un método de una paquetería se intentará hacer explícito (e.g., <code>zoo::index()</code>, <code>lag.xts()</code>).</p>
+<ul>
+<li><p><strong>quantmod</strong> <span class="citation">(Ryan and Ulrich <a href="#ref-quantmod">2018</a><a href="#ref-quantmod">a</a>)</span>: es una paquetería que proporciona una plantilla que nos va a servir para manejar y visualizar de forma sencilla series de datos financieros.</p></li>
+<li><p>Para los problemas de optimización usaremos <strong>nloptr</strong> <span class="citation">(Johnson <a href="#ref-nloptr">2018</a>)</span>, esta librería envuelve una serie de rutinas de código abierto de optimización cuadrática.</p></li>
+<li><p><strong>tidyverse</strong> <span class="citation">(Wickham <a href="#ref-tidyverse">2017</a>)</span>, <strong>mltools</strong> <span class="citation">(Gorman <a href="#ref-mltools">2018</a>)</span> y <strong>Rcpp</strong> <span class="citation">(Eddelbuettel <a href="#ref-rcpp">2018</a>)</span>: estas paqueterías nos facilitan la manipulación de los objetos en <strong>R</strong> y nos ayudan a mejorar la eficiencia de algoritmos.</p></li>
+</ul>
+<p>El código abajo es para instalar y cargar las paqueterías.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;xts&#39;</span>, <span class="st">&#39;quantmod&#39;</span>, <span class="st">&#39;nloptr&#39;</span>, <span class="st">&#39;tidyverse&#39;</span>, <span class="st">&#39;mltools&#39;</span>, <span class="st">&#39;Rcpp&#39;</span>)
+
+<span class="co"># para instalar paquetes usar:</span>
+<span class="co">#install.packages(pkgs, </span>
+<span class="co">#                 dependencies = TRUE, </span>
+<span class="co">#                 repos = &quot;http://cran.itam.mx&quot;)</span>
+
+<span class="co"># para cargar paquetes usar:</span>
+<span class="kw">lapply</span>(pkgs, require, <span class="dt">character.only =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="precios-acciones" class="section level2">
+<h2><span class="header-section-number">2.2</span> Precios de Acciones</h2>
+<p>Vamos a extraer precios reales de acciones de Yahoo! Finance. Para esto, usaremos la función <code>getSymbols.yahoo()</code> de <strong>quantmod</strong>.</p>
+<p>Empecemos por elegir una empresa y un periodo, digamos:</p>
+<ul>
+<li>empresa - International Business Machines Corporation (IBM)</li>
+<li>período - 2017 (del 31 de Diciembre de 2016 al 31 de Diciembre de 2017)</li>
+</ul>
+<p>Con esto, vamos a crear el objeto <code>ibm</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># `getSymbols(IBM)`, `getSymbols(IBM, src = &quot;yahoo&quot;)` o </span>
+<span class="co"># `getSymbols.yahoo(IBM)` son equivalentes</span>
+
+ibm &lt;-<span class="st"> </span><span class="kw">getSymbols.yahoo</span>(<span class="st">&#39;IBM&#39;</span>, <span class="dt">auto.assign=</span><span class="ot">FALSE</span>, 
+                        <span class="dt">from =</span> <span class="st">&#39;2016-12-31&#39;</span>, <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)</code></pre></div>
+<p>Veamos que la clase de objeto que nos regresa <code>getSymbols()</code> es <code>&quot;xts&quot; &quot;zoo&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(ibm)</code></pre></div>
+<pre><code>## [1] &quot;xts&quot; &quot;zoo&quot;</code></pre>
+<p>De aquí en adelante nos referiremos a un objeto de este tipo como un <code>xts</code>.</p>
+<blockquote>
+<h3 id="tickers"><span class="header-section-number">2.2</span> Tickers</h3>
+</blockquote>
+
+<div class="resumen">
+A las acciones que están listadas en bolsas de valores se les asignan identificadores llamados <strong>tickers</strong>. Por ejemplo, IBM es un ticker para acciones de IBM listadas en el NYSE (<em>New York Stock Exchange</em>). AAPL y GOOG son tickers de emisiones de Apple y Google listadas en el Nasdaq (<em>National Association of Securities Dealers</em>).
+</div>
+
+<blockquote>
+<p>Es importante saber que además de los tickers de las casas de bolsa existen otros identificadores que han sido creados por diferentes entidades. Por ejemplo:</p>
+<ul>
+<li>El <em>National Numbering Agency</em> (NNA) creo el ISIN (<em>International Securities Identification Number</em>).</li>
+<li>El <em>CUSIP Service Bureau</em>, operado por <em>Standard &amp; Poor’s for the American Bankers Association</em> creo el CUSIP (<em>Committee on Uniform Securities Identification Procedures</em>).</li>
+<li>También empresas como Yahoo! Finance y Bloomberg crean sus propios identificadores (aunque muchas veces son iguales a los tickers de las casas de bolsa).</li>
+</ul>
+<p>Veamos algunos ejemplos en la siguiente tabla:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Ticker</th>
+<th>Yahoo! Finance</th>
+<th>ISIN</th>
+<th>CUSIP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IBM</td>
+<td>IBM</td>
+<td>US4592001014</td>
+<td>459200101</td>
+</tr>
+<tr class="even">
+<td>AAPL</td>
+<td>AAPL</td>
+<td>US0378331005</td>
+<td>037833100</td>
+</tr>
+</tbody>
+</table>
+<p>Aunque existen bases de datos que mapean Tickers, ISINs, CUSIPs y otros identificadores, <strong>estas bases son proprietarias y se paga el servicio para tener acceso a ellas</strong>.</p>
+<p>En este trabajo estaremos usando la función <code>getSymbols.yahoo()</code>. Para usarla necesitamos conocer los identificadores de Yahoo! Finance. Desafortunadamente, no contamos con una base de datos que liste los identificadores de Yahoo!. Sin embargo, para nuestro propósito, basta con hacer búsquedas de estos identificadores en la página <a href="https://finance.yahoo.com/lookup" class="uri">https://finance.yahoo.com/lookup</a>.</p>
+<p>Además de identificadores para acciones, <strong>Yahoo! Finance también cuenta con identificadores para otros tipos de instrumentos, tipos de cambio e indicadores financieros</strong>. Por ejemplo, el identificador de yahoo para el tipo de cambio pesos por dólar es <code>MXN=X</code>.</p>
+</blockquote>
+<p>Observemos el contenido en <code>ibm</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ibm)</code></pre></div>
+<pre><code>##            IBM.Open IBM.High IBM.Low IBM.Close IBM.Volume IBM.Adjusted
+## 2017-01-03   167.00   167.87  166.01    167.19    2934300     145.4166
+## 2017-01-04   167.77   169.87  167.36    169.26    3381400     147.2170
+## 2017-01-05   169.25   169.39  167.26    168.70    2682300     146.7300
+## 2017-01-06   168.69   169.92  167.52    169.53    2945500     147.4518
+## 2017-01-09   169.47   169.80  167.62    167.65    3189900     145.8167
+## 2017-01-10   167.98   168.09  165.34    165.52    4118700     143.9641</code></pre>
+<p>Como vemos, <code>getSymbols.yahoo()</code> regresa seis series:</p>
+<ul>
+<li>Open - precio de apertura</li>
+<li>High - precio más alto del día</li>
+<li>Low - precio más bajo del día</li>
+<li>Close - precio de cierre</li>
+<li>Volume - volumen o número de transacciones en el día</li>
+<li>Adjusted - precio de cierre ajustado (o precio ajustado)</li>
+</ul>
+<p>Más adelante se explica qué es OHLC (Open, High, Low, Close), porqué es importante el volumen y cómo obtener precios de cierre ajustados.</p>
+<p>Los índices de los renglones de un objeto <code>xts</code> son fechas ordenadas. Para extraer las fechas de un objeto <code>xts</code> se usa la función <code>xts::index</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dates_ibm &lt;-<span class="st"> </span><span class="kw">index</span>(ibm)
+<span class="kw">head</span>(dates_ibm, <span class="dv">15</span>)</code></pre></div>
+<pre><code>##  [1] &quot;2017-01-03&quot; &quot;2017-01-04&quot; &quot;2017-01-05&quot; &quot;2017-01-06&quot; &quot;2017-01-09&quot;
+##  [6] &quot;2017-01-10&quot; &quot;2017-01-11&quot; &quot;2017-01-12&quot; &quot;2017-01-13&quot; &quot;2017-01-17&quot;
+## [11] &quot;2017-01-18&quot; &quot;2017-01-19&quot; &quot;2017-01-20&quot; &quot;2017-01-23&quot; &quot;2017-01-24&quot;</code></pre>
+<p>Podemos ver en las fechas que imprimimos que las series que extrajimos con <code>getSymbols.yahoo()</code> son diarias. Notemos que <strong>no tenemos observaciones los fines de semana ni los días feriados</strong>.</p>
+<blockquote>
+<h3 id="ohlc"><span class="header-section-number">2.2</span> OHLC</h3>
+</blockquote>
+
+<div class="resumen">
+<strong>OHLC</strong>, que se refiere a <em>Open High Low Close</em>, es un <em>standard</em> popular en la forma de presentar precios porque ofrece un resumen de los movimientos más relevantes de las transacciones de un instrumento financiero pactadas en un día.
+</div>
+
+<blockquote>
+<p>El NYSE, donde se hacen las transacciones de las acciones de IBM, funciona días hábiles entre 9:30am y 4:00pm EST (Eastern Standard Time). Se dice que el <strong>precio de apertura</strong> (open) es el primer precio después de las 9:30am al que se pacta una transacción de IBM en el día. El <strong>precio de cierre</strong> (close) es el último precio antes de las 4:00pm al que se pacta una transacción de IBM en el día.</p>
+<p>En realidad, los precios de cierre y apertura no son exactamente el primer y último precio al que se cierra una transacción. Dependiendo de la casa de bolsa, los precios de cierre y apertura que se publican pueden ser <strong>el promedio de los precios pactados en los últimos/primeros minutos del día de operación</strong>.</p>
+<p>Para familiarizarnos con los precios de apertura y cierre, veamos una captura de pantalla de una gráfica con precios intradía de IBM que se obtuvo de la página <a href="https://finance.yahoo.com/chart/IBM" class="uri">https://finance.yahoo.com/chart/IBM</a>.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:ibm-series"></span>
+<img src="figure/OHLC.png" alt="Serie de precios de IBM" width="70%" />
+<p class="caption">
+Figure 2.1: Serie de precios de IBM
+</p>
+</div>
+<blockquote>
+<p><strong>El punto verde en la figura <a href="conociendo-datos.html#fig:ibm-series">2.1</a> es el precio de cierre de IBM del 15 de diciembre, el punto naranja es el precio de apertura del 18 de deciembre</strong>.</p>
+<p>Para imprimir los precios de apertura y cierre que tenemos guardados en <code>ibm</code> entre el 14 y 19 de Diciembre usamos <code>/</code> en <code>'2017-12-14/2017-12-19'</code> de la siguiente manera:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ibm[<span class="st">&#39;2017-12-14/2017-12-19&#39;</span>, <span class="kw">c</span>(<span class="st">&#39;IBM.Open&#39;</span>, <span class="st">&#39;IBM.Close&#39;</span>)]</code></pre></div>
+<pre><code>##            IBM.Open IBM.Close
+## 2017-12-14   154.60    154.00
+## 2017-12-15   153.61    152.50
+## 2017-12-18   153.59    153.33
+## 2017-12-19   154.05    153.23</code></pre>
+<blockquote>
+<p>Entre el cierre del 15 y la apertura del 18 de Diciembre no hubo operaciones en el NYSE, entonces ¿porqué tienen una diferencia de más de un dólar el cierre del 15 y la apertura del 18 mientras el resto de los días no ocurre esto? Esto ocurre porque aunque existe un horario de operación de acciones, las noticias que afectan a IBM (o a la industria Tech o a USA) no están acotadas a ningún horario. <strong>Aquellos eventos que ocurren fuera del horario de operación se reflejan en el siguiente precio de apertura</strong>.</p>
+<p>En la imagen también podemos ver que el 18 de Diciembre hubo poca volatilidad (poco movimiento) en el precio de IBM, pero el 12 de Diciembre hubo mucha volatilidad. Esto lo corroboramos comparando el ‘High’ que es el <strong>precio más alto del día</strong>, contra el ‘Low’ que el <strong>precio más bajo del día</strong>.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ibm[<span class="kw">c</span>(<span class="st">&#39;2017-12-18&#39;</span>, <span class="st">&#39;2017-12-12&#39;</span>), <span class="kw">c</span>(<span class="st">&#39;IBM.High&#39;</span>, <span class="st">&#39;IBM.Low&#39;</span>)] <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tibble<span class="op">::</span><span class="kw">rownames_to_column</span>(<span class="st">&quot;date&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff =</span> IBM.High <span class="op">-</span><span class="st"> </span>IBM.Low)</code></pre></div>
+<pre><code>##         date IBM.High IBM.Low     diff
+## 1 2017-12-12   157.85  155.16 2.690002
+## 2 2017-12-18   154.18  153.21 0.969986</code></pre>
+<blockquote>
+<p>Ya vimos que <code>getSymbols.yahoo()</code> nos proporciona series diarias pero también vimos que a veces hay movimientos intradía interesantes, ¿no necesitamos una función que extraiga series con todos los precios intradía de las acciones? <strong>Los modelos de optimización que vamos a analizar sólo requieren series diarias de precios de cierre</strong>. De hecho, las posiciones de trading intradía por lo regular no se mantienen al cierre mientras que los modelos que usaremos se basan en los cambios de cierre a cierre.</p>
+</blockquote>
+<p>Extraigamos de Yahoo! Finance una serie que contenga el tipo de cambio pesos por dólar.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mxn_usd &lt;-<span class="st"> </span><span class="kw">getSymbols.yahoo</span>(<span class="st">&#39;MXN=X&#39;</span>, <span class="dt">auto.assign=</span><span class="ot">FALSE</span>)[<span class="st">&#39;2017&#39;</span>]
+<span class="kw">head</span>(mxn_usd)</code></pre></div>
+<pre><code>##            MXN=X.Open MXN=X.High MXN=X.Low MXN=X.Close MXN=X.Volume
+## 2017-01-02    20.7183    20.7590   20.6348     20.7405            0
+## 2017-01-03    20.7397    21.1332   20.6654     21.1202            0
+## 2017-01-04    21.1187    21.6175   21.0082     21.4797            0
+## 2017-01-05    21.4753    21.6047   21.1390     21.3855            0
+## 2017-01-06    21.3779    21.4656   21.1946     21.2165            0
+## 2017-01-09    21.2456    21.3839   21.1896     21.3591            0
+##            MXN=X.Adjusted
+## 2017-01-02        20.7405
+## 2017-01-03        21.1202
+## 2017-01-04        21.4797
+## 2017-01-05        21.3855
+## 2017-01-06        21.2165
+## 2017-01-09        21.3591</code></pre>
+<p>Podemos ver que cuando extraemos tipos de cambio, <code>getSymbols.yahoo()</code> regresa ceros en la columna <code>Volume</code> y que la columna de precios de cierre es igual a la de precios de cierre ajustados.</p>
+<p>Aún no hemos explicado que son los precios de cierre ajustados. Antes de que se explique a detalle el concepto, supongamos simplemente que son precios de cierre.</p>
+<p>Ahora, comparemos los precios de acciones de dos empresas mexicanas: Herdez y Gigante. Para eso, extraigamos con la función <code>xts::Ad()</code> los precios de cierre ajustados de cada uno en 2017. Guardemos en <code>herdez</code> y <code>gigante</code> estos precios.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">herdez &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span class="st">&#39;herdez.mx&#39;</span>, <span class="dt">auto.assign=</span><span class="ot">FALSE</span>, 
+                     <span class="dt">from =</span> <span class="st">&#39;2016-12-31&#39;</span>, <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)
+
+herdez &lt;-<span class="st"> </span><span class="kw">Ad</span>(herdez)
+gigante &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span class="st">&#39;gigante.mx&#39;</span>, <span class="dt">auto.assign=</span><span class="ot">FALSE</span>, 
+                      <span class="dt">from =</span> <span class="st">&#39;2016-12-31&#39;</span>, <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)
+gigante &lt;-<span class="st"> </span><span class="kw">Ad</span>(gigante)</code></pre></div>
+<p>Vamos a crear una función que llamaremos <code>plot_xts</code> que recibe un objeto <code>xts</code> y que utiliza la paquetería <code>ggplot2</code> para graficar series de tiempo. Esta será la primer función de nuestra paquetería de optimización de portafolios.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_xts &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+  x <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span>tibble<span class="op">::</span><span class="kw">rownames_to_column</span>(<span class="st">&quot;date&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">gather</span>(key, value, <span class="op">-</span>date) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value, <span class="dt">color =</span> key)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;&quot;</span>)
+}</code></pre></div>
+<p>Veamos las gráficas de los precios ajustados diarios en los objetos <code>herdez</code> y <code>gigante</code>!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(herdez) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Precios ajustados de Herdez&#39;</span>)</code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(gigante) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Precios ajustados de Gigante&#39;</span>)</code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Podemos ver que las acciones de Herdez son <strong>líquidas</strong> mientras que las acciones de Gigante son <strong>ilíquidas</strong>.</p>
+<blockquote>
+<h3 id="liquidez"><span class="header-section-number">2.2</span> Liquidez</h3>
+<p><strong>¿Porqué el precio de Gigante parece que se estaciona en distintos periodos en comparación con el precio de Herdez?</strong> Los precios de los instrumentos financieros se determinan al momento en el que se pacta una transacción. En este ejemplo podemos ver que todos los días se pactan transacciones de Herdez pero no es el caso de Gigante.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(herdez)</code></pre></div>
+<pre><code>##            HERDEZ.MX.Adjusted
+## 2017-01-02           34.65604
+## 2017-01-03           34.97813
+## 2017-01-04           35.06094
+## 2017-01-05           34.87690
+## 2017-01-06           34.20513
+## 2017-01-09           33.42293</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(gigante)</code></pre></div>
+<pre><code>##            GIGANTE.MX.Adjusted
+## 2017-01-02                  39
+## 2017-01-03                  39
+## 2017-01-04                  39
+## 2017-01-05                  39
+## 2017-01-06                  39
+## 2017-01-09                  39</code></pre>
+<blockquote>
+<p>Las bolsas de valores determinan los sistemas y medios electrónicos en los que se hacen las operaciones de compra-venta de instrumentos financieros. Supongamos que manejamos un portafolio en una casa de bolsa que tiene acciones de Gigante que queremos vender. El 3 de Enero de 2017 colocamos un precio de venta de 42 pesos en los sistemas de la casa de bolsa, pero no hay ninguna postura de compra en todo el día. Entonces el precio de cierre del 3 de Enero se queda igual al precio de cierre del 2 de Enero (39 pesos). Esto se repite día con día, no hay posturas de compra y no logramos vender esas acciones. Entonces el precio de Gigante se mantiene en 39 pesos.</p>
+<p>El 27 de Febrero decidimos bajar nuestra postura a 41 pesos y finalmente alguien accede a colocar una postura de compra a ese precio. Se cierra la operación y el precio de cierre de Gigante de ese día se fija en 41 pesos como se ve en la gráfica.</p>
+</blockquote>
+
+<div class="resumen">
+<strong>Un instrumento financiero es ilíquido cuando es dificil de comprar o vender.</strong> Existen medidas como <em>share turnover</em> o <em>rotación de títulos</em> que nos dicen qué tan líquido es un instrumento. Para calcular la rotación de títulos se utiliza el volumen, que es el número de posturas de una acción que se cierran en un día.
+</div>
+
+<blockquote>
+<p>Como vimos, <code>getSymbols.yahoo()</code> nos proporciona la serie diaria de volumen para una acción. En este trabajo no nos detendremos en cómo obtener la rotación de títulos, tampoco veremos cuánta líquidez es deseable en un instrumento. Para nuestro propósito nos basta entender que si <strong>el precio de cierre de una acción se mantiene estática por varios días, entonces es una acción poco líquida</strong>.</p>
+<p>Liquidez es un concepto que debe entenderse y tomarse en cuenta al seleccionar el universo de activos que se usarán al momento de definir un problema de optimización de portafolios.</p>
+</blockquote>
+<p>Ahora, guardemos en un mismo objeto que llamaremos <code>price</code> los precios ajustados en 2017 de <code>ibm</code>, <code>herdez</code> y <code>gigante</code>. Una manera de hacerlo es <em>pegando</em> los objetos <code>Ad(ibm)</code>, <code>herdez</code> y <code>gigante</code> con la función <code>cbind.xts</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">price &lt;-<span class="st"> </span><span class="kw">cbind.xts</span>(<span class="kw">Ad</span>(ibm), herdez, gigante)
+<span class="kw">head</span>(price)</code></pre></div>
+<pre><code>##            IBM.Adjusted HERDEZ.MX.Adjusted GIGANTE.MX.Adjusted
+## 2017-01-02           NA           34.65604                  39
+## 2017-01-03     145.4166           34.97813                  39
+## 2017-01-04     147.2170           35.06094                  39
+## 2017-01-05     146.7300           34.87690                  39
+## 2017-01-06     147.4518           34.20513                  39
+## 2017-01-09     145.8167           33.42293                  39</code></pre>
+<p>Observemos que <code>ibm</code> no cuenta con observaciones para el día <code>2017-01-02</code>; <code>herdez</code> y <code>gigante</code> si cuentan con observaciones para ese día. Al crear <code>price</code> la entrada <code>['2017-01-02','IBM.Adjusted']</code> se rellena con <code>NA</code>. De esta manera, el método <code>cbind.xts</code> nos facilita pegar objetos <code>xts</code> que tienen índices distintos.</p>
+<p>Para trabajar con series extraídas con <code>getSymbols.yahoo()</code> y pegarlas en un mismo objeto <code>xts</code> vamos a crear la función <code>get_prices_yahoo()</code>.</p>
+<p>Como queremos que el objeto que regrese <code>get_prices_yahoo()</code> no contenga <code>NA</code>’s, vamos a imputar los <code>NA</code>s usando <code>xts::na.locf()</code>, un método de <strong>xts</strong> que reemplaza cada valor vacío con el siguiente valor en la serie que sea distinto de <code>NA</code>.</p>
+<p>Ponemos “Adjusted” como valor predeterminado de un parámetro <code>column</code> de <code>get_prices_yahoo()</code>. El valor del parámetro se puede cambiar por “Open”, “High”, “Low”, “Close” y “Volume”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">get_prices_yahoo &lt;-<span class="st"> </span><span class="cf">function</span>(
+  yahoo_id,
+  <span class="dt">column =</span> <span class="st">&#39;Adjusted&#39;</span>,
+  <span class="dt">from =</span> <span class="st">&quot;2007-01-01&quot;</span>,
+  <span class="dt">to =</span> <span class="kw">Sys.Date</span>(),
+  ..., 
+  <span class="dt">periodicity =</span> <span class="st">&quot;daily&quot;</span>
+) {
+  series &lt;-<span class="st"> </span><span class="kw">list</span>()
+  i &lt;-<span class="st"> </span><span class="dv">0</span>
+
+  <span class="cf">for</span>(id <span class="cf">in</span> yahoo_id) {
+    col &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">toupper</span>(id), <span class="st">&#39;.&#39;</span>, column, <span class="dt">sep =</span> <span class="st">&#39;&#39;</span>)
+    
+    ss &lt;-<span class="st"> </span><span class="kw">getSymbols.yahoo</span>(id, <span class="dt">auto.assign =</span> <span class="ot">FALSE</span>, 
+                           <span class="dt">from =</span> from, <span class="dt">to =</span> to, 
+                           <span class="dt">periodicity =</span> periodicity, ...)[, col]
+    
+    i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    series[[i]] &lt;-<span class="st"> </span>ss
+  }
+
+  series &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, series)
+  series &lt;-<span class="st"> </span><span class="kw">na.locf</span>(series, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>, <span class="dt">fromLast =</span> <span class="ot">TRUE</span>)
+  series
+}</code></pre></div>
+<p>Volvamos a generar <code>price</code> pero esta vez con la función que acabamos de crear y añadiendo el tipo de cambio como el que guardamos en <code>mxn</code>. Recordemos que las columnas <code>Close</code> y <code>Adjusted</code> son identicas para el tipo de cambio.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">price &lt;-<span class="st"> </span><span class="kw">get_prices_yahoo</span>(<span class="kw">c</span>(<span class="st">&#39;IBM&#39;</span>, 
+                            <span class="st">&#39;herdez.mx&#39;</span>, 
+                            <span class="st">&#39;gigante.mx&#39;</span>, 
+                            <span class="st">&#39;MXN=X&#39;</span>),
+                           <span class="dt">from =</span> <span class="st">&#39;2016-12-31&#39;</span>,
+                           <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)
+<span class="kw">head</span>(price)</code></pre></div>
+<pre><code>##            IBM.Adjusted HERDEZ.MX.Adjusted GIGANTE.MX.Adjusted
+## 2017-01-02     145.4166           34.65604                  39
+## 2017-01-03     145.4166           34.97813                  39
+## 2017-01-04     147.2170           35.06094                  39
+## 2017-01-05     146.7300           34.87690                  39
+## 2017-01-06     147.4518           34.20513                  39
+## 2017-01-09     145.8167           33.42293                  39
+##            MXN.X.Adjusted
+## 2017-01-02        20.7405
+## 2017-01-03        21.1202
+## 2017-01-04        21.4797
+## 2017-01-05        21.3855
+## 2017-01-06        21.2165
+## 2017-01-09        21.3591</code></pre>
+<p>Con la función <code>plot_xts()</code> y el objeto <code>price</code> que acabamos de crear, hagamos una gráfica para comparar los precios de nuestros instrumentos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(price)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:precios"></span>
+<img src="book_files/figure-html/precios-1.png" alt="Precios de Acciones" width="70%" />
+<p class="caption">
+Figure 2.2: Precios de Acciones
+</p>
+</div>
+</div>
+<div id="rendimientos" class="section level2">
+<h2><span class="header-section-number">2.3</span> Cambio relativo y rendimiento de acciones</h2>
+<p>Ya sabemos cómo extraer precios, combinarlos en un mismo objeto y visualizarlos en una gráfica. Ahora, nos resulta interesante comparar cuánto cambiaron nuestras acciones por cada unidad invertida al inicio del 2017. Para esto, definiremos el <strong>cambio relativo</strong> y el <strong>rendimiento</strong>.</p>
+<div id="cambio-relativo-y-rendimiento-en-el-periodo-mathbbt" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Cambio relativo y rendimiento en el periodo <span class="math inline">\(\mathbb{T}\)</span></h3>
+
+<div class="resumen">
+<p>Digamos que tenemos un periodo <span class="math inline">\(\mathbb{T}\)</span> que empieza en el tiempo <span class="math inline">\(0\)</span> y termina al tiempo <span class="math inline">\(T\)</span>. Al <strong>cambio relativo de <span class="math inline">\(0\)</span> a <span class="math inline">\(T\)</span></strong> lo definimos como</p>
+<span class="math display" id="eq:rendimiento-acumulado">\[\begin{equation}
+\delta^{\mathbb{T}} = \delta^{0,T} = p^T / p^0
+  \tag{2.1}
+\end{equation}\]</span>
+donde <span class="math inline">\(p^T\)</span> es el precio en <span class="math inline">\(T\)</span> y <span class="math inline">\(p^0\)</span> es el precio en el tiempo <span class="math inline">\(0\)</span>. Para nuestro caso de uso, los “tiempos” siempre serán días.
+</div>
+
+<p>Calculemos el cambio relativo en el 2017 de nuestras acciones.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pT &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(price[<span class="kw">nrow</span>(price), ])
+p0 &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(price[<span class="dv">1</span>, ])
+pT <span class="op">/</span><span class="st"> </span>p0</code></pre></div>
+<pre><code>##            IBM.Adjusted HERDEZ.MX.Adjusted GIGANTE.MX.Adjusted
+## 2017-12-29    0.9532303           1.251087            1.015385
+##            MXN.X.Adjusted
+## 2017-12-29      0.9476821</code></pre>
+<p>Como el precio en IBM que extrajimos con <code>getSymbols</code> está en dólares y los precios de Herdez están en pesos mexicanos, entonces tenemos que en 2017:</p>
+<ul>
+<li>un peso en Herdez dejó 1.25 pesos, y</li>
+<li>un dólar en IBM dejó 0.95 dólares.</li>
+</ul>
+<p>Ya que un peso dejó 0.95 dólares, <strong>los cambios de precio en distintos tipos de cambio no son comparables</strong>. Más adelante hablaremos a detalle sobre esto.</p>
+
+<div class="resumen">
+<p>El <strong>rendimiento en el periodo <span class="math inline">\(\mathbb{T}\)</span></strong> simplemente es el cambio porcentual que tuvo el precio de una acción en ese periodo. Esto es exactamente igual al cambio relativo de <span class="math inline">\(0\)</span> a <span class="math inline">\(T\)</span> menos uno.</p>
+<span class="math display">\[
+r^{\mathbb{T}} = r^{0,T}= (p^T - p^0) / p^0 = p^T / p^0 - 1= \delta^{0,T} - 1
+\]</span>
+</div>
+
+<p>Para obtener el rendimiento en el 2017 de nuestras acciones simplemente haremos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pT <span class="op">/</span><span class="st"> </span>p0 <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>##            IBM.Adjusted HERDEZ.MX.Adjusted GIGANTE.MX.Adjusted
+## 2017-12-29  -0.04676966          0.2510874          0.01538456
+##            MXN.X.Adjusted
+## 2017-12-29    -0.05231793</code></pre>
+<p>Esto equivale a decir que en este periodo:</p>
+<ul>
+<li>las acciones Herdez dieron un rendimiento en pesos de 25.11%, y que</li>
+<li>las IBM dieron un rendimiento en dólares de -4.68%.</li>
+</ul>
+<blockquote>
+<h4 id="rendimiento-en-diferentes-tipos-de-cambio"><span class="header-section-number">2.3.1</span> Rendimiento en diferentes tipos de cambio</h4>
+<p>Supongamos que un inversionista americano decide invertir por un año en <span class="math inline">\(\text{xyz}\)</span>, una acción mexicana listada en la BMV (Bolsa Mexicana de Valores). Para poder comprar <span class="math inline">\(\text{xyz}\)</span> el inversionista debe cambiar sus dólares a pesos.</p>
+<p>Al final del año el rendimiento en pesos de <span class="math inline">\(\text{xyz}\)</span> es 0% y el peso se fortalece contra el dolar. El inversionista vende <span class="math inline">\(\text{xyz}\)</span> y recibe pesos. Al cambiar los pesos por dólares el inversionista recibe más pesos que los que invirtió inicialmente pues el valor del peso contra el dolar aumentó.</p>
+<p>Esto significa que, aunque el rendimiento en pesos de <span class="math inline">\(\text{xyz}\)</span> fue 0%, el rendimiento en dólares que recibó el inversionista fue mayor a cero.</p>
+</blockquote>
+
+<div class="resumen">
+El precio de un intrumento financiero está en la moneda que maneja la casa de valores en el que está listado. Desafortunadamente, <strong>bases de datos con información sobre la denominación de los instrumentos financieros suelen ser proprietarias y el acceso a esa información es pagado</strong>.
+</div>
+
+<blockquote>
+<p>Una manera de consultar la denominación de un instrumento financiero es hacer una búsqueda en la página <a href="https://finance.yahoo.com/" class="uri">https://finance.yahoo.com/</a> usando el identificador de yahoo del instrumento. El resultado mostrará un resumen del instrumento financiero. Por ejemplo, la figura <a href="conociendo-datos.html#fig:yahoo-finance">2.3</a> es una captura de pantalla del resumen de IBM. <strong>En la imagen podemos ver marcado en amarillo el nombre la casa de valores donde están listadas las acciones de IBM (NYSE) y la denominación de la emisión (USD)</strong>.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:yahoo-finance"></span>
+<img src="figure/yahoo_IBM.png" alt="Información de IBM en Yahoo! Finance" width="70%" />
+<p class="caption">
+Figure 2.3: Información de IBM en Yahoo! Finance
+</p>
+</div>
+</div>
+<div id="cambios-relativos-diarios" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Cambios relativos diarios</h3>
+
+<div class="resumen">
+<p>Los cambios (relativos) diarios son simplemente el cambio relativo de una acción de <span class="math inline">\(t-1\)</span> a <span class="math inline">\(t\)</span> para cada día <span class="math inline">\(t\)</span> en cierto periodo. Al <strong>cambio diario en <span class="math inline">\(t\)</span></strong> lo denotaremos por <span class="math inline">\(\delta^t\)</span>.</p>
+<span class="math display">\[
+\delta^t = p^t / p^{t-1}
+\]</span>
+</div>
+
+<p>Obtengamos los cambios relativos diarios de las acciones y del tipo de cambio en <code>price</code> usando <code>lag.xts()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculamos cambios relativos diarios</span>
+dlyChg &lt;-<span class="st"> </span>price <span class="op">/</span><span class="st"> </span><span class="kw">lag.xts</span>(price)
+
+<span class="co"># por conveniencia asignamos 1&#39;s al primer renglon de `dlyChg`</span>
+dlyChg[<span class="dv">1</span>, ] &lt;-<span class="st"> </span><span class="dv">1</span>  </code></pre></div>
+<p>Los <strong>rendimientos diarios</strong> son los cambios relativos diarios menos <span class="math inline">\(1\)</span>. Para ver una gráfica con los rendimientos diarios de nuestras acciones en 2017 restamos <span class="math inline">\(1\)</span> a <code>dlyChg</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ret =<span class="st"> </span>dlyChg <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+<span class="kw">plot_xts</span>(ret) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Rendimientos Diarios&quot;</span>)</code></pre></div>
+<p><img src="book_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" /></p>
+
+<div class="resumen">
+<p>Al multiplicar o <em>acumular geométricamente</em> todos los cambios diarios dentro del periodo <span class="math inline">\(\mathbb{T}\)</span>, obtenemos el cambio relativo de <span class="math inline">\(0\)</span> a <span class="math inline">\(T\)</span>.</p>
+<span class="math display" id="eq:rendimiento-producto-diarios">\[\begin{equation}
+\delta^\mathbb{T}=\delta^{0,t}=\delta^0\delta^1\cdots\delta^t = (1+r^0)(1+r^1)\cdots(1+r^t)
+\tag{2.2}
+\end{equation}\]</span>
+</div>
+
+<p>Esto significa que tenemos dos maneras de calcular cambios relativos en un periodo:</p>
+<ul>
+<li>directamente dividiendo el precio final entre el precio inicial del periodo como en <a href="conociendo-datos.html#eq:rendimiento-acumulado">(2.1)</a></li>
+<li>multiplicando o acumulando los rendimientos diarios en el periodo como en <a href="conociendo-datos.html#eq:rendimiento-producto-diarios">(2.2)</a></li>
+</ul>
+<p>Ahora, calculemos el rendimiento de IBM en pesos usando cambios relativos:</p>
+<ol style="list-style-type: decimal">
+<li>Sean <span class="math inline">\(\delta_\text{ibm}^t\)</span> el cambio diario de IBM en dólares y <span class="math inline">\(\delta_\text{mxn/usd}^t\)</span> el cambio diario del peso contra el dólar, entonces <span class="math inline">\(\delta_\text{ibm.mxn}^t = \delta_\text{ibm}^t * \delta_\text{mxn/usd}^t\)</span> es el cambio diario de IBM en pesos.</li>
+<li>Usando esto, guardemos en <code>dlyChg$IBM_MXN.Adjusted</code> la serie de cambios diarios de IBM en pesos.</li>
+<li>Finalmente, acumulemos usando <code>prod</code> los cambios diarios para obtener el rendimiento en pesos que buscamos.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dlyChg<span class="op">$</span>IBM_MXN.Adjusted &lt;-<span class="st"> </span>dlyChg<span class="op">$</span>IBM.Adjusted <span class="op">*</span><span class="st"> </span>dlyChg<span class="op">$</span>MXN.X.Adjusted
+<span class="kw">apply</span>(dlyChg, <span class="dv">2</span>, prod)[<span class="kw">c</span>(<span class="st">&#39;IBM.Adjusted&#39;</span>, 
+                         <span class="st">&#39;IBM_MXN.Adjusted&#39;</span>, 
+                         <span class="st">&#39;MXN.X.Adjusted&#39;</span>)] <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>##     IBM.Adjusted IBM_MXN.Adjusted   MXN.X.Adjusted 
+##      -0.04676966      -0.09664070      -0.05231793</code></pre>
+<p>Comparemos los rendimientos en pesos y dólares de IBM en 2017:</p>
+<ul>
+<li>El rendimiento de los dólares en pesos en 2017 fue de -5.23%</li>
+<li>Hemos obtenido un rendimiento en pesos de IBM en 2017 de -9.66%</li>
+<li>En contraste tenemos que el rendimiento en dólares de IBM fue -4.68%.</li>
+</ul>
+<p><strong>¡Ojo! Un error común</strong> es pensar que si en el periodo <span class="math inline">\(\mathbb{T}\)</span> vemos que IBM tuvo un rendimiento en dólares de <span class="math inline">\(r_\text{ibm}^\mathbb{T}\)</span> (-4.68%) y el dólar tuvo un rendimiento en pesos de <span class="math inline">\(r_\text{mxn/usd}^\mathbb{T}\)</span> (-5.23%), entonces el rendimiento en pesos de IBM es la suma de los dos <span class="math inline">\(r_\text{ibm.mxn}^\mathbb{T} = r_\text{ibm}^\mathbb{T} + r_\text{mxn/usd}^\mathbb{T}\)</span> (-9.91%). Como ya vimos, hacer esto no es correcto.</p>
+<p>Agregaremos a nuestra paquetería la función <code>get_dlyChg_from_price()</code>. El código de la función se encuentra en el anexo <a href="#fun-get-dlyChg-from-price"><strong>??</strong></a>. De aquí en adelante usaremos esta función para obtener series de cambios diarios a partir de precios.</p>
+</div>
+<div id="rendimiento-acumulado" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Rendimiento acumulado</h3>
+
+<div class="resumen">
+Una serie de tiempo cuya entrada <span class="math inline">\(t\)</span> es <span class="math inline">\(\delta^{0,t}\)</span> o <span class="math inline">\(r^{0,t}\)</span>, es una serie de <strong>rendimiento acumulado</strong>.
+</div>
+
+<p>Construyamos <code>cumRet</code>, un objeto <code>xts</code> con los rendimiento acumulados de los activos en <code>price</code>. Para esto, acumulamos los cambios diarios de <code>dlyChg</code> usando <code>cumprod()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cumRet &lt;-<span class="st"> </span>dlyChg
+<span class="cf">for</span> (c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(cumRet)) {
+  cumRet[ ,c] &lt;-<span class="st"> </span><span class="kw">cumprod</span>(dlyChg[ ,c])
+}</code></pre></div>
+<p>Ahora, grafiquemos los rendimientos acumulados en <code>cumRet</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(cumRet)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:cumRet"></span>
+<img src="book_files/figure-html/cumRet-1.png" alt="Precios de Acciones" width="70%" />
+<p class="caption">
+Figure 2.4: Precios de Acciones
+</p>
+</div>
+<p>¡La gráfica en la figura <a href="conociendo-datos.html#fig:cumRet">2.4</a> es mucho más útil que la de la figura <a href="conociendo-datos.html#fig:precios">2.2</a>! Los rendimientos acumulados, a diferencia de los precios, nos permite comparar facilmente cuánto cambió el valor de nuestros activos en el tiempo.</p>
+<p>El equivalente a multiplicar cambios diarios es sumar el logaritmo de los cambios diarios y luego exponenciar.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta^{0,t} &amp; = exp\left(ln(\delta^0)+ln(\delta^1)+\cdots+ln(\delta^t)\right) \\
+&amp;=  exp\left(ln(1+r^0)+ln(1+r^1)+\cdots+ln(1+r^t)\right)
+\end{aligned}
+\]</span></p>
+<p>Típicamente esta es la manera en la que se obtiene el rendimiento acumulado porque tiene ventajas de estabilidad numérica.</p>
+<p>En el siguiente bloque de código, volvemos a generar <code>cumRet</code> pero esta vez construyendo el rendimiento acumulado de nuestros activos usando logaritmos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cumRet &lt;-<span class="st"> </span>dlyChg
+<span class="cf">for</span> (c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(cumRet)) {
+  cumRet[ ,c] &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">cumsum</span>(<span class="kw">log</span>(cumRet[ ,c])))
+}</code></pre></div>
+<p>Aunque hemos sido muy estrictos en la diferencia entre cambios relativos y rendimiento, como el rendimiento siempre es el cambio relativo menos uno, en la práctica no se hace una distinción clara y muchas veces se usan indistintamente.</p>
+<p>Por eso, <strong>a partir de aquí usaremos indistintamente todos los siquientes términos</strong>: cambio relativo en el periodo <span class="math inline">\(\mathbb{T}\)</span>, cambio relativo de <span class="math inline">\(0\)</span> a <span class="math inline">\(T\)</span>, rendimiento en el periodo <span class="math inline">\(\mathbb{T}\)</span>, rendimiento de <span class="math inline">\(0\)</span> a <span class="math inline">\(T\)</span> y rendimiento acumulado en <span class="math inline">\(T\)</span>.</p>
+<p>Para obtener rendimientos acumulados a partir de cambios diarios, agregaremos a nuestra paquetería la función <code>get_cumRet_from_dlyChg()</code>. Esta función se encuentra en el anexo <a href="#fun-get-cumRet-from-dlyChg"><strong>??</strong></a>.</p>
+</div>
+</div>
+<div id="precios-ajustados" class="section level2">
+<h2><span class="header-section-number">2.4</span> Precios Ajustados</h2>
+<p>Aunque hasta ahora hemos trabajado con precios de cierre ajustados, aún no hemos visto cuál es la diferencia entre los precios de cierre y los precios de cierre ajustados. Finalmente, ¡en esta sección mostraremos su diferencia!</p>
+<p>Grafiquémos los rendimientos acumulados de los precios de cierre y ajustados de IBM.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># obtenemos los cambios diarios de ibm</span>
+ibm_dlyChg  &lt;-<span class="st">  </span><span class="kw">get_dlyChg_from_price</span>(ibm)
+
+<span class="co"># acumulamos los cambios diarios</span>
+ibm_cumRet &lt;-<span class="st"> </span><span class="kw">get_cumRet_from_dlyChg</span>(ibm_dlyChg)
+
+<span class="kw">plot_xts</span>(ibm_cumRet[, <span class="kw">c</span>(<span class="st">&#39;IBM.Close&#39;</span>, <span class="st">&#39;IBM.Adjusted&#39;</span>)])</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:close-adjusted"></span>
+<img src="book_files/figure-html/close-adjusted-1.png" alt="Precios de cierre y ajustados" width="70%" />
+<p class="caption">
+Figure 2.5: Precios de cierre y ajustados
+</p>
+</div>
+<p>En la figura <a href="conociendo-datos.html#fig:close-adjusted">2.5</a> vemos que los rendimientos acumulados de los precios de cierre y ajustados se van separando en el tiempo.</p>
+<p>Los <strong>precios ajustados eliminan el efecto que tienen los dividendos en los precios de cierre de los instrumentos financieros</strong>. En esta sección explicamos que significa esto.</p>
+<p>Usemos la función <code>getDividends()</code> de <strong>quantmod</strong> para extraer de Yahoo! Finance los pagos de dividendos que tuvo la acción IBM en el 2017.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ibm_dividends &lt;-<span class="st"> </span><span class="kw">getDividends</span>(<span class="st">&#39;IBM&#39;</span>, 
+                              <span class="dt">from =</span> <span class="st">&#39;2016-12-31&#39;</span>, 
+                              <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)
+ibm_dividends</code></pre></div>
+<pre><code>##            IBM.div
+## 2017-02-08     1.4
+## 2017-05-08     1.5
+## 2017-08-08     1.5
+## 2017-11-09     1.5</code></pre>
+<p><code>getDividends()</code> regresa para un instrumento financiero:</p>
+<ul>
+<li>las fechas en las que hubo pagos de dividendos</li>
+<li>el monto pagado por concepto de dividendos por cada título del instrumento</li>
+</ul>
+<p>Como vemos, IBM hizo un pago de dividendos de 1.4 dólares por acción el 8 de febrero de 2017. Adicionalmente, en 2017 IBM hizo otros tres pagos de dividendos.</p>
+<blockquote>
+<h3 id="dividendos"><span class="header-section-number">2.4</span> Dividendos</h3>
+<p>Veamos los precios de cierre y los pagos de dividendo de IBM entre el 7 y el 9 de febrero de 2017.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(ibm[, <span class="st">&#39;IBM.Close&#39;</span>], ibm_dividends)[<span class="st">&#39;2017-02-07/2017-02-09&#39;</span>, ]</code></pre></div>
+<pre><code>##            IBM.Close IBM.div
+## 2017-02-07    178.46      NA
+## 2017-02-08    176.17     1.4
+## 2017-02-09    177.21      NA</code></pre>
+<blockquote>
+<p>Si solo vemos el precio debajo de <code>IBM.Close</code>, podríamos pensar que un inversionista que tenía una acción de IBM tuvo una perdida de -2.29 (176.17 - 178.46) dólares del 7 al 8 de febrero de 2017 . Sin embargo, esto no es cierto porque el inversionista recibió 1.4 dólares como pago en dividendos.</p>
+<p>Existen instituciones encargadas del resguardo central de la información de las transacciones de los instrumentos financieros. A este tipo de instituciones se les conoce como <strong>custodios o depósitos de valores</strong> (custodian agents). Los custodios también son los encargados de entregarle a los tenedores de instrumentos financieros los pagos de dividendos de sus instrumentos. En México, el Indeval (Instituto para el Depósito de Valores) es el depósito central de valores.</p>
+</blockquote>
+<p>Después de cada pago de dividendos, los precios de cierre se ven afectados por los pagos de dividendos. Para evitar que el pago de dividendos se malinterprete como una pérdida de rendimiento, una <strong>serie de precios ajustados es una serie de precios ‘hipotéticos’</strong> cuyo valor representa una inversión:</p>
+<ul>
+<li>en la que se invierte en una sola acción, y</li>
+<li>en la que se reinvirtien inmediatamente los dividendos pagados por esa misma acción (suponiendo que se pueden comprar fracciones de títulos de acciones).</li>
+</ul>
+<hr />
+<p><strong>Construcción de pesos ajustados</strong></p>
+<p>Supongamos que tenemos una serie de precios de cierre <span class="math inline">\(p^0, p^1, \dots, p^T\)</span> de una acción <span class="math inline">\(\text{xyz}\)</span> y que en <span class="math inline">\(d\)</span> esta acción tuvo un pago de dividendos por un monto <span class="math inline">\(\text{div}^d\)</span>.</p>
+<p>Queremos construir una serie de precios <span class="math inline">\(p^0_\text{prima}, p^1_\text{prima}, \dots, p^d_\text{prima}\)</span> de una acción hipotética <span class="math inline">\(\text{xyz}_\text{prima}\)</span> que replique a <span class="math inline">\(\text{xyz}\)</span> pero sin pagos de dividendos. Esto significa que deben cumplirse los siguientes tres supuestos:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(p^d_\text{prima}= p^d\)</span></li>
+<li><span class="math inline">\(p_\text{prima}^{d-1} = p^{d-1} - \text{div}^d\)</span></li>
+<li><span class="math inline">\(\delta_\text{prima}^t=\delta^t\)</span> para toda <span class="math inline">\(t\)</span> distinta a <span class="math inline">\(d\)</span></li>
+</ol>
+<p>Combinando (2) y (3) llegamos a</p>
+<p><span class="math display">\[
+\delta^{d-1} = \delta_\text{prima}^{d-1} \\
+\frac{p^{d-1}}{p^{d-2}} = \frac{p_\text{prima}^{d-1}}{p_\text{prima}^{d-2}} = \frac{p^{d-1} - \text{div}^d}{p^{d-2}_\text{prima}}
+\]</span></p>
+<p>de donde obtenemos el valor de <span class="math inline">\(p^{d-2}_\text{prima}\)</span></p>
+<p><span class="math display">\[
+p^{d-2}_\text{prima} = \left(\frac{p^{d-1}-\text{div}^d}{p^{d-1}}\right)p^{d-2}
+\]</span></p>
+<p>Usando (3) y el resultado anterior, obtenemos el valor de <span class="math inline">\(p^{d-3}_\text{prima}\)</span></p>
+<p><span class="math display">\[
+\delta^{d-2} = \delta^{d-2}_\text{prima} \\
+\frac{p^{d-2}}{p^{d-3}} =\frac{p^{d-2}_\text{prima}}{p^{d-3}_\text{prima}} =
+\frac{\left(\frac{p^{d-1} - \text{div}^d}{p^{d-1}}\right)p^{d-2}}{p^{d-3}_\text{prima}}  \\
+p^{d-3}_\text{prima} = \left(\frac{p^{d-1}-\text{div}^d}{p^{d-1}}\right)p^{d-3}
+\]</span></p>
+<p>Si continuamos con este proceso (con inducción), entonces se cumple para toda <span class="math inline">\(t\)</span> distinta de <span class="math inline">\(d\)</span> que</p>
+<p><span class="math display">\[
+p_\text{prima}^t = \left(\frac{p^{d-1}-\text{div}^d}{p^{d-1}}\right)p^t
+\]</span></p>
+<p>Así <span class="math inline">\(\left(\frac{p^{d-1}-\text{div}^d}{p^{d-1}}\right)\)</span> es el <strong>factor de ajuste</strong> del precio al tiempo <span class="math inline">\(d\)</span>, y <span class="math inline">\(p^t_\text{prima}\)</span> es el precio ajustado de <span class="math inline">\(p^t\)</span>.</p>
+<hr />
+<p>Ya conocemos la diferencia de precios de cierre y precios de cierre ajustados. De aquí en adelante solo usaremos precios ajustados.</p>
+</div>
+<div id="valor-portafolio" class="section level2">
+<h2><span class="header-section-number">2.5</span> Valor de un portafolio</h2>
+<p>Para la construcción de portafolios en este trabajo <strong>vamos a suponer que podemos comprar fracciones de títulos de acciones</strong>. Para ejemplificar, supongamos que tenemos 100 pesos y que hay una acción que cuesta 20 pesos. Si queremos invertir 25% de nuestro capital en esa acción, entonces compraríamos 1.25 títulos.</p>
+<p>Normalmente, no son fáciles de conseguir en el mercado fracciones de títulos de instrumentos listados en casas de bolsa. En contraste, es fácil invertir en fracciones de tipos de cambio.</p>
+<p>Imaginemos que al inicio del 2017 invertimos en un portafolio con la siguiente composición:</p>
+<ul>
+<li>30% en Herdez,</li>
+<li>20% en Gigante,</li>
+<li>40% en dólares, y</li>
+<li>10% en IBM</li>
+</ul>
+<p>Estos pesos los guardamos en <code>H0</code> (initial holdings).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">H0 &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dt">HERDEZ.MX.Adjusted =</span> <span class="fl">0.3</span>,
+  <span class="dt">GIGANTE.MX.Adjusted =</span> <span class="fl">0.2</span>,
+  <span class="dt">MXN.X.Adjusted =</span> <span class="fl">0.4</span>,
+  <span class="dt">IBM_MXN.Adjusted =</span> <span class="fl">0.1</span>
+)</code></pre></div>
+<p>Quisiéramos conocer el rendimiento acumulado en 2017 de este portafolio.</p>
+<hr />
+<p><strong>Construcción de rendimiento acumulado de un portafolio</strong></p>
+<p>Supongamos que tenemos un portafolio con <span class="math inline">\(n\)</span> activos y el <strong>peso inicial de apertura de las componentes del portafolio</strong> está dado por <span class="math inline">\(H^0 = (H_1^0, H_2^0, \dots, H_n^0)\)</span> con <span class="math inline">\(\sum H_i^0 = 1\)</span>. Con esto, tenemos que</p>
+<ul>
+<li>El <strong>rendimiento acumulado del portafolio al tiempo <span class="math inline">\(t\)</span></strong> es</li>
+</ul>
+<p><span class="math display">\[
+\sum_j H_j^0 \delta_j^{0,t}
+\]</span></p>
+<p>donde <span class="math inline">\(\delta_j^{0,t}\)</span> es el rendimiento acumulado del activo <span class="math inline">\(j\)</span> al tiempo <span class="math inline">\(t\)</span>.</p>
+<ul>
+<li>La <strong>contribución del activo <span class="math inline">\(i\)</span> al rendimiento acumulado del portafolio al tiempo <span class="math inline">\(t\)</span></strong> está dada por</li>
+</ul>
+<p><span class="math display">\[
+H_i^0\delta_i^{0,t} + (1-H_i^0)
+\]</span></p>
+<ul>
+<li>El <strong>peso de cierre del portafolio invertido en el activo <span class="math inline">\(i\)</span> al tiempo <span class="math inline">\(t\)</span></strong> denotado por <span class="math inline">\(h_i^t\)</span> es:</li>
+</ul>
+<p><span class="math display">\[
+h_i^t = \frac{H_i^0 \delta_i^{0,t}}{\sum_j H_j^0 \delta_j^{0,t}}
+\]</span></p>
+<p>Regularmente nos referiremos a los pesos de cierre de un portafolio simplemente como pesos del portafolio.</p>
+<hr />
+<p>Calculemos el rendimiento acumulado de nuestro portfalio, así como las contribuciones al rendimiento acumulado y los pesos en cada <span class="math inline">\(t\)</span> de los componentes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cumRet &lt;-<span class="st"> </span>cumRet[, <span class="kw">c</span>(<span class="st">&#39;HERDEZ.MX.Adjusted&#39;</span>, 
+                     <span class="st">&#39;GIGANTE.MX.Adjusted&#39;</span>, 
+                     <span class="st">&#39;MXN.X.Adjusted&#39;</span>, 
+                     <span class="st">&#39;IBM_MXN.Adjusted&#39;</span>)]
+
+portfolio_cumterm &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">order.by =</span> <span class="kw">index</span>(cumRet))
+
+portfolio_cumRet &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">order.by =</span> <span class="kw">index</span>(cumRet))
+portfolio_cumRet<span class="op">$</span>portfolio &lt;-<span class="st"> </span><span class="dv">0</span>
+
+portfolio_contrib &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">order.by =</span> <span class="kw">index</span>(cumRet))
+
+<span class="cf">for</span>(c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(cumRet)) {
+  portfolio_cumterm &lt;-<span class="st"> </span><span class="kw">cbind</span>(portfolio_cumterm,
+                             H0[c] <span class="op">*</span><span class="st"> </span>cumRet[ ,c])
+
+  portfolio_cumRet<span class="op">$</span>portfolio &lt;-<span class="st"> </span>
+<span class="st">    </span>portfolio_cumRet<span class="op">$</span>portfolio <span class="op">+</span><span class="st"> </span>portfolio_cumterm[ ,c]
+
+  portfolio_contrib &lt;-<span class="st"> </span><span class="kw">cbind</span>(portfolio_contrib,
+                             portfolio_cumterm[ ,c] <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>H0[c]))
+}
+
+portfolio_weights &lt;-<span class="st"> </span>
+<span class="st">  </span>portfolio_cumterm <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(portfolio_cumRet<span class="op">$</span>portfolio)</code></pre></div>
+<p>Ahora, veamos las contribuciones y el rendimiento acumulado que acabamos de calcular.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(<span class="kw">cbind</span>(portfolio_cumRet, portfolio_contrib))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:contrib"></span>
+<img src="book_files/figure-html/contrib-1.png" alt="Contribuciones al rendimiento de un portafolio" width="70%" />
+<p class="caption">
+Figure 2.6: Contribuciones al rendimiento de un portafolio
+</p>
+</div>
+<p>En la figura <a href="conociendo-datos.html#fig:contrib">2.6</a> podemos ver que al final del año el portafolio tuvo un rendimiento de 4.78% y que la contribución de cada componente a este rendimiento es:</p>
+<ul>
+<li>7.53% de Herdez</li>
+<li>0.31% de Gigante</li>
+<li>-2.09% de dólares</li>
+<li>-0.97% de IBM (en pesos)</li>
+</ul>
+<p>Aunque asignamos un peso inicial (de apertura) a cada activo dentro del portafolio, <strong>en la medida en la que se mueven los precios de los componentes los pesos de cierre se van moviendo</strong>.</p>
+<p>Grafiquemos los pesos de cierre de cada componente del portafolio en el tiempo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(portfolio_weights)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:portfolio-weights"></span>
+<img src="book_files/figure-html/portfolio-weights-1.png" alt="Pesos de cierre de los componentes de un portafolio" width="70%" />
+<p class="caption">
+Figure 2.7: Pesos de cierre de los componentes de un portafolio
+</p>
+</div>
+<p>Veamos en la figura <a href="conociendo-datos.html#fig:portfolio-weights">2.7</a> las diferencias entre los pesos iniciales de las componentes del portafolio y sus pesos al 30 de junio de 2017:</p>
+<ul>
+<li>Herdez pasó de 30.00% a 33.88%</li>
+<li>Gigante pasó de 20.00% a 19.88%</li>
+<li>Los dólares pasaron de 40.00% a 37.47%</li>
+<li>IBM (en pesos) pasó de 10.00% a 8.77%</li>
+</ul>
+<blockquote>
+<h3 id="posiciones-largas-y-posiciones-cortas"><span class="header-section-number">2.5</span> Posiciones Largas y Posiciones Cortas</h3>
+<p>En este trabajo únicamente consideraremos pesos iniciales positivos, que por construcción nos llevan a pesos de cierre positivos. A las posiciones <span class="math inline">\(H_i^0&gt;0\)</span> se les llama <strong>posiciones largas</strong>.</p>
+<p>Existen casas de bolsa que permiten colocar órdenes llamadas <strong>ventas en corto</strong>. Supongamos que a principio de 2017 vamos a registrar una venta en corto de Herdez a precio de mercado. Esto significa que si el rendimiento de Herdez al final de 2017 fue de 25.11% y si decidimos cerrar la posición corta en ese momento, entonces al final del periodo obtendríamos un rendimiento de -25.11%.</p>
+<p>A las posiciones <span class="math inline">\(H_i^0&lt;0\)</span> se les llama <strong>posiciones cortas</strong>. Tener una posición corta en el componente <span class="math inline">\(i\)</span> de un portafolio significa colocar una venta en corto en el activo <span class="math inline">\(i\)</span>. Si ese activo da un rendimiento <span class="math inline">\(\delta_i^\mathbb{T}\)</span> en el periodo <span class="math inline">\(\mathbb{T}\)</span>, entonces la contribución del activo <span class="math inline">\(i\)</span> al tiempo <span class="math inline">\(T\)</span> será <span class="math inline">\((-H_i^0 \delta_i^\mathbb{T})(1-H_i^0)\)</span></p>
+</blockquote>
+</div>
+<div id="rebalanceo" class="section level2">
+<h2><span class="header-section-number">2.6</span> Rebalanceo y costos de transacción</h2>
+
+<div class="resumen">
+Se dice que se está <strong>rebalanceado</strong> un portafolio cuando en una fecha se decide cambiar los pesos de los componentes del portafolio a un nivel específico. Para esto, se tienen que realizar transacciones de compra venta. Las casas de bolsa cobran <strong>costos de transacción</strong> que son comisiones por realizar estas operaciones.
+</div>
+
+<p>En la vida real se tienen que considerar los costos de transacción para deteminar el desempeño de una inversión. Además las operaciones se cierran a precios de mercado (intradía) y no necesariamente a precio de cierre. Es posible que haya operaciones de compra venta que no logran ejecutarse por temas operativos o de liquidez.</p>
+<p>En este trabajo vamos a suponer que siempre que deseamos modificar los porcentajes de los componente de un portafolio:</p>
+<ul>
+<li>No hay costos de transacción.</li>
+<li>Se logran cerrar todas las operaciones de compra venta.</li>
+<li>Estas operaciones se efectuan a precio de cierre y al día siguiente se amanece con la nueva composición.</li>
+</ul>
+<p>El 30 de junio del 2017 decidimos hacer un rebalanceo de nuestro portafolio para llevar los pesos de los componentes a los siguientes niveles:</p>
+<ul>
+<li>25% en Herdez,</li>
+<li>20% en Gigante,</li>
+<li>55% en dólares, y</li>
+<li>0% en IBM</li>
+</ul>
+<p>Estos pesos los guardamos en <code>Hb</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Hb &lt;-<span class="st"> </span><span class="kw">c</span>(
+  <span class="dt">HERDEZ.MX.Adjusted =</span> <span class="fl">0.25</span>,
+  <span class="dt">GIGANTE.MX.Adjusted =</span> <span class="fl">0.2</span>,
+  <span class="dt">MXN.X.Adjusted =</span> <span class="fl">0.55</span>,
+  <span class="dt">IBM_MXN.Adjusted =</span> <span class="fl">0.0</span>
+)</code></pre></div>
+<p>Con este cambio, ¿cuál es el rendimiento acumulado en 2017?</p>
+<hr />
+<p><strong>Construcción de rendimiento acumulado de un portafolio después de un rebalanceo</strong></p>
+<p>Si el día <span class="math inline">\(b\)</span> se realiza un rebalanceo, asumimos que ese día se vende a precio de cierre la posición con pesos <span class="math inline">\(h^b = (h_1^b, h_2^b, \dots, h_n^b)\)</span> y se compra a ese mismo precio la posición con <strong>pesos de rebalanceo</strong> <span class="math inline">\(H^b = (H_1^b, H_2^b, \dots, H_n^b)\)</span> tales que <span class="math inline">\(\sum H_i^b = 1\)</span>. De esta manera el día <span class="math inline">\(b+1\)</span> los pesos de apertura de los componentes del portafolio quedan en <span class="math inline">\(H^b\)</span>.</p>
+<p>Dado este rebalanceo y bajo estos supuestos tenemos que, para <span class="math inline">\(t \leq b\)</span> el rendimiento acumulado, las contribuciones y pesos se calculan igual que antes. En el caso de <span class="math inline">\(t &gt; b\)</span> se cumple que:</p>
+<ul>
+<li>El rendimiento acumulado esta dado por</li>
+</ul>
+<p><span class="math display">\[
+\sum_j H_j^0 \delta_j^{0,b} \sum_k H_k^b \delta_j^{b,t}
+\]</span></p>
+<ul>
+<li>La contribución del activo <span class="math inline">\(i\)</span> al rendimiento acumulado del portafolio es</li>
+</ul>
+<p><span class="math display">\[
+\left(H_i^0\delta_i^{0,b} + (1-H_i^0)\right)\left(H_i^b\delta_i^{b,t} + (1 - H_i^b)\right)
+\]</span></p>
+<ul>
+<li>El peso de cierre <span class="math inline">\(h_i^t\)</span> del activo <span class="math inline">\(i\)</span> del portafolio está dado por</li>
+</ul>
+<p><span class="math display">\[
+h_i^t = \frac{\left(\sum_j H_j^0 \delta_j^{0,b}\right)\left(H_i^b \delta_i^{b,t}\right)}{\left(\sum_j H_j^0 \delta_j^{0,b}\right)\left(\sum_j H_j^b \delta_j^{b,t}\right)} = \frac{H_i^b \delta_i^{b,t}}{\sum_j H_j^b \delta_j^{b,t}}
+\]</span></p>
+<p>Para obtener estos valores nos será util tomar en cuenta que</p>
+<p><span class="math display">\[
+\delta_j^{b,t} = \frac{\delta_j^{0,t}}{\delta_j^{0,b}}
+\]</span></p>
+<hr />
+<p>El anexo <a href="#fun-get-rebalance"><strong>??</strong></a> incluye en la función <code>get_rebalance()</code> que usaremos a continuación, este procedimiento se describe una lógica secuencial para obtener valores de portafolios con múltiples fechas de rebalanceo.</p>
+<p>Considerando los pesos de rebalanceo del 30 de junio, vamos a obtener el nuevo rendimiento acumulado de nuestro portfalio y las contribuciones de los componentes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dlyChg &lt;-<span class="st"> </span>dlyChg[, <span class="kw">c</span>(<span class="st">&#39;HERDEZ.MX.Adjusted&#39;</span>, 
+                     <span class="st">&#39;GIGANTE.MX.Adjusted&#39;</span>, 
+                     <span class="st">&#39;MXN.X.Adjusted&#39;</span>, 
+                     <span class="st">&#39;IBM_MXN.Adjusted&#39;</span>)]
+
+rebWeight &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="kw">rbind</span>(H0, Hb),
+                 <span class="dt">order.by =</span> <span class="kw">c</span>(<span class="kw">index</span>(cumRet)[<span class="dv">1</span>], <span class="kw">as.Date</span>(<span class="st">&#39;2017-06-30&#39;</span>)))
+
+rebalance &lt;-<span class="st"> </span><span class="kw">get_rebalance</span>(dlyChg, rebWeight)
+
+<span class="kw">plot_xts</span>(<span class="kw">cbind</span>(rebalance<span class="op">$</span>portValue, rebalance<span class="op">$</span>portContrib))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:contrib-rebalanceo"></span>
+<img src="book_files/figure-html/contrib-rebalanceo-1.png" alt="Contribuciones al rendimiento después del rebalanceo" width="70%" />
+<p class="caption">
+Figure 2.8: Contribuciones al rendimiento después del rebalanceo
+</p>
+</div>
+<p>De acuerdo a la figura <a href="conociendo-datos.html#fig:contrib-rebalanceo">2.8</a>:</p>
+<ul>
+<li><p>El rebalanceo que se hizo el 30 de junio provocó que disminuyera el rendimiento final del portafolio. Este rendimiento fue de 3.77%.</p></li>
+<li><p>Resalta que después del rebalanceo, al fijar el peso de IBM en cero, a partir del 30 de junio su contribución se mantiene fija en -1.82%.</p></li>
+<li><p>Por otro lado, los pesos de cierre del portafolio antes y después del rebalanceo del 30 de junio también muestran cambios como vemos en la siguiente figura <a href="conociendo-datos.html#fig:pesos-rebalanceo">2.9</a>.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(rebalance<span class="op">$</span>portWeight)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:pesos-rebalanceo"></span>
+<img src="book_files/figure-html/pesos-rebalanceo-1.png" alt="Pesos de cierre despues del rebalanceo" width="70%" />
+<p class="caption">
+Figure 2.9: Pesos de cierre despues del rebalanceo
+</p>
+</div>
+<p>Para finalizar esta sección, definiremos el <strong>valor de un portafolio en <span class="math inline">\(t\)</span></strong>. Este es simplemente el rendimiento acumulado en <span class="math inline">\(t\)</span> por un valor inicial <span class="math inline">\(V_0\)</span> que puede ser un precio, una cantidad de dinero o un nivel de puntos arbitrario.</p>
+<p>Así, si el valor inicial de nuestro portafolio rebalanceado es <span class="math inline">\(100\)</span> pesos, entonces el valor de este portafolio al 29 de diciembre de 2017 es</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">V_<span class="dv">0</span> =<span class="st"> </span><span class="dv">100</span>
+V_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>rebalance<span class="op">$</span>portValue[<span class="st">&#39;2017-12-29&#39;</span>]</code></pre></div>
+<pre><code>##                port
+## 2017-12-29 103.7705</code></pre>
+</div>
+<div id="indices" class="section level2">
+<h2><span class="header-section-number">2.7</span> Índices</h2>
+<p>Imaginemos que queremos un indicador que promedie el precio de muchas acciones de un sector de la industria, o un indicador que represente los bonos de un país; también, podemos imaginar un indicador de los movimientos de todos los tipos de cambio de países latino americanos. Los <strong>índices de mercado</strong> son portafolios de instrumentos financieros que permiten entender el comporamiento agregado de sus componentes.</p>
+<blockquote>
+<h3 id="proveedores-de-indices"><span class="header-section-number">2.7</span> Proveedores de Índices</h3>
+<p>Los primeros índices fueron creados y publicados por periódicos financieros para resumir las fluctuaciones diarias de los precios de las acciones. El precursor del <em>Wall Street Journal</em> llamado <em>Dow Jones and Co’s Customer’s Afternoon letter</em> creó en 1884 al <strong>Dow Jones</strong>, este índice sigue siendo una de las principales referencias para los inversionistas americanos junto con el <strong>S&amp;P500</strong>.</p>
+<p>Hoy existen empresas como <em>Standard &amp; Poor’s Financial Services LLC</em> (S&amp;P) y <em>Morgan Stanley Capital International</em> (MSCI) que son <strong>proveedores de índices</strong>. Estas empresas desarrollan metodologías proprietarias para definir sus índices.</p>
+</blockquote>
+<p>Algunos índices de acciones famosos son:</p>
+<ul>
+<li>S&amp;P500 - índice con 500 acciones de Estados Unidos creado por Standard and Poors (S&amp;P)</li>
+<li>Dow Jones - uno de los primeros índices del mundo constituido por acciones de Estados Unidos</li>
+<li>All County World Index - índice de referencia compuesto por acciones de todo el mundo creado por MSCI</li>
+<li>IPC (Índice de Precios y Cotizaciones) - índice de acciones mexicanas creado por la Bolsa Mexicana de Valores</li>
+</ul>
+<p>También existen índices de bonos y de commodities:</p>
+<ul>
+<li>Barclays Capital U.S. Aggregate Bond Index - índice compuesto por bonos del tesoro americanos</li>
+<li>S&amp;P GSCI Crude Oil Index - índice cuyo valor se basa en la producción de petróleo</li>
+</ul>
+<p>Por lo regular las <strong>metodologías para construir índices</strong> de acciones y bonos consisten en:</p>
+<ol style="list-style-type: decimal">
+<li>Definir una regla de selección de instrumentos líquidos. Éstos determinan la composición del índice (index composition)</li>
+<li><p>Asignar pesos de rebalanceo a cada componente del índice. Los tipos de índices más comunes son:</p>
+<ul>
+<li><strong>índices con pesos de capitalización de mercado</strong> (market-cap weighted indices) - al rebalancearse este tipo de índices, el peso que se asigna a cada componente es su <em>capitalización de mercado</em></li>
+<li><strong>índices con pesos iguales</strong> (equally weighted indices) - índices que al rebalancearse asignan un mismo peso a todos sus componentes</li>
+</ul></li>
+<li><p>Determinar la frecuencia de los rebalanceos del índice. Regularmente los índices se rebalancean semestralmente o trimestralmente</p></li>
+</ol>
+<blockquote>
+<h4 id="capitalizacion-de-mercado"><span class="header-section-number">2.7</span> Capitalización de mercado</h4>
+</blockquote>
+
+<div class="resumen">
+La <strong>capitalización de mercado al tiempo <span class="math inline">\(t\)</span></strong> (market capitalization o market cap) es simplemente el precio de una acción emitida por el número de títulos de la emisión al tiempo <span class="math inline">\(t\)</span>. De esta manera, el market cap representa el valor total del mercado en <span class="math inline">\(t\)</span> de una acción.
+</div>
+
+<blockquote>
+<p>En la figura <a href="conociendo-datos.html#fig:market-cap">2.10</a> tenemos un mapa que muestra la capitalización de mercado en miles de millones de dólares para cada país en el mundo en 2015.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:market-cap"></span>
+<img src="figure/mkt_cap.png" alt="Mapa del mundo por capitalización de mercado" width="70%" />
+<p class="caption">
+Figure 2.10: Mapa del mundo por capitalización de mercado
+</p>
+</div>
+<blockquote>
+<p>Estados Unidos, con un market cap de 19.8 billones de dólares, es el más grande y representa el 52% del valor del mercado en el mundo. Japón es el segundo lugar con $3 billones, seguido por UK en $2.7 billones.</p>
+<p>Para obtener la capitalización de mercado de una emisión necesitamos su precio y número de títulos. Ya sabemos como extraer precios. Una manera de consultar el número de títulos de un instrumento financiero es usar las estadísticas de Yahoo! Finance.</p>
+<p>La figura <a href="conociendo-datos.html#fig:ibm-stats">2.11</a> muestra una captura de pantalla de las estadísticas de IBM en <a href="https://finance.yahoo.com/quote/ibm/key-statistics" class="uri">https://finance.yahoo.com/quote/ibm/key-statistics</a>. <strong>El número total de títulos de IBM está en amarillo</strong>.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span id="fig:ibm-stats"></span>
+<img src="figure/stats_IBM.png" alt="Estadísticas de IBM" width="45%" />
+<p class="caption">
+Figure 2.11: Estadísticas de IBM
+</p>
+</div>
+<p>Con Herdez y Gigante construyamos un <em>market-cap weighted index</em>. Para eso buscamos el número total de títulos de las dos acciones que se muestran aquí.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Títulos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Herdez</td>
+<td>428.91 mill</td>
+</tr>
+<tr class="even">
+<td>Gigante</td>
+<td>817.49 mill</td>
+</tr>
+</tbody>
+</table>
+<p>Con esto, vamos a obtener para cada inicio de trimestre en 2017 la capitalización de mercado de nuestras acciones y el valor total del mercado (la suma de las capitalizaciones de estas acciones).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">floor</span>(<span class="kw">nrow</span>(price) <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">3</span><span class="op">/</span><span class="dv">4</span>)))
+marketCap &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">order.by =</span> <span class="kw">index</span>(price)[t])
+
+marketCap<span class="op">$</span>HERDEZ.MX &lt;-<span class="st"> </span>price<span class="op">$</span>HERDEZ.MX.Adjusted[t] <span class="op">*</span><span class="st"> </span><span class="dv">428910000</span>
+marketCap<span class="op">$</span>GIGANTE.MX &lt;-<span class="st"> </span>price<span class="op">$</span>GIGANTE.MX.Adjusted[t] <span class="op">*</span><span class="st"> </span><span class="dv">817490000</span>
+marketCap<span class="op">$</span>total_mkt &lt;-<span class="st"> </span>marketCap<span class="op">$</span>HERDEZ.MX <span class="op">+</span><span class="st"> </span>marketCap<span class="op">$</span>GIGANTE.MX
+
+marketCap</code></pre></div>
+<pre><code>##              HERDEZ.MX  GIGANTE.MX   total_mkt
+## 2017-01-02 14864320401 31882110000 46746430401
+## 2017-03-31 15282701947 34334580000 49617281947
+## 2017-06-30 15652913040 29552265135 45205178175
+## 2017-09-29 17568131726 29429640000 46997771726</code></pre>
+<p>Ahora, obtengamos para cada inicio de trimestre los pesos de rebalanceo de las acciones en nuestro índice.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rebWeight &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">order.by =</span> <span class="kw">index</span>(price)[t])
+rebWeight<span class="op">$</span>HERDEZ.MX &lt;-<span class="st"> </span>marketCap<span class="op">$</span>HERDEZ.MX <span class="op">/</span><span class="st"> </span>marketCap<span class="op">$</span>total_mkt
+rebWeight<span class="op">$</span>GIGANTE.MX &lt;-<span class="st"> </span>marketCap<span class="op">$</span>GIGANTE.MX <span class="op">/</span><span class="st"> </span>marketCap<span class="op">$</span>total_mkt
+
+rebWeight</code></pre></div>
+<pre><code>##            HERDEZ.MX GIGANTE.MX
+## 2017-01-02 0.3179777  0.6820223
+## 2017-03-31 0.3080117  0.6919883
+## 2017-06-30 0.3462637  0.6537363
+## 2017-09-29 0.3738078  0.6261922</code></pre>
+<p><strong>Calcular el valor diario de un índice se hace de la misma manera que calcular el valor de un portafolio</strong>. De esta manera usamos los pesos de rebalanceo en <code>rebWeight</code>, los cambios diarios en <code>dlyChg</code> y un valor inicial de 1000 para obtener el valor diario de nuestro índice.</p>
+<p>De esta manera el valor al final del 2017 del índice de capitalización de mercado de Herdez y Gigante está dado por</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dlyChg &lt;-<span class="st"> </span>dlyChg[, <span class="kw">c</span>(<span class="st">&#39;HERDEZ.MX.Adjusted&#39;</span>, 
+                     <span class="st">&#39;GIGANTE.MX.Adjusted&#39;</span>)]
+
+rebalance &lt;-<span class="st"> </span><span class="kw">get_rebalance</span>(dlyChg, rebWeight)
+
+<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>rebalance<span class="op">$</span>portValue[<span class="st">&#39;2017-12-29&#39;</span>]</code></pre></div>
+<pre><code>##                port
+## 2017-12-29 1090.333</code></pre>
+<p>Los pesos de capitalización de mercado de las acciones en nuestro índice se ven así:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_xts</span>(rebalance<span class="op">$</span>portWeight)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:pesos-cap"></span>
+<img src="book_files/figure-html/pesos-cap-1.png" alt="Pesos de capitalización de mercado de un índice hipotético de dos acciones" width="70%" />
+<p class="caption">
+Figure 2.12: Pesos de capitalización de mercado de un índice hipotético de dos acciones
+</p>
+</div>
+<p>De la figura <a href="conociendo-datos.html#fig:pesos-cap">2.12</a> concluimos que Gigante perdió valor de mercado contra Herdez durante 2017.</p>
+</div>
+<div id="etfs" class="section level2">
+<h2><span class="header-section-number">2.8</span> ETFs</h2>
+
+<div class="resumen">
+Se le llama <strong>Exchange Traded Fund</strong> (ETF) a un fondo que replica el valor de algún índice o activo (puede no ser operado en bolsa, como el oro). Una de sus cualidades es que los ETF’s son listados en bolsa y pueden ser operados como cualquier acción.
+</div>
+
+<p>Recordemos que un índice es un conjunto de acciones. Si quisiéramos replicar el valor de un índice necesitaríamos el capital necesario para comprar todos las activos en el índice con su peso correspondiente. Para eso, necesitaríamos mucho capital. De igual manera, si quisiéramos aumentar o disminuir nuestra posición en el índice sería muy complicado porque tendríamos que comprar o vender todos los componentes con consecuencias de costos de transacción y operativos.</p>
+<p>Por otro lado, si quisiéramos invertir en el valor del oro tendríamos que conseguir lingotes de oro y no podríamos comprar fracciones de lingotes. Además al momento de vender, podría ser complicado encontrar alguien interesado en esos lingotes.</p>
+<p>Los ETFs se han vuelto muy populares porque son muy fáciles de operar y permiten tener exposición a distintas fuentes de valor. <strong>A partir del 2013, éstos son los instrumentos más operados globalmente; de hecho, el instrumento más operado en el mundo es el SPY</strong>. Este ETF lo ofrece <em>State Street Global Advisors</em> y replica el valor del S&amp;P 500. Guardemos en <code>spy</code> los precios de este ETF.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spy &lt;-<span class="st"> </span><span class="kw">get_prices_yahoo</span>(<span class="kw">c</span>(<span class="st">&#39;spy&#39;</span>), 
+                        <span class="dt">from =</span> <span class="st">&#39;2012-12-31&#39;</span>, 
+                        <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)</code></pre></div>
+<p>Para conocer los valores en los que se encuentra invertido un ETF es necesario encontrar el <strong>prospecto de información del ETF</strong>. Para el caso de ETFs de índices, el prospecto indica el nombre del índice que busca replicar. También resulta muy útil visitar la página <a href="https://www.etf.com/" class="uri">https://www.etf.com/</a> para encontrar los específicos de un ETF particular.</p>
+<p>En los siguientes capítulos vamos a utilizar varios ETFs para nuestros ejemplos. A continuación listamos los ETFs que usaremos y los índices que replican.</p>
+<p><strong>ETFs de Índices Sectoriales</strong></p>
+<p>Existen metodologías proprietarias que se usan para clasificar acciones en distintos grupos. En particular es común que se busque clasificar las empresas de acuerdo al sector industrial al que pertenecen. Este problema no es necesariamente sencillo pues existen empresas cuyos productos y servicios se encuentran muy diversificados. Un <strong>índice sectorial</strong> está compuesto por acciones que pertenecen a un sector industrial específico.</p>
+<ul>
+<li>IYC - ETF que replica al Dow Jones US Consumer Services Index. Este índice contiene emisiones en US del sector de servicios al consumidor</li>
+<li>IYE - Dow Jones US Energy Index - sector energético</li>
+<li>IYH - Dow Jones US Health Care Index - sector de salud</li>
+<li>IYR - Dow Jones US Real State Index - sector de bienes raíces</li>
+<li>IYW - Dow Jones US Technology Index - sector de tecnología</li>
+</ul>
+<p>Guardamos en <code>sectors</code> los precios de los ETFs de Índices Sectoriales.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sectors &lt;-<span class="st"> </span><span class="kw">get_prices_yahoo</span>(<span class="kw">c</span>(<span class="st">&#39;IYC&#39;</span>, 
+                             <span class="st">&#39;IYE&#39;</span>, 
+                             <span class="st">&#39;IYH&#39;</span>,  
+                             <span class="st">&#39;IYR&#39;</span>, 
+                             <span class="st">&#39;IYW&#39;</span>), 
+                           <span class="dt">from =</span> <span class="st">&#39;2012-12-31&#39;</span>, 
+                           <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)</code></pre></div>
+<p><strong>ETFs de Bonos del Tesoso Americanos</strong></p>
+<ul>
+<li>IEF - Barclays U.S. 7-10 Year Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 7 y 10 años.</li>
+<li>TLT - Barclays 20+ Yr Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 20 y 30 años.</li>
+<li>TLH - Barclays 10-20 Yr Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 10 y 20 años.</li>
+<li>SHY - Barclays U.S. 7-10 Year Treasury Bond Index - bonos del Tesoro de US con vencimiento entre 1 y 3 años.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bonds &lt;-<span class="st"> </span><span class="kw">get_prices_yahoo</span>(<span class="kw">c</span>(<span class="st">&#39;TLT&#39;</span>, 
+                            <span class="st">&#39;TLH&#39;</span>, 
+                            <span class="st">&#39;IEF&#39;</span>, 
+                            <span class="st">&#39;SHY&#39;</span>), 
+                          <span class="dt">from =</span> <span class="st">&#39;2012-12-31&#39;</span>, 
+                          <span class="dt">to =</span> <span class="st">&#39;2017-12-31&#39;</span>)</code></pre></div>
+<p><strong>ETFs para estrategias Multi-Activas</strong></p>
+<p>La comunidad financiera se refiere por <strong>multi-activos</strong> a aquellas estrategias de inversión o portafolios compuestos por activos que tienen distintos tipos de fuentes de valor, digamos:</p>
+<ol style="list-style-type: decimal">
+<li>bonos - Los bonos determinan su valor de acuerdo a movimientos de tasa, que reflejan las expectativas de la calidad del emisor del bono y del valor de una moneda en el tiempo.</li>
+<li>acciones - Las acciones determinan su valor de acuerdo a las expectativas de flujos futuros que generará una empresa.</li>
+<li>commodities - El valor de un commodity proviene de la demanda y oferta de ese bien material.</li>
+<li>divisas- Las fortaleza de una moneda proviene de su demanda y su demanda depende de las expectativas de confianza y crecimiento de la economía que utiliza esa moneda.</li>
+</ol>
+<ul>
+<li>ACWI - MSCI’s All Country World Index - índice de capitalización de mercado de acciones listadas en todo el mundo</li>
+<li>EEM - Emerging Markets Index - índice de capitalización de mercado de acciones listadas en países emergentes</li>
+<li>USO - Front Month Light Sweet Crude Oil Index - fondo compuesto por futuros de precios de petróleo</li>
+<li>GLD - Precio del oro - fondo invertido directamente en oro físico</li>
+<li>UUP - Deutsche Bank Long USD Currency Portfolio Index - índice que representa la fortaleza del dólar americano relativo a una canasta de seis monedas: el euro, el yen, la libra, el dólar canadiense, la corona sueca y el franco suizo.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multi &lt;-<span class="st"> </span><span class="kw">get_prices_yahoo</span>(<span class="kw">c</span>(<span class="st">&#39;acwi&#39;</span>, 
+                            <span class="st">&#39;eem&#39;</span>,
+                            <span class="st">&#39;uso&#39;</span>, 
+                            <span class="st">&#39;tlt&#39;</span>, 
+                            <span class="st">&#39;ief&#39;</span>, 
+                            <span class="st">&#39;gld&#39;</span>, 
+                            <span class="st">&#39;uup&#39;</span>), 
+                          <span class="dt">from =</span> <span class="st">&#39;2008-12-31&#39;</span>, 
+                          <span class="dt">to =</span> <span class="st">&#39;2018-06-30&#39;</span>)</code></pre></div>
+<p>Extrajimos los precios de los ETFs listados arriba para constuir los objetos <code>spy</code>, <code>sectors</code>, <code>bonds</code> y <code>multi</code>. Los precios en estos objetos <code>xts</code> los utilizamos en los siguientes capítulos.</p>
+<p>En muchos artículos de manejo de portafolios se utilizan índices para probar resultados. Nosotros usaremos ETF’s en nuestros ejemplos. Le recordamos al lector que es equivalente desde el punto de vista teórico utilizar índices o ETFs. Sin embargo, el precio de los ETFs está en una moneda mientras que el valor de los índices se encuentra en un valor arbitrario; y como se explicó antes, es posible invertir en ETFs mientras que en índices no es posible.</p>
+
+<div id="refs" class="references">
+<div>
+<p>Eddelbuettel, Dirk. 2018. <em>Rcpp: Seamless R and C++ Integration</em>. <a href="https://CRAN.R-project.org/package=Rcpp" class="uri">https://CRAN.R-project.org/package=Rcpp</a>.</p>
+</div>
+<div>
+<p>Fabozzi, Petter Kolm AND Reha Tutuncu AND Frank. 2014. “60 Years of Portfolio Optimization: Practical Challenges and Current Trends.” <em>European Journal of Operational Research</em> 234 (2).</p>
+</div>
+<div>
+<p>Gorman, Ben. 2018. <em>Mltools: Machine Learning Tools</em>. <a href="https://CRAN.R-project.org/package=mltools" class="uri">https://CRAN.R-project.org/package=mltools</a>.</p>
+</div>
+<div>
+<p>Johnson, Steven G. 2018. <em>Nloptr: The Nlopt Nonlinear-Optimization Package</em>. <a href="https://CRAN.R-project.org/package=nloptr" class="uri">https://CRAN.R-project.org/package=nloptr</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Roncalli, Thierry. 2013. <em>Introduction to Risk Parity and Budgeting</em>. CRC Press.</p>
+</div>
+<div>
+<p>Ryan, Jeffrey A., and Joshua M. Ulrich. 2018a. <em>Quantmod: Quantitative Financial Modelling Framework</em>. <a href="https://CRAN.R-project.org/package=quantmod" class="uri">https://CRAN.R-project.org/package=quantmod</a>.</p>
+</div>
+<div>
+<p>———. 2018b. <em>Xts: EXtensible Time Series</em>. <a href="https://CRAN.R-project.org/package=xts" class="uri">https://CRAN.R-project.org/package=xts</a>.</p>
+</div>
+<div>
+<p>Teiletche, Sébastien Maillard AND Thierry Roncalli AND Jérome. 2010. “On the Properties of Equally-Weighted Risk Contributions Portfolios.” <em>The Journal of Portfolio Management</em> 36 (4).</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>Zeileis, Achim, and Gabor Grothendieck. 2018. <em>Zoo: S3 Infrastructure for Regular and Irregular Time Series</em>. <a href="https://CRAN.R-project.org/package=zoo" class="uri">https://CRAN.R-project.org/package=zoo</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-rlang">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-xts">
+<p>Ryan, Jeffrey A., and Joshua M. Ulrich. 2018a. <em>Quantmod: Quantitative Financial Modelling Framework</em>. <a href="https://CRAN.R-project.org/package=quantmod" class="uri">https://CRAN.R-project.org/package=quantmod</a>.</p> 2018b. <em>Xts: EXtensible Time Series</em>. <a href="https://CRAN.R-project.org/package=xts" class="uri">https://CRAN.R-project.org/package=xts</a>.</p>
+</div>
+<div id="ref-zoo">
+<p>Zeileis, Achim, and Gabor Grothendieck. 2018. <em>Zoo: S3 Infrastructure for Regular and Irregular Time Series</em>. <a href="https://CRAN.R-project.org/package=zoo" class="uri">https://CRAN.R-project.org/package=zoo</a>.</p>
+</div>
+<div id="ref-quantmod">
+<p>Ryan, Jeffrey A., and Joshua M. Ulrich. 2018a. <em>Quantmod: Quantitative Financial Modelling Framework</em>. <a href="https://CRAN.R-project.org/package=quantmod" class="uri">https://CRAN.R-project.org/package=quantmod</a>.</p>
+</div>
+<div id="ref-nloptr">
+<p>Johnson, Steven G. 2018. <em>Nloptr: The Nlopt Nonlinear-Optimization Package</em>. <a href="https://CRAN.R-project.org/package=nloptr" class="uri">https://CRAN.R-project.org/package=nloptr</a>.</p>
+</div>
+<div id="ref-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-mltools">
+<p>Gorman, Ben. 2018. <em>Mltools: Machine Learning Tools</em>. <a href="https://CRAN.R-project.org/package=mltools" class="uri">https://CRAN.R-project.org/package=mltools</a>.</p>
+</div>
+<div id="ref-rcpp">
+<p>Eddelbuettel, Dirk. 2018. <em>Rcpp: Seamless R and C++ Integration</em>. <a href="https://CRAN.R-project.org/package=Rcpp" class="uri">https://CRAN.R-project.org/package=Rcpp</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
